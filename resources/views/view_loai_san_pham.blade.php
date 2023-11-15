@@ -6,6 +6,9 @@
     <title>Loại sản phẩm</title>
 </head>
 <body>
-    
+    <form action="" method="post">
+        @csrf
+        <button>a</button>
+      </form>
 </body>
 </html>

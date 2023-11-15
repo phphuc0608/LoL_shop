@@ -13,11 +13,11 @@
           </div>
         </div>
         <div id="container_center_bottom" class="d-flex align-items-center justify-content-center">
-          <form action="" method="post">
+          <form action="{{url('dang_nhap_process')}}" method="post">
             @csrf
             <div class="form-group">
-              <label for="ten_dang_nhap">Tên đăng nhập</label>
-              <input type="text" class="form-control" id="ten_dang_nhap" name="ten_dang_nhap" placeholder="Nhập tên đăng nhập" required>
+              <label for="tai_khoan">Tên đăng nhập</label>
+              <input type="text" class="form-control" id="tai_khoan" name="tai_khoan" placeholder="Nhập tên đăng nhập" required>
             </div>
             <div class="form-group">
               <label for="mat_khau">Mật khẩu</label>
@@ -27,11 +27,17 @@
               <button type="submit" class="button_login_logout px-5 py-3">Đăng nhập</button>
             </div>
           </form>
+          
         </div>
         <div id="dang_ky" class="mt-4">
-          <span>Bạn chưa có tài khoản?</span> <a href="#">Đăng nhập</a>
+          <span>Bạn chưa có tài khoản?</span> <a href="#">Đăng ký</a>
         </div>
       </div>
   </div>
+  <script>
+            @if(isset($bao_loi) && $bao_loi != '')
+                alert('{{$bao_loi}}');
+            @endif
+          </script>
 </body>
 </html>
