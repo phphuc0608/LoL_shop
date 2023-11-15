@@ -1,0 +1,14 @@
+#dang_nhap_container{
+  color: #0A0A0A;
+}
+#container_center{
+  background-color: #FCA903;
+}
+#ten_dang_nhap, #mat_khau{
+  color: #0A0A0A;
+  background: transparent;
+  border: 1px solid #0A0A0A;
+}
+#mat_khau::placeholder, #ten_dang_nhap::placeholder{
+  color: #0A0A0A;
+}
