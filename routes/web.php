@@ -16,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('dang_nhap', [\App\Http\Controllers\Dang_nhap_controller::class, 'view_dang_nhap'])->name('dang_nhap');
+Route::get('dang_nhap', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_dang_nhap'])->name('dang_nhap');
+Route::get('quan_ly_nguoi_dung', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_quan_ly_nguoi_dung'])->name('quan_ly_nguoi_dung');
+
