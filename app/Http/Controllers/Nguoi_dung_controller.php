@@ -37,9 +37,13 @@ class Nguoi_dung_controller extends Controller
         }
         // Kiểm tra xem có lỗi không
         if (session('bao_loi') == '') {
-            return redirect()->route('them_loai_sp');
+            return redirect()->route('quan_ly_nguoi_dung');
         } else {
             return redirect()->route('dang_nhap');
         }
+    }
+    public function view_quan_ly_nguoi_dung()
+    {
+        return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung');
     }
 }

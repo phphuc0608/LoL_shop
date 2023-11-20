@@ -17,7 +17,7 @@
 #container_center{
   border-radius: 10px;
 }
-#mat_khau, #ten_dang_nhap:focus{
+#mat_khau, #tai_khoan:focus{
   background-color: transparent;
   color: #0A0A0A;
 }
@@ -75,17 +75,17 @@
 #container_center {
   background-color: #0D1720;
 }
-#ten_dang_nhap,
+#tai_khoan,
 #mat_khau {
   color: #FFFFFF;
   background: transparent;
   border: 1px solid #FFFFFF;
 }
-#ten_dang_nhap:focus, #mat_khau:focus{
+#tai_khoan:focus, #mat_khau:focus{
   color: #FFFFFF;
 }
 #mat_khau::placeholder,
-#ten_dang_nhap::placeholder {
+#tai_khoan::placeholder {
   color: #686767;
 }
 
