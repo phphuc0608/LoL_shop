@@ -154,9 +154,11 @@ table tbody th{
 }
 table tbody .update_icon{
   color: #00D25B;
+  font-size: 18px;
 }
 table tbody .remove_icon{
   color: red;
+    font-size: 18px;
 }
 table tbody .table_btn{
   border: none;
