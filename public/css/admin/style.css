@@ -81,9 +81,12 @@
   background: transparent;
   border: 1px solid #FFFFFF;
 }
+#ten_dang_nhap:focus, #mat_khau:focus{
+  color: #FFFFFF;
+}
 #mat_khau::placeholder,
 #ten_dang_nhap::placeholder {
-  color: #FFFFFF;
+  color: #686767;
 }
 
 /*Header admin*/
