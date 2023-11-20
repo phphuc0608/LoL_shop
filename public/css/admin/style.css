@@ -1,33 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap'); */
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Merriweather Sans', sans-serif;
 }
-body{
-  background: url('/img/background.png');
+/*Dang nhap*/
+#dang_nhap_container{
+  background: url('../../img/background.jpg');
   position: relative;
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-#dang_nhap_container{
-    height: 100vh;
-}
 #container_center{
   border-radius: 10px;
 }
-
+#mat_khau, #ten_dang_nhap:focus{
+  background-color: transparent;
+  color: #0A0A0A;
+}
 .button_login_logout {
   width: 100%;
   padding: 15px 25px;
   border: unset;
   border-radius: 15px;
-  color: #FCA903;
+  color: #0A0A0A;
   z-index: 1;
-  background: #0A0A0A;
+  background: #B2893F;
   position: relative;
   font-size: 17px;
   -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
@@ -35,7 +36,6 @@ body{
   transition: all 250ms;
   overflow: hidden;
 }
-
 .button_login_logout::before {
   content: "";
   position: absolute;
@@ -44,26 +44,22 @@ body{
   height: 100%;
   width: 0;
   border-radius: 15px;
-  background-color: #FFFFFF;
+  background-color: #FFF9C5;
   border: none;
   z-index: -1;
   -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
   box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
   transition: all 250ms
 }
-
 .button_login_logout:hover::before {
   width: 100%;
 }
-
 .button_login_logout:hover {
   color: #0A0A0A;
 }
-
 #dang_ky {
   font-size: 15px;
 }
-
 #dang_ky a {
   text-decoration: none;
   color: #FFFFFF;
@@ -71,4 +67,100 @@ body{
 }
 #dang_ky a:hover {
   color: #0A0A0A;
+}
+#dang_nhap_container {
+  color: #FFFFFF;
+}
+
+#container_center {
+  background-color: #0D1720;
+}
+#ten_dang_nhap,
+#mat_khau {
+  color: #FFFFFF;
+  background: transparent;
+  border: 1px solid #FFFFFF;
+}
+#mat_khau::placeholder,
+#ten_dang_nhap::placeholder {
+  color: #FFFFFF;
+}
+
+/*Header admin*/
+#header_container {
+  background-color: #0D1720;
+}
+#header_container #logo_admin{
+  width: 190px;
+  height: 89px;
+}
+#header_container #header_right .item_nav{
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #7A5715;
+  font-weight: bold;
+  transition: 0.25s;
+}
+#header_container #header_right .item_nav:hover{
+  color: #FFF9C5;
+}
+/*sort*/
+.sort_cotainer{
+  background-color: #0D1720;
+  position: fixed;
+  height: 100%;
+  width: 300px;
+  z-index: 1000;
+  color: #FFFFFF;
+}
+.sort_cotainer input{
+  color: #FFFFFF;
+  background-color: transparent;
+}
+.sort_cotainer input:focus {
+  background-color: transparent;
+  color: #FFFFFF;
+}
+/*Table*/
+.table_admin{
+  margin-left: 300px;
+}
+.table_admin h3{
+  text-align: center;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+table{
+ background-color: #0D1720;
+  color: #FFFFFF !important;
+}
+table thead th{
+ border: none !important;
+}
+#add_btn{
+  background-color: transparent;
+  border: 1px solid #00D25B;
+  color: #00D25B;
+  font-size: 14px;
+  border-radius: 10px;
+  transition: 0.25s;
+}
+#add_btn:hover{
+  background-color: #00D25B;
+  color: #FFFFFF;
+}
+table tbody th{
+  border-bottom: 1px solid #01385a !important;
+}
+table tbody .update_icon{
+  color: #00D25B;
+  font-size: 18px;
+}
+table tbody .remove_icon{
+  color: red;
+    font-size: 18px;
+}
+table tbody .table_btn{
+  border: none;
+  background-color: transparent;
 }

@@ -11,7 +11,7 @@
             <label for="ten_tai_khoan">Tên tài khoản</label>
             <input class="form-control" type="text" name="ten_tai_khoan" id="ten_tai_khoan">
         </div>
-        <div class="form-group m-2">
+        <div class="form-group">
             <label for="chuc_vu">Chức vụ</label>
             <select class="form-control" name="" id="chuc_vu">
                 <option value="">Tất cả</option>
