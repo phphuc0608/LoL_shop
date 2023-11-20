@@ -9,7 +9,7 @@
       <div id="container_center" class="p-5">
         <div id="container_center_top">
           <div id="container_center_top_left" class="text-center mb-4">
-            <img style="width: 120px; height: 60px" src="{{asset('img/logo.png')}}">
+            <img style="width: 70px; height: 70px" src="{{asset('img/logo.png')}}">
           </div>
         </div>
         <div id="container_center_bottom" class="d-flex align-items-center justify-content-center">
