@@ -19,4 +19,4 @@ Route::get('/', function () {
 Route::get('dang_nhap',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_dang_nhap'])->name('dang_nhap');
 Route::post('dang_nhap_process',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_nhap']);
 
-Route::get('them_loai_san_pham',[App\Http\Controllers\Loai_san_pham_controller::class, 'view_lsp'])->name('them_loai_sp');
+Route::get('quan_ly_nguoi_dung', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_quan_ly_nguoi_dung'])->name('quan_ly_nguoi_dung');
