@@ -43,10 +43,6 @@ class Nguoi_dung_controller extends Controller
             return redirect()->route('dang_nhap');
         }
     }
-    // public function view_quan_ly_nguoi_dung()
-    // {
-    //     return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung');
-    // }
     public function view_quan_ly_nguoi_dung($page)
 	{
 		if (session('nguoi_dung') != null) {
@@ -66,4 +62,8 @@ class Nguoi_dung_controller extends Controller
 			return redirect()->route('dang_nhap');
 		}
 	}
+    public function view_dang_ky()
+    {
+        return view('admin.Dang_ky.dang_ky');
+    }
 }

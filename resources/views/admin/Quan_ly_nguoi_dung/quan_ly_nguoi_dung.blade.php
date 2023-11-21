@@ -12,7 +12,7 @@
             <input class="form-control" type="text" name="ten_tai_khoan" id="ten_tai_khoan">
         </div>
         <div class="form-group">
-            <label for="chuc_vu">Chức vụ</label>
+            <label for="chuc_vu">Chức năng</label>
             <select class="form-control" name="" id="chuc_vu">
               <option value="">Tất cả</option>
               @foreach($chuc_nangs as $chuc_nang)
@@ -41,7 +41,7 @@
             <thead>
                 <tr>
                     <th class="text-center">Tài khoản</th>
-                    <th class="text-center">Chức vụ</th>
+                    <th class="text-center">Chức năng</th>
                     <th class="text-center">Trạng thái</th>
                     <th class="text-center">Thao tác</th>
                 </tr>
