@@ -14,18 +14,19 @@
         <div class="form-group">
             <label for="chuc_vu">Chức vụ</label>
             <select class="form-control" name="" id="chuc_vu">
-                <option value="">Tất cả</option>
-                <option value="">Admin</option>
-                <option value="">Nhân viên</option>
-                <option value="">Khách hàng</option>
+              <option value="">Tất cả</option>
+              @foreach($chuc_nangs as $chuc_nang)
+                <option value="{{$chuc_nang->ma_chuc_nang}}">{{$chuc_nang->ten_chuc_nang}}</option>
+              @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="trang_thai">Trạng thái</label>
             <select class="form-control" name="" id="trang_thai">
                 <option value="">Tất cả</option>
-                <option value="">Kích hoạt</option>
-                <option value="">Khóa</option>
+                @foreach($nguoi_dungs as $nguoi_dung)
+                  <option value="{{$nguoi_dung->trang_thai}}"><?php echo $nguoi_dung->trang_thai == 1?'Kích hoạt':'Khóa' ?></option>
+                @endforeach
             </select>
         </div>
     </div>
@@ -46,18 +47,41 @@
                 </tr>
             </thead>
             <tbody>
+              @foreach ($nguoi_dungs as $nguoi_dung)
                 <tr>
-                    <th class="text-center">admin</th>
-                    <th class="text-center">Admin</th>
-                    <th class="text-center">Kích hoạt</th>
+                    <th class="text-center">{{$nguoi_dung->tai_khoan}}</th>
+                    <th class="text-center">{{$nguoi_dung->chuc_nang->ten_chuc_nang}}</th>
+                    <th class="text-center"><?php echo $nguoi_dung->trang_thai == 1?'Kích hoạt':'Khóa' ?></th>
                     <th class="text-center">
                         <button class="table_btn"><i class="bi bi-pencil update_icon"></i></button>
                         |
                         <button class="table_btn"><i class="bi bi-trash3 remove_icon"></i></button>
                     </th>
                 </tr>
+              @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="col-md-12">
+      <div class="pagination d-flex justify-content-center">
+        <ul class="pagination">
+          <li class="page-item">
+            @if($page > 1)
+                <a class="previous page-link" href="{{route('quan_ly_nguoi_dung',['page'=>($page-1)])}}">&lt;</a>
+            @endif
+          </li>
+            @for($i = 1; $i <= $page_number; ++$i)
+              <li class="page-item">
+                <a class="page-link" href="{{route('quan_ly_nguoi_dung',['page'=>$i])}}">{{$i}}</a>  
+              </li>
+            @endfor
+          <li class="page-item">
+            @if($page < $page_number)
+              <a class="next page-link" href="{{route('quan_ly_nguoi_dung',['page'=>($page+1)])}}">&gt;</a>
+            @endif
+          </li>
+        </ul>
+      </div>
     </div>
 <!-- Add User Modal -->
 <div class="modal" id="add_user_form" tabindex="-1" role="dialog" aria-labelledby="add_user_formLabel" aria-hidden="true">

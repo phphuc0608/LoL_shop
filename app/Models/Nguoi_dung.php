@@ -13,4 +13,8 @@ class Nguoi_dung extends Model
     protected $primaryKey = 'tai_khoan';
     protected $keytype = 'string';
     public $timestamps = false;
+    public function chuc_nang()
+	{
+        return $this->hasOne('App\Models\Chuc_nang', 'ma_chuc_nang', 'ma_chuc_nang');
+	}
 }
