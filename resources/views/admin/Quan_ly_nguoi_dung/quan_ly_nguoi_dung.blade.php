@@ -94,28 +94,30 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="{{url('them_nguoi_dung')}}" method="post" enctype="multipart/form-data">
+          {{csrf_field()}}
           <div class="form-group">
             <label for="username">Tên tài khoản</label>
-            <input type="text" class="form-control" id="username" placeholder="Nhập tên tài khoản">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên tài khoản">
           </div>
           <div class="form-group">
             <label for="password">Mật khẩu</label>
-            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
           </div>
           <div class="form-group">
             <label for="state">Trạng thái</label>
-            <select class="form-control" id="state">
-              <option value="">Kích hoạt</option>
-              <option value="">Khóa</option>
+            <select class="form-control" id="state" name="state">
+              <option value="1">Kích hoạt</option>
+              <option value="0">Khóa</option>
             </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-primary">Lưu</button>
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary">Lưu</button>
-      </div>
+      
     </div>
   </div>
 </div>

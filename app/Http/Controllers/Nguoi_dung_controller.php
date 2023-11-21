@@ -62,6 +62,16 @@ class Nguoi_dung_controller extends Controller
 			return redirect()->route('dang_nhap');
 		}
 	}
+    public function xu_ly_them(Request $request)
+	{
+		$nguoi_dung = new Nguoi_dung();
+		$nguoi_dung->tai_khoan = $request->username;
+		$nguoi_dung->mat_khau = md5($request->password);
+		$nguoi_dung->ma_chuc_nang = 2;
+		$nguoi_dung->trang_thai = $request->state;
+		$nguoi_dung->save();
+		return redirect()->route('quan_ly_nguoi_dung', 1);
+	}
     public function view_dang_ky()
     {
         return view('admin.Dang_ky.dang_ky');
