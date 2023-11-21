@@ -40,7 +40,7 @@
             <thead>
                 <tr>
                     <th class="text-center">Tài khoản</th>
-                    <th class="text-center">Chức vụ</th>
+                    <th class="text-center">Chức năng</th>
                     <th class="text-center">Trạng thái</th>
                     <th class="text-center">Thao tác</th>
                 </tr>
