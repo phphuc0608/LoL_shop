@@ -6,7 +6,7 @@
   font-family: 'Merriweather Sans', sans-serif;
 }
 /*Dang nhap*/
-#dang_nhap_container{
+#dang_ky_container, #dang_nhap_container{
   background: url('../../img/background.jpg');
   position: relative;
   height: 100vh;
@@ -68,15 +68,14 @@
 #dang_ky a:hover {
   color: #0A0A0A;
 }
-#dang_nhap_container {
+#dang_ky_container, #dang_nhap_container {
   color: #FFFFFF;
 }
 
 #container_center {
   background-color: #0D1720;
 }
-#tai_khoan,
-#mat_khau {
+#xac_nhan_mat_khau, #email, #tai_khoan, #mat_khau {
   color: #FFFFFF;
   background: transparent;
   border: 1px solid #FFFFFF;

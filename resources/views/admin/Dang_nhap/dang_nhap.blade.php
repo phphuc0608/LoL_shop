@@ -8,7 +8,7 @@
   <div id="dang_nhap_container" class="d-flex align-items-center justify-content-center">
       <div id="container_center" class="p-5">
         <div id="container_center_top">
-          <div id="container_center_top_left" class="text-center mb-4">
+          <div class="text-center mb-4">
             <img style="width: 70px; height: 70px" src="{{asset('img/logo.png')}}">
           </div>
         </div>
@@ -35,9 +35,9 @@
       </div>
   </div>
   <script>
-            @if(isset($bao_loi) && $bao_loi != '')
-                alert('{{$bao_loi}}');
-            @endif
-          </script>
+    @if(isset($bao_loi) && $bao_loi != '')
+        alert('{{$bao_loi}}');
+    @endif
+  </script>
 </body>
 </html>
