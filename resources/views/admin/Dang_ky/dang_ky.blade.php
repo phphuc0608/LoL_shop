@@ -12,7 +12,7 @@
             <h3>ĐĂNG KÝ</h3>
           </div>
         </div>
-        <form action="{{url('them_khach_hang')}}" method="post" class="d-flex">
+        <form action="{{url('them_khach_hang')}}" method="post">
           @csrf
           <div id="container_center_bottom" class="d-flex align-items-center justify-content-center">
           
@@ -37,7 +37,7 @@
               </div>              
             </div>
           </div>
-          <div class="button_container d-flex justify-content-center">
+          <div class=" button_container col-md-6 mx-auto">
             <button type="submit" class="button_login_logout px-5 py-3">Đăng ký</button>
           </div>
         </form>

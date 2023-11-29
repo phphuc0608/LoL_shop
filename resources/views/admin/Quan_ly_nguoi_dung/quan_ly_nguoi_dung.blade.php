@@ -9,7 +9,8 @@
     <div class="sort_cotainer p-3 ">
         <div class="form-group" style="margin-bottom: 90px!important">
             <label for="ten_tai_khoan">Tên tài khoản</label>
-            <input class="form-control" type="text" name="ten_tai_khoan" id="ten_tai_khoan">
+            <input class="form-control mb-2" type="text" name="ten_tai_khoan" id="ten_tai_khoan">
+            <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
         </div>
         <div class="form-group">
             <label for="chuc_vu">Chức năng</label>
