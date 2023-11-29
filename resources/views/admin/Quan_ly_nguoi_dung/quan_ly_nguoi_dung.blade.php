@@ -13,8 +13,8 @@
         </div>
         <div class="form-group">
             <label for="chuc_vu">Chức năng</label>
-            <select class="form-control" name="" id="chuc_vu">
-              <option value="">Tất cả</option>
+            <select class="form-control" name="chuc_nang" id="chuc_nang">
+              <option value="0">Tất cả</option>
               @foreach($chuc_nangs as $chuc_nang)
                 <option value="{{$chuc_nang->ma_chuc_nang}}">{{$chuc_nang->ten_chuc_nang}}</option>
               @endforeach
@@ -22,11 +22,10 @@
         </div>
         <div class="form-group">
             <label for="trang_thai">Trạng thái</label>
-            <select class="form-control" name="" id="trang_thai">
-                <option value="">Tất cả</option>
-                @foreach($nguoi_dungs as $nguoi_dung)
-                  <option value="{{$nguoi_dung->trang_thai}}"><?php echo $nguoi_dung->trang_thai == 1?'Kích hoạt':'Khóa' ?></option>
-                @endforeach
+            <select class="form-control" name="trang_thai" id="trang_thai">
+                <option value="-1">Tất cả</option>
+                <option value="1">Kích hoạt</option>
+                <option value="0">Khóa</option>
             </select>
         </div>
     </div>
@@ -95,7 +94,7 @@
       </div>
       <div class="modal-body">
         <form action="{{url('them_nguoi_dung')}}" method="post" enctype="multipart/form-data">
-          {{csrf_field()}}
+          @csrf
           <div class="form-group">
             <label for="username">Tên tài khoản</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên tài khoản">

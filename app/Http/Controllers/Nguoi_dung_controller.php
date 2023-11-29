@@ -6,6 +6,7 @@ use App\Models\Nguoi_dung;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Chuc_nang;
+use App\Models\Khach_hang;
 
 class Nguoi_dung_controller extends Controller
 {
@@ -76,4 +77,18 @@ class Nguoi_dung_controller extends Controller
     {
         return view('admin.Dang_ky.dang_ky');
     }
+    public function xu_ly_dang_ky(Request $request)
+	{
+		$nguoi_dung = new Nguoi_dung();
+        $khach_hang = new Khach_hang();
+        $khach_hang->email = $request->email;
+		$nguoi_dung->tai_khoan = $request->tai_khoan;
+        $khach_hang->tai_khoan = $request->tai_khoan;
+		$nguoi_dung->mat_khau = md5($request->mat_khau);
+		$nguoi_dung->ma_chuc_nang = 3;
+		$nguoi_dung->trang_thai = 1;
+		$nguoi_dung->save();
+        $khach_hang->save();
+		return redirect()->route('dang_nhap');
+	}
 }

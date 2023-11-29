@@ -22,3 +22,4 @@ Route::post('dang_nhap_process',[App\Http\Controllers\Nguoi_dung_controller::cla
 Route::get('quan_ly_nguoi_dung/{page}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_quan_ly_nguoi_dung'])->name('quan_ly_nguoi_dung');
 Route::post('them_nguoi_dung',[\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_them']);
 Route::get('dang_ky',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_dang_ky'])->name('dang_ky');
+Route::post('them_khach_hang',[\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_ky']);

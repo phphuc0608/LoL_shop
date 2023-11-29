@@ -12,9 +12,10 @@
             <h3>ĐĂNG KÝ</h3>
           </div>
         </div>
-        <div id="container_center_bottom" class="d-flex align-items-center justify-content-center">
-          <form action="" method="post" class="d-flex">
-            @csrf
+        <form action="{{url('them_khach_hang')}}" method="post" class="d-flex">
+          @csrf
+          <div id="container_center_bottom" class="d-flex align-items-center justify-content-center">
+          
             <div class="col-md-6">
               <div class="form-group">
                 <label for="email">Email</label>
@@ -35,13 +36,14 @@
                 <input type="password" class="form-control" id="xac_nhan_mat_khau" name="xac_nhan_mat_khau" placeholder="Nhập lại mật khẩu" required>
               </div>              
             </div>
-          </form>
-        </div>
-        <div class="button_container d-flex justify-content-center">
-          <button type="submit" class="button_login_logout px-5 py-3">Đăng ký</button>
-        </div>
+          </div>
+          <div class="button_container d-flex justify-content-center">
+            <button type="submit" class="button_login_logout px-5 py-3">Đăng ký</button>
+          </div>
+        </form>
+        
         <div id="dang_ky" class="mt-4 text-center">
-          <span>Bạn có tài khoản rồi?</span> <a href="{{asset('admin/Dang_nhap/dang_nhap.blade.php')}}">Đăng nhập</a>
+          <span>Bạn có tài khoản rồi?</span> <a href="{{route('dang_nhap')}}">Đăng nhập</a>
         </div>
       </div>
   </div>
