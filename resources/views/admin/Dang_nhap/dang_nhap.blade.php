@@ -30,7 +30,7 @@
           
         </div>
         <div id="dang_ky" class="mt-4">
-          <span>Bạn chưa có tài khoản?</span> <a href="#">Đăng ký</a>
+          <span>Bạn chưa có tài khoản?</span> <a href="{{route('dang_ky')}}">Đăng ký</a>
         </div>
       </div>
   </div>
