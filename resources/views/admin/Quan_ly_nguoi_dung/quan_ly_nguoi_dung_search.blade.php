@@ -7,31 +7,31 @@
 <body style="background-color: black">
     @include('admin/module/header_admin')
     <div class="sort_cotainer p-3 ">
-      <form action="{{url('tim_kiem_process')}}" method="post">
-        @csrf
-        <div class="form-group" style="margin-bottom: 90px!important">
-            <label for="ten_tai_khoan">Tên tài khoản</label>
-            <input class="form-control mb-2" type="search" name="ten_tai_khoan" id="ten_tai_khoan">
-            <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
-        </div>
-        <div class="form-group">
-            <label for="chuc_nang">Chức năng</label>
-            <select class="form-control" name="chuc_nang" id="chuc_nang">
-              <option value="0">Tất cả</option>
-              @foreach($chuc_nangs as $chuc_nang)
-                <option value="{{$chuc_nang->ma_chuc_nang}}">{{$chuc_nang->ten_chuc_nang}}</option>
-              @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="trang_thai">Trạng thái</label>
-            <select class="form-control" name="trang_thai" id="trang_thai">
-                <option value="-1">Tất cả</option>
-                <option value="1">Kích hoạt</option>
-                <option value="0">Khóa</option>
-            </select>
-        </div>
-      </form>
+        <form action="{{url('tim_kiem_process')}}" method="post">
+            @csrf
+            <div class="form-group" style="margin-bottom: 90px!important">
+                <label for="ten_tai_khoan">Tên tài khoản</label>
+                <input class="form-control mb-2" type="search" name="ten_tai_khoan" id="ten_tai_khoan" {{$hasKey != 0?"value=$keyword":""}}>
+                <button class="btn" type="submit" style="background-color: #B2893F" >Tìm kiếm</button>
+            </div>
+            <div class="form-group">
+                <label for="chuc_nang">Chức năng</label>
+                <select class="form-control" name="chuc_nang" id="chuc_nang">
+                <option value="0">Tất cả</option>
+                @foreach($chuc_nangs as $chuc_nang)
+                    <option value="{{$chuc_nang->ma_chuc_nang}}" {{$pos == $chuc_nang->ma_chuc_nang?'selected':''}}>{{$chuc_nang->ten_chuc_nang}}</option>
+                @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="trang_thai">Trạng thái</label>
+                <select class="form-control" name="trang_thai" id="trang_thai">
+                    <option value="-1" {{$state == '-1'?'selected':''}}>Tất cả</option>
+                    <option value="1" {{$state == '1'?'selected':''}}>Kích hoạt</option>
+                    <option value="0" {{$state == '0'?'selected':''}}>Khóa</option>
+                </select>
+            </div>
+        </form>
     </div>
     <div class="p-3 table_admin">
         <div class="col-md-12 d-flex justify-content-between mb-3">
@@ -50,11 +50,11 @@
                 </tr>
             </thead>
             <tbody>
-              @foreach ($nguoi_dungs as $nguoi_dung)
+              @foreach ($tim_kiems as $tim_kiem)
                 <tr>
-                    <th class="text-center">{{$nguoi_dung->tai_khoan}}</th>
-                    <th class="text-center">{{$nguoi_dung->chuc_nang->ten_chuc_nang}}</th>
-                    <th class="text-center"><?php echo $nguoi_dung->trang_thai == 1?'Kích hoạt':'Khóa' ?></th>
+                    <th class="text-center">{{$tim_kiem->tai_khoan}}</th>
+                    <th class="text-center">{{$tim_kiem->chuc_nang->ten_chuc_nang}}</th>
+                    <th class="text-center"><?php echo $tim_kiem->trang_thai == 1?'Kích hoạt':'Khóa' ?></th>
                     <th class="text-center">
                         <button class="table_btn"><i class="bi bi-pencil update_icon"></i></button>
                         |
