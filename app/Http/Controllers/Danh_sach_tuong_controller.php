@@ -73,7 +73,7 @@ class Danh_sach_tuong_controller extends Controller
         $ten_tuong = $request->input('ten_tuong');
         return redirect()->route('quan_ly_danh_sach_tuong_search', ['ten_tuong' => $ten_tuong, 'page' => 1]);
     }
-    public function quan_ly_danh_sach_tuong_search($ten_tuong, $page){
+    public function view_quan_ly_danh_sach_tuong_search($ten_tuong, $page){
         if (session('nguoi_dung') != null) {
             $tim_kiems = Danh_sach_tuong::where('ten_tuong', 'like', '%' . $ten_tuong . '%')->get();
             $data = [];

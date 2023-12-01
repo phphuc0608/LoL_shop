@@ -7,31 +7,31 @@
 <body style="background-color: black">
     @include('admin/module/header_admin')
     <div class="sort_cotainer p-3 ">
-        <form action="{{url('tim_kiem_process')}}" method="post">
-            @csrf
-            <div class="form-group" style="margin-bottom: 90px!important">
-                <label for="ten_tai_khoan">Tên tài khoản</label>
-                <input class="form-control mb-2" type="search" name="ten_tai_khoan" id="ten_tai_khoan" {{$hasKey != 0?"value=$keyword":""}}>
-                <button class="btn" type="submit" style="background-color: #B2893F" >Tìm kiếm</button>
-            </div>
-            <div class="form-group">
-                <label for="chuc_nang">Chức năng</label>
-                <select class="form-control" name="chuc_nang" id="chuc_nang">
-                <option value="0">Tất cả</option>
-                @foreach($chuc_nangs as $chuc_nang)
-                    <option value="{{$chuc_nang->ma_chuc_nang}}" {{$pos == $chuc_nang->ma_chuc_nang?'selected':''}}>{{$chuc_nang->ten_chuc_nang}}</option>
-                @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="trang_thai">Trạng thái</label>
-                <select class="form-control" name="trang_thai" id="trang_thai">
-                    <option value="-1" {{$state == '-1'?'selected':''}}>Tất cả</option>
-                    <option value="1" {{$state == '1'?'selected':''}}>Kích hoạt</option>
-                    <option value="0" {{$state == '0'?'selected':''}}>Khóa</option>
-                </select>
-            </div>
-        </form>
+      <form action="{{url('tim_kiem_process')}}" method="post">
+        @csrf
+        <div class="form-group" style="margin-bottom: 90px!important">
+            <label for="ten_tai_khoan">Tên tài khoản</label>
+            <input class="form-control mb-2" type="search" name="ten_tai_khoan" id="ten_tai_khoan">
+            <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
+        </div>
+        <div class="form-group">
+            <label for="chuc_nang">Chức năng</label>
+            <select class="form-control" name="chuc_nang" id="chuc_nang">
+              <option value="0">Tất cả</option>
+              @foreach($chuc_nangs as $chuc_nang)
+                <option value="{{$chuc_nang->ma_chuc_nang}}">{{$chuc_nang->ten_chuc_nang}}</option>
+              @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="trang_thai">Trạng thái</label>
+            <select class="form-control" name="trang_thai" id="trang_thai">
+                <option value="-1">Tất cả</option>
+                <option value="1">Kích hoạt</option>
+                <option value="0">Khóa</option>
+            </select>
+        </div>
+      </form>
     </div>
     <div class="p-3 table_admin">
         <div class="col-md-12 d-flex justify-content-between mb-3">
@@ -50,15 +50,15 @@
                 </tr>
             </thead>
             <tbody>
-              @foreach ($tim_kiems as $tim_kiem)
+              @foreach ($nguoi_dungs as $nguoi_dung)
                 <tr>
-                    <th class="text-center">{{$tim_kiem->tai_khoan}}</th>
-                    <th class="text-center">{{$tim_kiem->chuc_nang->ten_chuc_nang}}</th>
-                    <th class="text-center"><?php echo $tim_kiem->trang_thai == 1?'Kích hoạt':'Khóa' ?></th>
+                    <th class="text-center">{{$nguoi_dung->tai_khoan}}</th>
+                    <th class="text-center">{{$nguoi_dung->chuc_nang->ten_chuc_nang}}</th>
+                    <th class="text-center"><?php echo $nguoi_dung->trang_thai == 1?'Kích hoạt':'Khóa' ?></th>
                     <th class="text-center">
-                        <button class="table_btn"><i class="bi bi-pencil update_icon"></i></button>
+                        <button class="table_btn" data-toggle="modal" data-target="#update_user"><i class="bi bi-pencil update_icon"></i></button>
                         |
-                        <button class="table_btn"><a href="{{route('xoa_nguoi_dung',['tai_khoan'=>$tim_kiem->tai_khoan])}}"><i class="bi bi-trash3 remove_icon"></i></a></button>
+                        <button class="table_btn"><a href="{{route('xoa_nguoi_dung',['tai_khoan'=>$nguoi_dung->tai_khoan])}}"><i class="bi bi-trash3 remove_icon"></i></a></button>
                     </th>
                 </tr>
               @endforeach
@@ -70,39 +70,17 @@
         <ul class="pagination">
           <li class="page-item">
             @if($page > 1)
-              @if($hasKey != 0)
-                <li class="page-item">
-                  <a class="previous page-link" href="{{route('quan_ly_nguoi_dung_search_keyword',['page'=>($page-1), 'keyword'=>($keyword), 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&lt;</a>
-                </li>
-              @else
-                <li class="page-item">
-                  <a class="previous page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>($page-1), 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&lt;</a>  
-                </li>
-                @endif
+                <a class="previous page-link" href="{{route('quan_ly_nguoi_dung',['page'=>($page-1)])}}">&lt;</a>
             @endif
           </li>
             @for($i = 1; $i <= $page_number; ++$i)
-              @if($hasKey != 0)
-                <li class="page-item">
-                  <a class="page-link" href="{{route('quan_ly_nguoi_dung_search_keyword',['page'=>$i, 'keyword'=>$keyword, 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">{{$i}}</a>  
-                </li>
-              @else
-                <li class="page-item">
-                  <a class="page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>$i, 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">{{$i}}</a>  
-                </li>
-              @endif
+              <li class="page-item">
+                <a class="page-link" href="{{route('quan_ly_nguoi_dung',['page'=>$i])}}">{{$i}}</a>  
+              </li>
             @endfor
           <li class="page-item">
             @if($page < $page_number)
-              @if($hasKey != 0)
-                <li class="page-item">
-                  <a class="next page-link" href="{{route('quan_ly_nguoi_dung_search_keyword',['page'=>($page+1), 'keyword'=>$keyword, 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&gt;</a>
-                </li>
-              @else
-                <li class="page-item">
-                  <a class="next page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>($page+1), 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&gt;</a> 
-                </li>
-                @endif
+              <a class="next page-link" href="{{route('quan_ly_nguoi_dung',['page'=>($page+1)])}}">&gt;</a>
             @endif
           </li>
         </ul>
