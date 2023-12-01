@@ -23,6 +23,10 @@ Route::get('quan_ly_nguoi_dung/{page}', [\App\Http\Controllers\Nguoi_dung_contro
 Route::post('them_nguoi_dung',[\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_them']);
 Route::get('dang_ky',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_dang_ky'])->name('dang_ky');
 Route::post('them_khach_hang',[\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_ky']);
+Route::get('quan_ly_nguoi_dung_search/{page}/{keyword}/{state}/{pos}/{hasKey}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_tim_kiem_keyword'])->name('quan_ly_nguoi_dung_search_keyword');
+Route::get('quan_ly_nguoi_dung_search/{page}/{state}/{pos}/{hasKey}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_tim_kiem'])->name('quan_ly_nguoi_dung_search');
+Route::post('tim_kiem_process',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_tim_kiem']);
+Route::get('xoa_process/{tai_khoan}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_xoa'])->name('xoa_nguoi_dung');
 Route::get('quan_ly_danh_sach_tuong/{page}',[\App\Http\Controllers\Danh_sach_tuong_controller::class, 'view_quan_ly_danh_sach_tuong'])->name('quan_ly_danh_sach_tuong');
 Route::post('them_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_them']);
 Route::post('sua_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_sua']);
