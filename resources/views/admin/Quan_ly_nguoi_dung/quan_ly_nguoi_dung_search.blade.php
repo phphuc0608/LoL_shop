@@ -70,17 +70,17 @@
         <ul class="pagination">
           <li class="page-item">
             @if($page > 1)
-                <a class="previous page-link" href="{{route('quan_ly_nguoi_dung',['page'=>($page-1)])}}">&lt;</a>
+                <a class="previous page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>($page-1), $hasKey != 0?"'keyword'=>$keyword":"" ,'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&lt;</a>
             @endif
           </li>
             @for($i = 1; $i <= $page_number; ++$i)
               <li class="page-item">
-                <a class="page-link" href="{{route('quan_ly_nguoi_dung',['page'=>$i])}}">{{$i}}</a>  
+                <a class="page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>$i, $hasKey != 0?"'keyword'=>$keyword":"" ,'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">{{$i}}</a>  
               </li>
             @endfor
           <li class="page-item">
             @if($page < $page_number)
-              <a class="next page-link" href="{{route('quan_ly_nguoi_dung',['page'=>($page+1)])}}">&gt;</a>
+              <a class="next page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>($page+1), $hasKey != 0?"'keyword'=>$keyword":"" ,'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&gt;</a>
             @endif
           </li>
         </ul>
