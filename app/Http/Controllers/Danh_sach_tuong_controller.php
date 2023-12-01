@@ -91,7 +91,7 @@ class Danh_sach_tuong_controller extends Controller
         }
     }
 
-    public function view_danh_sach_tuong(){
+    public function view_home_ds_tuong(){
         // $tuong = Danh_sach_tuong::all();
         return view('home.Danh_sach_tuong.danh_sach_tuong');
         // ->with('tuong',$tuong);
