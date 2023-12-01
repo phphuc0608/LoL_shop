@@ -58,7 +58,7 @@
                     <th class="text-center">
                         <button class="table_btn"><i class="bi bi-pencil update_icon"></i></button>
                         |
-                        <button class="table_btn"><i class="bi bi-trash3 remove_icon"></i></button>
+                        <button class="table_btn"><a href="{{route('xoa_nguoi_dung',['tai_khoan'=>$tim_kiem->tai_khoan])}}"><i class="bi bi-trash3 remove_icon"></i></a></button>
                     </th>
                 </tr>
               @endforeach
@@ -124,6 +124,40 @@
     </div>
   </div>
 </div>
+{{-- Update champion --}}
+{{-- <div class="modal" id="update_champion" tabindex="-1" role="dialog" aria-labelledby="update_championLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="update_champion_label">Sửa tướng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{url('sua_tuong')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <div class="form-group">
+            <label for="ma_tuong">Mã tướng</label>
+            <input name="ma_tuong" type="text" class="form-control" id="ma_tuong" value="{{$tuong->ma_tuong}}">
+          </div>
+          <div class="form-group">
+            <label for="ten_tuong">Tên tướng</label>
+            <input name="ten_tuong" type="text" class="form-control" id="ten_tuong" value="{{$tuong->ten_tuong}}">
+          </div>
+          <div class="form-group">
+            <label for="hinh_anh">Hình ảnh</label><br>
+            <input name="hinh_anh" type="file" id="hinh_anh">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> --}}
 </body>
 </html>
             
