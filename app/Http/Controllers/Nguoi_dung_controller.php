@@ -31,7 +31,12 @@ class Nguoi_dung_controller extends Controller
             } else {
                 session()->put('bao_loi', '');
                 session()->put('nguoi_dung', $tai_khoan);
-                
+                if($nguoi_dung->ma_chuc_nang != 3) {
+					session()->put('chuc_nang', 'customer');
+				}
+				else {
+					session()->put('chuc_nang', 'admin');
+				}
             }
         }
         if (session('bao_loi') == '') {
