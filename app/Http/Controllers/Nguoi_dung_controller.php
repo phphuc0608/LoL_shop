@@ -45,7 +45,7 @@ class Nguoi_dung_controller extends Controller
 		if (session('nguoi_dung') != null) {
 			$chuc_nangs = Chuc_nang::all();
 			$data = [];
-			$page_length = 10;
+			$page_length = 6;
 			$all_nguoi_dungs = Nguoi_dung::with(['chuc_nang'])->get();
 			$data['nguoi_dungs'] =  $all_nguoi_dungs->skip(($page - 1) * $page_length)->take($page_length);
 			$page_number = (int)($all_nguoi_dungs->count() / $page_length);
@@ -118,16 +118,16 @@ class Nguoi_dung_controller extends Controller
 			}
 			$chuc_nangs = Chuc_nang::all();
 			$data = [];
-			$page_length = 10;
-			$all_nguoi_dungs = Nguoi_dung::with(['chuc_nang'])->get();
-			$data['nguoi_dungs'] =  $all_nguoi_dungs->skip(($page - 1) * $page_length)->take($page_length);
-			$page_number = (int)($all_nguoi_dungs->count() / $page_length);
-			if ($all_nguoi_dungs->count() % $page_length > 0) {
+			$page_length = 6;
+			// $all_nguoi_dungs = Nguoi_dung::with(['chuc_nang'])->get();
+			$data['tim_kiems'] =  $tim_kiems->skip(($page - 1) * $page_length)->take($page_length);
+			$page_number = (int)($tim_kiems->count() / $page_length);
+			if ($tim_kiems->count() % $page_length > 0) {
 				$page_number++;
 			}
 			$data['page_number'] = $page_number;
 			$data['page'] = $page;
-			return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung_search', $data)->with('chuc_nangs', $chuc_nangs)->with('tim_kiems', $tim_kiems)->with('keyword',$keyword)->with('state',$state)->with('pos',$pos)->with('hasKey',$hasKey);
+			return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung_search', $data)->with('chuc_nangs', $chuc_nangs)->with('keyword',$keyword)->with('state',$state)->with('pos',$pos)->with('hasKey',$hasKey);
 		} else {
 			return redirect()->route('dang_nhap');
 		}
@@ -139,28 +139,37 @@ class Nguoi_dung_controller extends Controller
 				$tim_kiems = Nguoi_dung::all();
 			}
 			elseif($pos!=0&&$state==-1){
-				$tim_kiems = Nguoi_dung::where('ma_chuc_nang','=',$pos)->get();
+				$tim_kiems = Nguoi_dung::where('ma_chuc_nang','=',$pos)->with(['chuc_nang'])->get();
 			}
 			elseif($pos==0&&$state!=-1){
-				$tim_kiems = Nguoi_dung::where('trang_thai','=',$state)->get();
+				$tim_kiems = Nguoi_dung::where('trang_thai','=',$state)->with(['chuc_nang'])->get();
 			}
 			else{
-				$tim_kiems = Nguoi_dung::where('trang_thai','=',$state)->where('ma_chuc_nang','=',$pos)->get();
+				$tim_kiems = Nguoi_dung::where('trang_thai','=',$state)->where('ma_chuc_nang','=',$pos)->with(['chuc_nang'])->get();
 			}
 			$chuc_nangs = Chuc_nang::all();
 			$data = [];
-			$page_length = 10;
-			$all_nguoi_dungs = Nguoi_dung::with(['chuc_nang'])->get();
-			$data['nguoi_dungs'] =  $all_nguoi_dungs->skip(($page - 1) * $page_length)->take($page_length);
-			$page_number = (int)($all_nguoi_dungs->count() / $page_length);
-			if ($all_nguoi_dungs->count() % $page_length > 0) {
+			$page_length = 6;
+			// $all_tim_kiems = $tim_kiems->with(['chuc_nang'])->get();
+			$data['tim_kiems'] =  $tim_kiems->skip(($page - 1) * $page_length)->take($page_length);
+			$page_number = (int)($tim_kiems->count() / $page_length);
+			if ($tim_kiems->count() % $page_length > 0) {
 				$page_number++;
 			}
 			$data['page_number'] = $page_number;
 			$data['page'] = $page;
-			return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung_search', $data)->with('chuc_nangs', $chuc_nangs)->with('tim_kiems', $tim_kiems)->with('state',$state)->with('pos',$pos)->with('hasKey',$hasKey);
+			return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung_search', $data)->with('chuc_nangs', $chuc_nangs)->with('state',$state)->with('pos',$pos)->with('hasKey',$hasKey);
 		} else {
 			return redirect()->route('dang_nhap');
 		}
+	}
+	public function xu_ly_xoa($tai_khoan){
+		$nguoi_dung = Nguoi_dung::find($tai_khoan);
+		$khach_hang = Khach_hang::where('tai_khoan','=',$tai_khoan)->first();
+		$nguoi_dung->delete();
+		if($khach_hang!=null){
+			$khach_hang->delete();
+		}
+		return redirect()->route('quan_ly_nguoi_dung',1);
 	}
 }

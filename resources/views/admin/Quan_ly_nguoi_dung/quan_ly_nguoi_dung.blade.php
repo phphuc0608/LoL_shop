@@ -58,7 +58,7 @@
                     <th class="text-center">
                         <button class="table_btn"><i class="bi bi-pencil update_icon"></i></button>
                         |
-                        <button class="table_btn"><i class="bi bi-trash3 remove_icon"></i></button>
+                        <button class="table_btn"><a href="{{route('xoa_nguoi_dung',['tai_khoan'=>$nguoi_dung->tai_khoan])}}"><i class="bi bi-trash3 remove_icon"></i></a></button>
                     </th>
                 </tr>
               @endforeach
