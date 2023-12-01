@@ -177,4 +177,10 @@ class Nguoi_dung_controller extends Controller
 		}
 		return redirect()->route('quan_ly_nguoi_dung',1);
 	}
+	public function xu_ly_sua(Request $request){
+        $nguoi_dung = Nguoi_dung::find($request->update_tk);
+        $nguoi_dung->trang_thai = $request->update_state;
+        $nguoi_dung->save();	
+        return redirect()->route('quan_ly_nguoi_dung', 1);
+    }
 }
