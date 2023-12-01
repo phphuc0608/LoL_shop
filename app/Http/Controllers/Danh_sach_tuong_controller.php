@@ -85,7 +85,7 @@ class Danh_sach_tuong_controller extends Controller
             }
             $data['page_number'] = $page_number;
             $data['page'] = $page;
-            return view('admin.Quan_ly_danh_sach_tuong.quan_ly_danh_sach_tuong_search', $data)->with('tim_kiems', $tim_kiems);
+            return view('admin.Quan_ly_danh_sach_tuong.quan_ly_danh_sach_tuong', $data)->with('danh_sach_tuongs', $tim_kiems);
         } else {
             return redirect()->route('dang_nhap');
         }

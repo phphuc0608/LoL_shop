@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-              @foreach ($danh_sach_tuongs as $tuong)
+              {{-- @foreach ($danh_sach_tuongs as $tuong)
                 <tr>
                     <th class="text-center">{{$tuong->ma_tuong}}</th>
                     <th class="text-center">{{$tuong->ten_tuong}}</th>
@@ -44,7 +44,21 @@
                         <a class="table_btn" href="{{route('xoa_tuong',['ma_tuong'=>$tuong->ma_tuong])}}"><i class="bi bi-trash3 remove_icon"></i></a>
                     </th>
                 </tr>
-              @endforeach
+              @endforeach --}}
+              @forelse($danh_sach_tuongs as $tuong)
+                <tr>
+                  <th class="text-center">{{$tuong->ma_tuong}}</th>
+                  <th class="text-center">{{$tuong->ten_tuong}}</th>
+                  <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('danh_sach_tuong/'.$tuong->hinh_anh)}}" alt=""></th>
+                  <th class="text-center">
+                      <button class="table_btn" data-toggle="modal" data-target="#update_champion"><i class="bi bi-pencil update_icon"></i></button>
+                      |
+                      <a class="table_btn" href="{{route('xoa_tuong',['ma_tuong'=>$tuong->ma_tuong])}}"><i class="bi bi-trash3 remove_icon"></i></a>
+                  </th>
+                </tr>
+              @empty
+                  {{-- <li class="list-group-item list-group-item-danger">User Not Found.</li> --}}
+              @endforelse
             </tbody>
         </table>
     </div>
