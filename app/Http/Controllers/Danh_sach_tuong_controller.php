@@ -90,22 +90,10 @@ class Danh_sach_tuong_controller extends Controller
             return redirect()->route('dang_nhap');
         }
     }
-    // private function view_quan_ly_danh_sach_tuongWithResults($danh_sach_tuongs, $page)
-    // {
-    //     if (session('nguoi_dung') != null) {
-    //         $data = [];
-    //         $page_length = 4;
-    //         $data['danh_sach_tuongs'] = $danh_sach_tuongs->skip(($page - 1) * $page_length)->take($page_length);
-    //         $page_number = (int)($danh_sach_tuongs->count() / $page_length);
-    //         if ($danh_sach_tuongs->count() % $page_length > 0) {
-    //             $page_number++;
-    //         }
-    //         $data['page_number'] = $page_number;
-    //         $data['page'] = $page;
-    //         return view('admin.Quan_ly_danh_sach_tuong.quan_ly_danh_sach_tuong', $data);
-    //     } else {
-    //         return redirect()->route('dang_nhap');
-    //     }
-    // }
 
+    public function view_danh_sach_tuong(){
+        // $tuong = Danh_sach_tuong::all();
+        return view('home.Danh_sach_tuong.danh_sach_tuong');
+        // ->with('tuong',$tuong);
+    }
 }
