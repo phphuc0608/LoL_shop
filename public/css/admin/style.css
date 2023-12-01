@@ -91,34 +91,52 @@
 /*Header admin*/
 #header_container {
   background-color: #0D1720;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
-#header_container #logo_admin{
+
+#logo_admin {
   width: 190px;
   height: 89px;
 }
-#header_container #header_right .item_nav{
+
+#header_right .item_nav {
   text-transform: uppercase;
   text-decoration: none;
   color: #7A5715;
   font-weight: bold;
   transition: 0.25s;
 }
-#header_container #header_right .item_nav:hover{
+
+#header_right .item_nav:hover {
   color: #FFF9C5;
 }
-/*sort*/
-.sort_cotainer{
+
+.sort_cotainer {
   background-color: #0D1720;
-  position: fixed;
   height: 100%;
   width: 300px;
   z-index: 1000;
   color: #FFFFFF;
+  position: fixed;
+  top: 80px;
+  /* Adjust this value to set the distance from the top */
+  left: 0;
+  padding: 20px;
 }
-.sort_cotainer input{
+
+.sort_cotainer input {
   color: #FFFFFF;
   background-color: transparent;
 }
+
 .sort_cotainer input:focus {
   background-color: transparent;
   color: #FFFFFF;
@@ -126,7 +144,9 @@
 /*Table*/
 .table_admin{
   margin-left: 300px;
+  margin-top: 100px;
 }
+
 .table_admin h3{
   text-align: center;
   color: #FFFFFF;
