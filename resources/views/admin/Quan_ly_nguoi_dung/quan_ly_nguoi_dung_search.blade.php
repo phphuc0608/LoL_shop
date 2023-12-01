@@ -70,16 +70,14 @@
         <ul class="pagination">
           <li class="page-item">
             @if($page > 1)
-              @if($hasKey != 0){
+              @if($hasKey != 0)
                 <li class="page-item">
                   <a class="previous page-link" href="{{route('quan_ly_nguoi_dung_search_keyword',['page'=>($page-1), 'keyword'=>($keyword), 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&lt;</a>
                 </li>
-              }
-              @else{
+              @else
                 <li class="page-item">
                   <a class="previous page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>($page-1), 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&lt;</a>  
                 </li>
-              }
                 @endif
             @endif
           </li>

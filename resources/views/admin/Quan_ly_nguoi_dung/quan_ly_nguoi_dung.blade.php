@@ -56,7 +56,7 @@
                     <th class="text-center">{{$nguoi_dung->chuc_nang->ten_chuc_nang}}</th>
                     <th class="text-center"><?php echo $nguoi_dung->trang_thai == 1?'Kích hoạt':'Khóa' ?></th>
                     <th class="text-center">
-                        <button class="table_btn"><i class="bi bi-pencil update_icon"></i></button>
+                        <button class="table_btn" data-toggle="modal" data-target="#update_user"><i class="bi bi-pencil update_icon"></i></button>
                         |
                         <button class="table_btn"><a href="{{route('xoa_nguoi_dung',['tai_khoan'=>$nguoi_dung->tai_khoan])}}"><i class="bi bi-trash3 remove_icon"></i></a></button>
                     </th>
@@ -124,6 +124,52 @@
     </div>
   </div>
 </div>
+{{-- Update user --}}
+<div class="modal" id="update_user" tabindex="-1" role="dialog" aria-labelledby="update_userLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="update_user_label">Sửa tướng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{url('sua_nguoi_dung')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <div class="form-group">
+            <label for="update_tk">Tài khoản</label>
+            <input name="update_tk" type="text" class="form-control" readonly id="update_tk" value="{{$nguoi_dung->tai_khoan}}">
+          </div>
+          <div class="form-group">
+            <label for="update_tt">Trạng thái</label>
+            <input name="update_tt" type="" class="form-control" id="update_tt" value="{{$nguoi_dung->trang_thai}}">
+          </div>
+          <div class="form-group">
+            <label for="update_state">Trạng thái</label>
+            <select class="form-control" id="update_state" name="update_state">
+              <option value="1" {{$nguoi_dung->trang_thai=="1"?" selected":""}}>Kích hoạt</option>
+              <option value="0" {{$nguoi_dung->trang_thai=="0"?" selected":""}}>Khóa</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $('.table_btn').click(function() {
+    var row = $(this).closest('tr');
+    var tai_khoan = row.find('th:eq(0)').text();
+    $('#update_user #update_tk').val(tai_khoan);
+    var trang_thai = row.find('th:eq(2)').text();
+    $('#update_user #update_state').val(trang_thai);
+  });
+</script>
 </body>
 </html>
             

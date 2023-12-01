@@ -30,6 +30,7 @@ Route::get('xoa_process/{tai_khoan}', [\App\Http\Controllers\Nguoi_dung_controll
 Route::get('quan_ly_danh_sach_tuong/{page}',[\App\Http\Controllers\Danh_sach_tuong_controller::class, 'view_quan_ly_danh_sach_tuong'])->name('quan_ly_danh_sach_tuong');
 Route::post('them_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_them']);
 Route::post('sua_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_sua']);
+Route::post('sua_nguoi_dung', [\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_sua']);
 Route::get('xoa_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_xoa'])->name('xoa_tuong');   
 Route::get('tim_kiem_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_tim_kiem'])->name('tim_kiem_tuong');
 Route::get('quan_ly_danh_sach_tuong_search', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'quan_ly_danh_sach_tuong_search'])->name('quan_ly_danh_sach_tuong_search');
