@@ -17,11 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 //Nguoi_dung
-//dang nhap dang ky
+//dang nhap dang ky dang xuat
 Route::get('dang_nhap',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_dang_nhap'])->name('dang_nhap');
 Route::post('dang_nhap_process',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_nhap']);
 Route::get('dang_ky',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_dang_ky'])->name('dang_ky');
 Route::post('them_khach_hang',[\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_ky']);
+Route::get('dang_xuat',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_xuat'])->name('dang_xuat');
 //giao dien
 Route::get('quan_ly_nguoi_dung/{page}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_quan_ly_nguoi_dung'])->name('quan_ly_nguoi_dung');
 Route::get('quan_ly_nguoi_dung_search/{page}/{keyword}/{state}/{pos}/{hasKey}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_tim_kiem_keyword'])->name('quan_ly_nguoi_dung_search_keyword');
@@ -40,6 +41,9 @@ Route::get('tim_kiem_process', [\App\Http\Controllers\Danh_sach_tuong_controller
 //them sua xoa
 Route::post('them_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_them']);
 Route::post('sua_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_sua']);
-Route::get('xoa_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_xoa'])->name('xoa_tuong');   
+Route::get('xoa_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_xoa'])->name('xoa_tuong');
 
+/*_____________________________________________________HOME_______________________________________________________________________*/
+//danh sach tuong
+Route::get('danh_sach_tuong', [App\Http\Controllers\Danh_sach_tuong_controller::class, 'view_danh_sach_tuong'])->name('danh_sach_tuong');
 

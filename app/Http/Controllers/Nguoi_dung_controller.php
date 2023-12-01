@@ -45,7 +45,12 @@ class Nguoi_dung_controller extends Controller
             return redirect()->route('dang_nhap');
         }
     }
-    public function view_quan_ly_nguoi_dung($page)
+		public function xu_ly_dang_xuat(){
+			session()->put('nguoi_dung', null);
+			session()->put('chuc_nang', null);
+			return redirect()->route('dang_nhap');
+		}
+  public function view_quan_ly_nguoi_dung($page)
 	{
 		if (session('nguoi_dung') != null) {
 			$chuc_nangs = Chuc_nang::all();
