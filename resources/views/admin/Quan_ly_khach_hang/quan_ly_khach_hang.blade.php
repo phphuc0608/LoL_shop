@@ -2,27 +2,26 @@
 <html lang="en">
 <head>
     @include('admin/module/head')
-    <title>Quản lý người dùng</title>
+    <title>Quản lý khách hàng</title>
 </head>
 <body style="background-color: black">
     @include('admin/module/header_admin')
     <div class="sort_cotainer p-3 ">
-      <form action="{{url('tim_kiem_process')}}" method="post">
+      <form action="{{url('tim_kiem_khach_hang_process')}}" method="post">
         @csrf
-        <div class="form-group" style="margin-bottom: 90px!important">
+        <div class="form-group">
+          <label for="ma_khach_hang">Mã khách hàng</label>
+          <input class="form-control mb-2" type="search" name="ma_khach_hang" id="ma_khach_hang">
+      </div>
+        <div class="form-group">
             <label for="ten_tai_khoan">Tên tài khoản</label>
             <input class="form-control mb-2" type="search" name="ten_tai_khoan" id="ten_tai_khoan">
-            <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
         </div>
-        <div class="form-group">
-            <label for="chuc_nang">Chức năng</label>
-            <select class="form-control" name="chuc_nang" id="chuc_nang">
-              <option value="0">Tất cả</option>
-              @foreach($chuc_nangs as $chuc_nang)
-                <option value="{{$chuc_nang->ma_chuc_nang}}">{{$chuc_nang->ten_chuc_nang}}</option>
-              @endforeach
-            </select>
-        </div>
+        <div class="form-group" style="margin-bottom: 90px!important">
+          <label for="s_email">Email</label>
+          <input class="form-control mb-2" type="search" name="s_email" id="s_email">
+          <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
+      </div>
         <div class="form-group">
             <label for="trang_thai">Trạng thái</label>
             <select class="form-control" name="trang_thai" id="trang_thai">
@@ -35,30 +34,33 @@
     </div>
     <div class="p-3 table_admin">
         <div class="col-md-12 d-flex justify-content-between mb-3">
-            <h3>QUẢN LÝ NGƯỜI DÙNG</h3>
-            <button id="add_btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_user_form">
-                Thêm người dùng
-            </button>
+            <h3>QUẢN LÝ KHÁCH HÀNG</h3>
         </div>
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th class="text-center">Mã</th>
                     <th class="text-center">Tài khoản</th>
-                    <th class="text-center">Chức năng</th>
+                    <th class="text-center">Email</th>
                     <th class="text-center">Trạng thái</th>
+                    <th class="text-center">Giỏ hàng</th>
+                    <th class="text-center">Lịch sử mua hàng</th>
                     <th class="text-center">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
-              @foreach ($nguoi_dungs as $nguoi_dung)
+              @foreach ($khach_hangs as $khach_hang)
                 <tr>
-                    <th class="text-center">{{$nguoi_dung->tai_khoan}}</th>
-                    <th class="text-center">{{$nguoi_dung->chuc_nang->ten_chuc_nang}}</th>
-                    <th class="text-center"><?php echo $nguoi_dung->trang_thai == 1?'Kích hoạt':'Khóa' ?></th>
+                    <th class="text-center">{{$khach_hang->ma_khach_hang}}</th>
+                    <th class="text-center">{{$khach_hang->tai_khoan}}</th>
+                    <th class="text-center">{{$khach_hang->email}}</th>
+                    <th class="text-center"><?php echo $khach_hang->nguoi_dung->trang_thai == 1?'Kích hoạt':'Khóa' ?></th>
+                    <th class="text-center">{{$khach_hang->gio_hang->ds_hang==''?'Trống':$khach_hang->gio_hang->ds_hang}}</th>
+                    <th class="text-center">{{$khach_hang->lich_su_mua_hang->ds_ls_mua_hang==''?'Trống':$khach_hang->lich_su_mua_hang->ds_ls_mua_hang}}</th>
                     <th class="text-center">
-                        <button class="table_btn" data-toggle="modal" data-target="#update_user"><i class="bi bi-pencil update_icon"></i></button>
+                        <button class="table_btn" data-toggle="modal" data-target="#update_customer"><i class="bi bi-pencil update_icon"></i></button>
                         |
-                        <button class="table_btn"><a href="{{route('xoa_nguoi_dung',['tai_khoan'=>$nguoi_dung->tai_khoan])}}"><i class="bi bi-trash3 remove_icon"></i></a></button>
+                        <button class="table_btn"><a href="{{route('xoa_khach_hang',['ma_khach_hang'=>$khach_hang->ma_khach_hang])}}"><i class="bi bi-trash3 remove_icon"></i></a></button>
                     </th>
                 </tr>
               @endforeach
@@ -70,86 +72,48 @@
         <ul class="pagination">
           <li class="page-item">
             @if($page > 1)
-                <a class="previous page-link" href="{{route('quan_ly_nguoi_dung',['page'=>($page-1)])}}">&lt;</a>
+                <a class="previous page-link" href="{{route('quan_ly_khach_hang',['page'=>($page-1)])}}">&lt;</a>
             @endif
           </li>
             @for($i = 1; $i <= $page_number; ++$i)
               <li class="page-item">
-                <a class="page-link" href="{{route('quan_ly_nguoi_dung',['page'=>$i])}}">{{$i}}</a>  
+                <a class="page-link" href="{{route('quan_ly_khach_hang',['page'=>$i])}}">{{$i}}</a>  
               </li>
             @endfor
           <li class="page-item">
             @if($page < $page_number)
-              <a class="next page-link" href="{{route('quan_ly_nguoi_dung',['page'=>($page+1)])}}">&gt;</a>
+              <a class="next page-link" href="{{route('quan_ly_khach_hang',['page'=>($page+1)])}}">&gt;</a>
             @endif
           </li>
         </ul>
       </div>
     </div>
-<!-- Add User Modal -->
-<div class="modal" id="add_user_form" tabindex="-1" role="dialog" aria-labelledby="add_user_formLabel" aria-hidden="true">
+{{-- Update customer --}}
+{{-- <div class="modal" id="update_customer" tabindex="-1" role="dialog" aria-labelledby="update_customerLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="add_user_form_label">Thêm người dùng</h5>
+        <h5 class="modal-title" id="update_customer_label">Sửa tướng</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{url('them_nguoi_dung')}}" method="post" enctype="multipart/form-data">
+        <form action="{{url('sua_khach_hang')}}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
-            <label for="username">Tên tài khoản</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên tài khoản">
+            <label for="update_ma">Mã khách hàng</label>
+            <input name="update_ma" type="text" class="form-control" readonly id="update_ma" value="{{$khach_hang->ma_khach_hang}}">
           </div>
-          <div class="form-group">
-            <label for="password">Mật khẩu</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
-          </div>
-          <div class="form-group">
-            <label for="state">Trạng thái</label>
-            <select class="form-control" id="state" name="state">
-              <option value="1">Kích hoạt</option>
-              <option value="0">Khóa</option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-            <button type="submit" class="btn btn-primary">Lưu</button>
-          </div>
-        </form>
-      </div>
-      
-    </div>
-  </div>
-</div>
-{{-- Update user --}}
-<div class="modal" id="update_user" tabindex="-1" role="dialog" aria-labelledby="update_userLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="update_user_label">Sửa tướng</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="{{url('sua_nguoi_dung')}}" method="post" enctype="multipart/form-data">
-          @csrf
           <div class="form-group">
             <label for="update_tk">Tài khoản</label>
-            <input name="update_tk" type="text" class="form-control" readonly id="update_tk" value="{{$nguoi_dung->tai_khoan}}">
-          </div>
-          <div class="form-group">
-            <label for="update_tt">Trạng thái</label>
-            <input name="update_tt" type="" class="form-control" id="update_tt" value="{{$nguoi_dung->trang_thai}}">
+            <input name="update_tk" type="text" class="form-control" readonly id="update_tk" value="{{$khach_hang->tai_khoan}}">
           </div>
           <div class="form-group">
             <label for="update_state">Trạng thái</label>
             <select class="form-control" id="update_state" name="update_state">
-              <option value="1" {{$nguoi_dung->trang_thai=="1"?" selected":""}}>Kích hoạt</option>
-              <option value="0" {{$nguoi_dung->trang_thai=="0"?" selected":""}}>Khóa</option>
+              <option value="1" {{$khach_hang->nguoi_dung->trang_thai=="1"?" selected":""}}>Kích hoạt</option>
+              <option value="0" {{$khach_hang->nguoi_dung->trang_thai=="0"?" selected":""}}>Khóa</option>
             </select>
           </div>
           <div class="modal-footer">
@@ -164,12 +128,20 @@
 <script>
   $('.table_btn').click(function() {
     var row = $(this).closest('tr');
-    var tai_khoan = row.find('th:eq(0)').text();
-    $('#update_user #update_tk').val(tai_khoan);
-    var trang_thai = row.find('th:eq(2)').text();
-    $('#update_user #update_state').val(trang_thai);
+    var ma_khach_hang = row.find('th:eq(0)').text();
+    $('#update_customer #update_ma').val(ma_khach_hang);
+    var tai_khoan = row.find('th:eq(1)').text();
+    $('#update_customer #update_tk').val(tai_khoan);
+    var trang_thai_text = row.find('th:eq(2)').text();
+    var trang_thai = trang_thai_text === "Kích hoạt" ? "1" : "0";
+    $('#update_customer #update_state').val(trang_thai);
+    if (trang_thai === "1") {
+      $('#update_customer #update_state option[value="1"]').prop('selected', true);
+    } else if (trang_thai === "0") {
+      $('#update_customer #update_state option[value="0"]').prop('selected', true);
+    }
   });
-</script>
+</script> --}}
 </body>
 </html>
             

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Chuc_nang;
 use App\Models\Khach_hang;
+use App\Models\Gio_hang;
+use App\Models\Lich_su_mua_hang;
 use PhpParser\Node\Stmt\ElseIf_;
 
 class Nguoi_dung_controller extends Controller
@@ -78,24 +80,6 @@ class Nguoi_dung_controller extends Controller
 		$nguoi_dung->trang_thai = $request->state;
 		$nguoi_dung->save();
 		return redirect()->route('quan_ly_nguoi_dung', 1);
-	}
-    public function view_dang_ky()
-    {
-        return view('admin.Dang_ky.dang_ky');
-    }
-    public function xu_ly_dang_ky(Request $request)
-	{
-		$nguoi_dung = new Nguoi_dung();
-        $khach_hang = new Khach_hang();
-        $khach_hang->email = $request->email;
-		$nguoi_dung->tai_khoan = $request->tai_khoan;
-        $khach_hang->tai_khoan = $request->tai_khoan;
-		$nguoi_dung->mat_khau = md5($request->mat_khau);
-		$nguoi_dung->ma_chuc_nang = 3;
-		$nguoi_dung->trang_thai = 1;
-		$nguoi_dung->save();
-        $khach_hang->save();
-		return redirect()->route('dang_nhap');
 	}
 	public function xu_ly_tim_kiem(Request $request)
 	{
@@ -185,7 +169,11 @@ class Nguoi_dung_controller extends Controller
 		$khach_hang = Khach_hang::where('tai_khoan','=',$tai_khoan)->first();
 		$nguoi_dung->delete();
 		if($khach_hang!=null){
+			$gio_hang = Gio_hang::where('ma_gio_hang','=',$khach_hang->ma_gio_hang)->first();
+        	$lich_su_mua_hang = Lich_su_mua_hang::where('ma_ls_mua_hang','=',$khach_hang->ma_ls_mua_hang)->first();
 			$khach_hang->delete();
+			$gio_hang->delete();
+        	$lich_su_mua_hang->delete();
 		}
 		return redirect()->route('quan_ly_nguoi_dung',1);
 	}
