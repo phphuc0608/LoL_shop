@@ -86,64 +86,50 @@ class Nguoi_dung_controller extends Controller
 		$ten_tai_khoan = $request->ten_tai_khoan;
 		$trang_thai = $request->trang_thai;
 		$chuc_nang = $request->chuc_nang;
-		if($ten_tai_khoan!=null){
-			$hasKey = 1;
-			return redirect()->route('quan_ly_nguoi_dung_search_keyword',['page' => 1, 'keyword' => $ten_tai_khoan, 'state' => $trang_thai, 'pos' => $chuc_nang, 'hasKey' => $hasKey]);
+		if($ten_tai_khoan==null){
+			$ten_tai_khoan = '\0';
 		}
-		else{
-			$hasKey = 0;
-			return redirect()->route('quan_ly_nguoi_dung_search',['page' => 1, 'state' => $trang_thai, 'pos' => $chuc_nang, 'hasKey' => $hasKey]);
-		}
+		return redirect()->route('quan_ly_nguoi_dung_search',['page' => 1, 'keyword' => $ten_tai_khoan, 'state' => $trang_thai, 'pos' => $chuc_nang]);
 	}
-    public function view_tim_kiem_keyword($keyword,$state,$pos,$hasKey,$page)
+
+	public function view_tim_kiem($keyword,$state,$pos,$page)
 	{
 		if (session('nguoi_dung') != null) {
-			if($pos==0&&$state==-1){
-				$tim_kiems = Nguoi_dung::where('tai_khoan','like','%'.$keyword. '%')->get();
-			}
-			elseif($pos!=0&&$state==-1){
-				$tim_kiems = Nguoi_dung::where('tai_khoan','like','%'.$keyword. '%',)->where('ma_chuc_nang','=',$pos)->get();
-			}
-			elseif($pos==0&&$state!=-1){
-				$tim_kiems = Nguoi_dung::where('tai_khoan','like','%'.$keyword. '%',)->where('trang_thai','=',$state)->get();
-			}
-			else{
-				$tim_kiems = Nguoi_dung::where('tai_khoan','like','%'.$keyword. '%',)->where('trang_thai','=',$state)->where('ma_chuc_nang','=',$pos)->get();
-			}
-			$chuc_nangs = Chuc_nang::all();
-			$data = [];
-			$page_length = 6;
-			// $all_nguoi_dungs = Nguoi_dung::with(['chuc_nang'])->get();
-			$data['tim_kiems'] =  $tim_kiems->skip(($page - 1) * $page_length)->take($page_length);
-			$page_number = (int)($tim_kiems->count() / $page_length);
-			if ($tim_kiems->count() % $page_length > 0) {
-				$page_number++;
-			}
-			$data['page_number'] = $page_number;
-			$data['page'] = $page;
-			$data['keyword'] = $keyword;
-			$data['state'] = $state;
-			$data['pos'] = $pos;
-			$data['hasKey'] = $hasKey;
-			return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung_search', $data)->with('chuc_nangs', $chuc_nangs);
-		} else {
-			return redirect()->route('dang_nhap');
-		}
-	}
-	public function view_tim_kiem($state,$pos,$hasKey,$page)
-	{
-		if (session('nguoi_dung') != null) {
-			if($pos==0&&$state==-1){
-				$tim_kiems = Nguoi_dung::all();
-			}
-			elseif($pos!=0&&$state==-1){
-				$tim_kiems = Nguoi_dung::where('ma_chuc_nang','=',$pos)->with(['chuc_nang'])->get();
-			}
-			elseif($pos==0&&$state!=-1){
-				$tim_kiems = Nguoi_dung::where('trang_thai','=',$state)->with(['chuc_nang'])->get();
+			if($keyword != '\0') {
+				if($pos==0&&$state==-1){
+					$tim_kiems = Nguoi_dung::where('tai_khoan','like','%'.$keyword. '%')->get();
+				}
+				elseif($pos!=0&&$state==-1){
+					$tim_kiems = Nguoi_dung::where('tai_khoan','like','%'.$keyword. '%',)
+					->where('ma_chuc_nang','=',$pos)->get();
+				}
+				elseif($pos==0&&$state!=-1){
+					$tim_kiems = Nguoi_dung::where('tai_khoan','like','%'.$keyword. '%',)
+					->where('trang_thai','=',$state)->get();
+				}
+				else{
+					$tim_kiems = Nguoi_dung::where('tai_khoan','like','%'.$keyword. '%',)
+					->where('trang_thai','=',$state)
+					->where('ma_chuc_nang','=',$pos)->get();
+				}
 			}
 			else{
-				$tim_kiems = Nguoi_dung::where('trang_thai','=',$state)->where('ma_chuc_nang','=',$pos)->with(['chuc_nang'])->get();
+				if($pos==0&&$state==-1){
+					$tim_kiems = Nguoi_dung::all();
+				}
+				elseif($pos!=0&&$state==-1){
+					$tim_kiems = Nguoi_dung::where('ma_chuc_nang','=',$pos)
+					->with(['chuc_nang'])->get();
+				}
+				elseif($pos==0&&$state!=-1){
+					$tim_kiems = Nguoi_dung::where('trang_thai','=',$state)
+					->with(['chuc_nang'])->get();
+				}
+				else{
+					$tim_kiems = Nguoi_dung::where('trang_thai','=',$state)
+					->where('ma_chuc_nang','=',$pos)
+					->with(['chuc_nang'])->get();
+				}
 			}
 			$chuc_nangs = Chuc_nang::all();
 			$data = [];
@@ -158,7 +144,7 @@ class Nguoi_dung_controller extends Controller
 			$data['page'] = $page;
 			$data['state'] = $state;
 			$data['pos'] = $pos;
-			$data['hasKey'] = $hasKey;
+			$data['keyword'] = $keyword;
 			return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung_search', $data)->with('chuc_nangs', $chuc_nangs);
 		} else {
 			return redirect()->route('dang_nhap');
