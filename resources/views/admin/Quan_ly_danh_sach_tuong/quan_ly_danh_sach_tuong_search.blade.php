@@ -11,16 +11,16 @@
         @csrf
         <div class="form-group" style="margin-bottom: 90px!important">
             <label for="ten_tuong">Tên tướng</label>
-            <input class="form-control mb-2" type="text" name="ten_tuong" id="ten_tuong">
+            <input class="form-control mb-2" type="search" name="ten_tuong" id="ten_tuong" value={{$keyword}}>
             <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
         </div>
     </form>
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             var page = window.location.pathname.split('/').pop();
             document.getElementById('searchForm').action = "/quan_ly_danh_sach_tuong/" + page;
         });
-    </script>
+    </script> --}}
 </div>
     <div class="p-3 table_admin">
         <div class="col-md-12 d-flex justify-content-between mb-3">
