@@ -7,7 +7,7 @@
 <body style="background-color: black">
     @include('admin/module/header_admin')
     <div class="sort_cotainer p-3 ">
-        <form action="{{url('tim_kiem_process')}}" method="post">
+        <form action="{{url('tim_kiem_nguoi_dung_process')}}" method="post">
             @csrf
             <div class="form-group" style="margin-bottom: 90px!important">
                 <label for="ten_tai_khoan">Tên tài khoản</label>
@@ -161,17 +161,17 @@
           @csrf
           <div class="form-group">
             <label for="update_tk">Tài khoản</label>
-            <input name="update_tk" type="text" class="form-control" readonly id="update_tk" value="{{$nguoi_dung->tai_khoan}}">
+            <input name="update_tk" type="text" class="form-control" readonly id="update_tk" value="{{$tim_kiem->tai_khoan}}">
           </div>
           <div class="form-group">
             <label for="update_tt">Trạng thái</label>
-            <input name="update_tt" type="" class="form-control" id="update_tt" value="{{$nguoi_dung->trang_thai}}">
+            <input name="update_tt" type="" class="form-control" id="update_tt" value="{{$tim_kiem->trang_thai}}">
           </div>
           <div class="form-group">
             <label for="update_state">Trạng thái</label>
             <select class="form-control" id="update_state" name="update_state">
-              <option value="1" {{$nguoi_dung->trang_thai=="1"?" selected":""}}>Kích hoạt</option>
-              <option value="0" {{$nguoi_dung->trang_thai=="0"?" selected":""}}>Khóa</option>
+              <option value="1" {{$tim_kiem->trang_thai=="1"?" selected":""}}>Kích hoạt</option>
+              <option value="0" {{$tim_kiem->trang_thai=="0"?" selected":""}}>Khóa</option>
             </select>
           </div>
           <div class="modal-footer">

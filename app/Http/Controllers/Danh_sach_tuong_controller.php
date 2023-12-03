@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Danh_sach_tuong;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\DB;
 
 class Danh_sach_tuong_controller extends Controller
 {
@@ -13,11 +12,11 @@ class Danh_sach_tuong_controller extends Controller
     {
         if (session('nguoi_dung') != null) {
             $data = [];
-            $page_length = 4;
-            $tuong = Danh_sach_tuong::all();
-            $data['danh_sach_tuongs'] =  $tuong->skip(($page - 1) * $page_length)->take($page_length);
-            $page_number = (int)($tuong->count() / $page_length);
-            if ($tuong->count() % $page_length > 0) {
+            $page_length = 10;
+            $tuongs = Danh_sach_tuong::all();
+            $data['tuongs'] =  $tuongs->skip(($page - 1) * $page_length)->take($page_length);
+            $page_number = (int)($tuongs->count() / $page_length);
+            if ($tuongs->count() % $page_length > 0) {
                 $page_number++;
             }
             $data['page_number'] = $page_number;
@@ -70,22 +69,28 @@ class Danh_sach_tuong_controller extends Controller
     }
     public function xu_ly_tim_kiem(Request $request)
     {
-        $ten_tuong = $request->input('ten_tuong');
-        return redirect()->route('quan_ly_danh_sach_tuong_search', ['ten_tuong' => $ten_tuong, 'page' => 1]);
+        $ten_tuong = $request->ten_tuong;
+        if($ten_tuong!=null){
+            return redirect()->route('quan_ly_danh_sach_tuong_search', ['keyword' => $ten_tuong, 'page' => 1]);
+        }
+        else{
+            return redirect()->route('quan_ly_danh_sach_tuong', 1);
+        }
     }
-    public function view_quan_ly_danh_sach_tuong_search($ten_tuong, $page){
+    public function view_tim_kiem_keyword($keyword, $page){
         if (session('nguoi_dung') != null) {
-            $tim_kiems = Danh_sach_tuong::where('ten_tuong', 'like', '%' . $ten_tuong . '%')->get();
+            $tim_kiems = Danh_sach_tuong::where('ten_tuong', 'like', '%' . $keyword . '%')->get();
             $data = [];
-            $page_length = 4;
-            $data['danh_sach_tuongs'] =  $tim_kiems->skip(($page - 1) * $page_length)->take($page_length);
+            $page_length = 10;
+            $data['tim_kiems'] =  $tim_kiems->skip(($page - 1) * $page_length)->take($page_length);
             $page_number = (int)($tim_kiems->count() / $page_length);
             if ($tim_kiems->count() % $page_length > 0) {
                 $page_number++;
             }
             $data['page_number'] = $page_number;
             $data['page'] = $page;
-            return view('admin.Quan_ly_danh_sach_tuong.quan_ly_danh_sach_tuong', $data)->with('danh_sach_tuongs', $tim_kiems);
+            $data['keyword'] = $keyword;
+            return view('admin.Quan_ly_danh_sach_tuong.quan_ly_danh_sach_tuong_search', $data);
         } else {
             return redirect()->route('dang_nhap');
         }

@@ -7,20 +7,20 @@
 <body style="background-color: black">
     @include('admin/module/header_admin')
 <div class="sort_cotainer p-3">
-    <form action="{{ route('tim_kiem_tuong', ['page' => 1]) }}" method="get" id="searchForm">
+    <form action="{{url('tim_kiem_tuong_process')}}" method="post" id="searchForm">
         @csrf
         <div class="form-group" style="margin-bottom: 90px!important">
             <label for="ten_tuong">Tên tướng</label>
-            <input class="form-control mb-2" type="text" name="ten_tuong" id="ten_tuong">
+            <input class="form-control mb-2" type="search" name="ten_tuong" id="ten_tuong" value={{$keyword}}>
             <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
         </div>
     </form>
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             var page = window.location.pathname.split('/').pop();
             document.getElementById('searchForm').action = "/quan_ly_danh_sach_tuong/" + page;
         });
-    </script>
+    </script> --}}
 </div>
     <div class="p-3 table_admin">
         <div class="col-md-12 d-flex justify-content-between mb-3">
@@ -39,15 +39,15 @@
                 </tr>
             </thead>
             <tbody>
-              @foreach ($danh_sach_tuongs as $tuong)
+              @foreach ($tim_kiems as $tim_kiem)
                 <tr>
-                    <th class="text-center">{{$tuong->ma_tuong}}</th>
-                    <th class="text-center">{{$tuong->ten_tuong}}</th>
-                    <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('danh_sach_tuong/'.$tuong->hinh_anh)}}" alt=""></th>
+                    <th class="text-center">{{$tim_kiem->ma_tuong}}</th>
+                    <th class="text-center">{{$tim_kiem->ten_tuong}}</th>
+                    <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('danh_sach_tuong/'.$tim_kiem->hinh_anh)}}" alt=""></th>
                     <th class="text-center">
                         <button class="table_btn" data-toggle="modal" data-target="#update_champion"><i class="bi bi-pencil update_icon"></i></button>
                         |
-                        <a class="table_btn" href="{{route('xoa_tuong',['ma_tuong'=>$tuong->ma_tuong])}}"><i class="bi bi-trash3 remove_icon"></i></a>
+                        <a class="table_btn" href="{{route('xoa_tuong',['ma_tuong'=>$tim_kiem->ma_tuong])}}"><i class="bi bi-trash3 remove_icon"></i></a>
                     </th>
                 </tr>
               @endforeach
@@ -59,17 +59,17 @@
         <ul class="pagination">
           <li class="page-item">
             @if($page > 1)
-                <a class="previous page-link" href="{{route('quan_ly_danh_sach_tuong',['page'=>($page-1)])}}">&lt;</a>
+                <a class="previous page-link" href="{{route('quan_ly_danh_sach_tuong_search',['keyword'=>$keyword, 'page'=>($page-1)])}}">&lt;</a>
             @endif
           </li>
             @for($i = 1; $i <= $page_number; ++$i)
               <li class="page-item">
-                <a class="page-link" href="{{route('quan_ly_danh_sach_tuong',['page'=>$i])}}">{{$i}}</a>  
+                <a class="page-link" href="{{route('quan_ly_danh_sach_tuong_search',['keyword'=>$keyword, 'page'=>$i])}}">{{$i}}</a>  
               </li>
             @endfor
           <li class="page-item">
             @if($page < $page_number)
-              <a class="next page-link" href="{{route('quan_ly_danh_sach_tuong',['page'=>($page+1)])}}">&gt;</a>
+              <a class="next page-link" href="{{route('quan_ly_danh_sach_tuong_search',['keyword'=>$keyword, 'page'=>($page+1)])}}">&gt;</a>
             @endif
           </li>
         </ul>
@@ -120,11 +120,11 @@
           @csrf
           <div class="form-group">
             <label for="ma_tuong">Mã tướng</label>
-            <input name="ma_tuong" type="text" class="form-control" id="ma_tuong" value="{{$tuong->ma_tuong}}">
+            <input name="ma_tuong" type="text" class="form-control" id="ma_tuong" value="{{$tim_kiem->ma_tuong}}">
           </div>
           <div class="form-group">
             <label for="ten_tuong">Tên tướng</label>
-            <input name="ten_tuong" type="text" class="form-control" id="ten_tuong" value="{{$tuong->ten_tuong}}">
+            <input name="ten_tuong" type="text" class="form-control" id="ten_tuong" value="{{$tim_kiem->ten_tuong}}">
           </div>
           <div class="form-group">
             <label for="hinh_anh">Hình ảnh</label><br>
