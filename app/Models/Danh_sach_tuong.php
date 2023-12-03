@@ -9,7 +9,7 @@ class Danh_sach_tuong extends Model
 {
     use HasFactory;
     protected $table = 'ds_tuong';
-    public $incrementing = false;
+    public $incrementing = true;
     protected $primaryKey = 'ma_tuong';
     protected $keytype = 'string';
     public $timestamps = false;
