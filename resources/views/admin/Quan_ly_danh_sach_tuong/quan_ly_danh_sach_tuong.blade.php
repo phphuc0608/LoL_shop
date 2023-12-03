@@ -7,11 +7,11 @@
 <body style="background-color: black">
     @include('admin/module/header_admin')
 <div class="sort_cotainer p-3">
-    <form action="{{ route('tim_kiem_tuong', ['page' => 1]) }}" method="get" id="searchForm">
+    <form action="{{url('tim_kiem_tuong_process')}}" method="post" id="searchForm">
         @csrf
         <div class="form-group" style="margin-bottom: 90px!important">
             <label for="ten_tuong">Tên tướng</label>
-            <input class="form-control mb-2" type="text" name="ten_tuong" id="ten_tuong">
+            <input class="form-control mb-2" type="search" name="ten_tuong" id="ten_tuong">
             <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
         </div>
     </form>
@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-              {{-- @foreach ($danh_sach_tuongs as $tuong)
+              @foreach ($tuongs as $tuong)
                 <tr>
                     <th class="text-center">{{$tuong->ma_tuong}}</th>
                     <th class="text-center">{{$tuong->ten_tuong}}</th>
@@ -44,21 +44,7 @@
                         <a class="table_btn" href="{{route('xoa_tuong',['ma_tuong'=>$tuong->ma_tuong])}}"><i class="bi bi-trash3 remove_icon"></i></a>
                     </th>
                 </tr>
-              @endforeach --}}
-              @forelse($danh_sach_tuongs as $tuong)
-                <tr>
-                  <th class="text-center">{{$tuong->ma_tuong}}</th>
-                  <th class="text-center">{{$tuong->ten_tuong}}</th>
-                  <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('danh_sach_tuong/'.$tuong->hinh_anh)}}" alt=""></th>
-                  <th class="text-center">
-                      <button class="table_btn" data-toggle="modal" data-target="#update_champion"><i class="bi bi-pencil update_icon"></i></button>
-                      |
-                      <a class="table_btn" href="{{route('xoa_tuong',['ma_tuong'=>$tuong->ma_tuong])}}"><i class="bi bi-trash3 remove_icon"></i></a>
-                  </th>
-                </tr>
-              @empty
-                  {{-- <li class="list-group-item list-group-item-danger">User Not Found.</li> --}}
-              @endforelse
+              @endforeach
             </tbody>
         </table>
     </div>
