@@ -118,7 +118,17 @@
 #header_right .item_nav:hover {
   color: #FFF9C5;
 }
-
+#sub_menu{
+  top: 100%;
+  left: 0;
+  background-color: #0D1720;
+  padding: 10px 0;
+  color: #7A5715;
+}
+#sub_menu .sub_item{
+    color: #7A5715;
+    font-weight: bold;
+}
 .sort_cotainer {
   background-color: #0D1720;
   height: 100%;

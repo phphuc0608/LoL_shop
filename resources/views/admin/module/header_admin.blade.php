@@ -4,8 +4,13 @@
   </div>
   <div id="header_right">
     <a href="{{route('quan_ly_danh_sach_tuong',1)}}" class="mx-3 item_nav">Danh sách tướng</a>
-    <a href="#" class="mx-3 item_nav">Sản phẩm</a>
-    <a href="{{route('quan_ly_khach_hang',1)}}" class="mx-3 item_nav">Khách hàng</a>
+    <a href="#" class="mx-3 item_nav dropdown-toggle" data-toggle="dropdown">Sản phẩm</a>
+    <div class="dropdown-menu" id="sub_menu">
+      <a class="dropdown-item sub_item" href="#">TRANG PHỤC</a>
+      <a class="dropdown-item sub_item" href="#">BÁU VẬT</a>
+      <a class="dropdown-item sub_item" href="#">VẬT PHẨM</a>
+    </div>
+    <a href="#" class="mx-3 item_nav">Khách hàng</a>
     <a href="{{route('quan_ly_nguoi_dung',1)}}" class="mx-3 item_nav">Người dùng</a>
   </div>
   <a href="{{route('dang_xuat')}}" class="btn btn-warning">Đăng xuất</a>

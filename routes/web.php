@@ -54,5 +54,5 @@ Route::get('xoa_khach_hang_process/{ma_khach_hang}', [\App\Http\Controllers\Khac
 
 /*_____________________________________________________HOME_______________________________________________________________________*/
 //danh sach tuong
-Route::get('danh_sach_tuong', [App\Http\Controllers\Danh_sach_tuong_controller::class, 'view_danh_sach_tuong'])->name('danh_sach_tuong');
+Route::get('home_ds_tuong', [App\Http\Controllers\Danh_sach_tuong_controller::class, 'view_home_ds_tuong'])->name('home_ds_tuong');
 
