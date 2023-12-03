@@ -11,7 +11,7 @@
             @csrf
             <div class="form-group" style="margin-bottom: 90px!important">
                 <label for="ten_tai_khoan">Tên tài khoản</label>
-                <input class="form-control mb-2" type="search" name="ten_tai_khoan" id="ten_tai_khoan" {{$hasKey != 0?"value=$keyword":""}}>
+                <input class="form-control mb-2" type="search" name="ten_tai_khoan" id="ten_tai_khoan" {{$keyword != '\0'?"value=$keyword":""}}>
                 <button class="btn" type="submit" style="background-color: #B2893F" >Tìm kiếm</button>
             </div>
             <div class="form-group">
@@ -70,39 +70,21 @@
         <ul class="pagination">
           <li class="page-item">
             @if($page > 1)
-              @if($hasKey != 0)
-                <li class="page-item">
-                  <a class="previous page-link" href="{{route('quan_ly_nguoi_dung_search_keyword',['page'=>($page-1), 'keyword'=>($keyword), 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&lt;</a>
-                </li>
-              @else
-                <li class="page-item">
-                  <a class="previous page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>($page-1), 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&lt;</a>  
-                </li>
-                @endif
+              <li class="page-item">
+                <a class="previous page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>($page-1), 'keyword'=>($keyword), 'state'=>$state, 'pos'=>$pos])}}">&lt;</a>
+              </li>
             @endif
           </li>
             @for($i = 1; $i <= $page_number; ++$i)
-              @if($hasKey != 0)
-                <li class="page-item">
-                  <a class="page-link" href="{{route('quan_ly_nguoi_dung_search_keyword',['page'=>$i, 'keyword'=>$keyword, 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">{{$i}}</a>  
-                </li>
-              @else
-                <li class="page-item">
-                  <a class="page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>$i, 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">{{$i}}</a>  
-                </li>
-              @endif
+              <li class="page-item">
+                <a class="page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>$i, 'keyword'=>$keyword, 'state'=>$state, 'pos'=>$pos])}}">{{$i}}</a>  
+              </li>  
             @endfor
           <li class="page-item">
             @if($page < $page_number)
-              @if($hasKey != 0)
-                <li class="page-item">
-                  <a class="next page-link" href="{{route('quan_ly_nguoi_dung_search_keyword',['page'=>($page+1), 'keyword'=>$keyword, 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&gt;</a>
-                </li>
-              @else
-                <li class="page-item">
-                  <a class="next page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>($page+1), 'state'=>$state, 'pos'=>$pos, 'hasKey'=>$hasKey])}}">&gt;</a> 
-                </li>
-                @endif
+              <li class="page-item">
+                <a class="next page-link" href="{{route('quan_ly_nguoi_dung_search',['page'=>($page+1), 'keyword'=>$keyword, 'state'=>$state, 'pos'=>$pos])}}">&gt;</a>
+              </li>  
             @endif
           </li>
         </ul>
@@ -151,7 +133,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="update_user_label">Sửa tướng</h5>
+        <h5 class="modal-title" id="update_user_label">Cập nhật người dùng</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

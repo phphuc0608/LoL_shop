@@ -10,10 +10,6 @@
       <form action="{{url('tim_kiem_khach_hang_process')}}" method="post">
         @csrf
         <div class="form-group">
-          <label for="ma_khach_hang">Mã khách hàng</label>
-          <input class="form-control mb-2" type="search" name="ma_khach_hang" id="ma_khach_hang">
-      </div>
-        <div class="form-group">
             <label for="ten_tai_khoan">Tên tài khoản</label>
             <input class="form-control mb-2" type="search" name="ten_tai_khoan" id="ten_tai_khoan">
         </div>
@@ -89,11 +85,11 @@
       </div>
     </div>
 {{-- Update customer --}}
-{{-- <div class="modal" id="update_customer" tabindex="-1" role="dialog" aria-labelledby="update_customerLabel" aria-hidden="true">
+<div class="modal" id="update_customer" tabindex="-1" role="dialog" aria-labelledby="update_customerLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="update_customer_label">Sửa tướng</h5>
+        <h5 class="modal-title" id="update_customer_label">Cập nhật khách hàng</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -132,7 +128,7 @@
     $('#update_customer #update_ma').val(ma_khach_hang);
     var tai_khoan = row.find('th:eq(1)').text();
     $('#update_customer #update_tk').val(tai_khoan);
-    var trang_thai_text = row.find('th:eq(2)').text();
+    var trang_thai_text = row.find('th:eq(3)').text();
     var trang_thai = trang_thai_text === "Kích hoạt" ? "1" : "0";
     $('#update_customer #update_state').val(trang_thai);
     if (trang_thai === "1") {
@@ -141,7 +137,7 @@
       $('#update_customer #update_state option[value="0"]').prop('selected', true);
     }
   });
-</script> --}}
+</script>
 </body>
 </html>
             

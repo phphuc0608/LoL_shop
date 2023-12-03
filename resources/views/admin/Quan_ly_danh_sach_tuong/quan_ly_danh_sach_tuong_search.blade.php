@@ -15,12 +15,6 @@
             <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
         </div>
     </form>
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var page = window.location.pathname.split('/').pop();
-            document.getElementById('searchForm').action = "/quan_ly_danh_sach_tuong/" + page;
-        });
-    </script> --}}
 </div>
     <div class="p-3 table_admin">
         <div class="col-md-12 d-flex justify-content-between mb-3">

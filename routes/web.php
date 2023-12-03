@@ -23,8 +23,7 @@ Route::post('dang_nhap_process',[App\Http\Controllers\Nguoi_dung_controller::cla
 Route::get('dang_xuat',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_xuat'])->name('dang_xuat');
 //giao dien
 Route::get('quan_ly_nguoi_dung/{page}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_quan_ly_nguoi_dung'])->name('quan_ly_nguoi_dung');
-Route::get('quan_ly_nguoi_dung_search/{keyword}/{state}/{pos}/{hasKey}/{page}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_tim_kiem_keyword'])->name('quan_ly_nguoi_dung_search_keyword');
-Route::get('quan_ly_nguoi_dung_search/{state}/{pos}/{hasKey}/{page}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_tim_kiem'])->name('quan_ly_nguoi_dung_search');
+Route::get('quan_ly_nguoi_dung_search/{keyword}/{state}/{pos}/{page}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_tim_kiem'])->name('quan_ly_nguoi_dung_search');
 Route::post('tim_kiem_nguoi_dung_process',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_tim_kiem']);
 //them sua xoa
 Route::post('them_nguoi_dung',[\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_them']);
@@ -45,11 +44,11 @@ Route::get('xoa_tuong_process/{ma_tuong}', [\App\Http\Controllers\Danh_sach_tuon
 //giao dien
 Route::get('dang_ky',[App\Http\Controllers\Khach_hang_controller::class, 'view_dang_ky'])->name('dang_ky');
 Route::get('quan_ly_khach_hang/{page}',[\App\Http\Controllers\Khach_hang_controller::class, 'view_quan_ly_khach_hang'])->name('quan_ly_khach_hang');
-// Route::get('quan_ly_danh_sach_tuong_search/{keyword}/{page}', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'view_tim_kiem_keyword'])->name('quan_ly_danh_sach_tuong_search');
-// Route::post('tim_kiem_tuong_process', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_tim_kiem'])->name('tim_kiem_tuong');
+Route::get('quan_ly_khach_hang_search/{tk}/{email}/{state}/{page}', [\App\Http\Controllers\Khach_hang_controller::class, 'view_tim_kiem'])->name('quan_ly_khach_hang_search');
+Route::post('tim_kiem_khach_hang_process', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_tim_kiem'])->name('tim_kiem_khach_hang');
 // //them sua xoa
 Route::post('them_khach_hang',[\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_dang_ky']);
-// Route::post('sua_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_sua']);
+Route::post('sua_khach_hang', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_sua']);
 Route::get('xoa_khach_hang_process/{ma_khach_hang}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_xoa'])->name('xoa_khach_hang');
 
 /*_____________________________________________________HOME_______________________________________________________________________*/
