@@ -7,7 +7,7 @@
 <body style="background-color: black">
     @include('admin/module/header_admin')
     <div class="sort_cotainer p-3 ">
-      <form action="{{url('tim_kiem_process')}}" method="post">
+      <form action="{{url('tim_kiem_nguoi_dung_process')}}" method="post">
         @csrf
         <div class="form-group" style="margin-bottom: 90px!important">
             <label for="ten_tai_khoan">Tên tài khoản</label>
