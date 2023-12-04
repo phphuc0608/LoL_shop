@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     @include('admin/module/head')
-    <title>Quản lý người dùng</title>
+    <title>Quản lý sản phẩm skin</title>
 </head>
 <body style="background-color: black">
     @include('admin/module/header_admin')
     <div class="sort_cotainer p-3 ">
-      <form action="{{url('tim_kiem_process')}}" method="post">
+      <form action="{{--{{url('tim_kiem_nguoi_dung_process')}}--}}#" method="post">
         @csrf
         <div class="form-group" style="margin-bottom: 90px!important">
             <label for="ten_tai_khoan">Tên tài khoản</label>
@@ -129,7 +129,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="update_user_label">Sửa tướng</h5>
+        <h5 class="modal-title" id="update_user_label">Cập nhật người dùng</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -140,10 +140,6 @@
           <div class="form-group">
             <label for="update_tk">Tài khoản</label>
             <input name="update_tk" type="text" class="form-control" readonly id="update_tk" value="{{$nguoi_dung->tai_khoan}}">
-          </div>
-          <div class="form-group">
-            <label for="update_tt">Trạng thái</label>
-            <input name="update_tt" type="" class="form-control" id="update_tt" value="{{$nguoi_dung->trang_thai}}">
           </div>
           <div class="form-group">
             <label for="update_state">Trạng thái</label>
@@ -166,8 +162,14 @@
     var row = $(this).closest('tr');
     var tai_khoan = row.find('th:eq(0)').text();
     $('#update_user #update_tk').val(tai_khoan);
-    var trang_thai = row.find('th:eq(2)').text();
+    var trang_thai_text = row.find('th:eq(2)').text();
+    var trang_thai = trang_thai_text === "Kích hoạt" ? "1" : "0";
     $('#update_user #update_state').val(trang_thai);
+    if (trang_thai === "1") {
+      $('#update_user #update_state option[value="1"]').prop('selected', true);
+    } else if (trang_thai === "0") {
+      $('#update_user #update_state option[value="0"]').prop('selected', true);
+    }
   });
 </script>
 </body>
