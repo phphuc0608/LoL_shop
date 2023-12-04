@@ -66,5 +66,6 @@
     <div id="gif_container" class="container-fluid p-0 d-flex justify-content-center align-items-center">
         <img src="{{asset("/img/footer_gif.gif")}}" alt="">
     </div>
+    
 </body>
 </html>

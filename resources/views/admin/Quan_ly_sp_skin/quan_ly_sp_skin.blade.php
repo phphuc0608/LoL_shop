@@ -237,19 +237,23 @@
   </div>
 </div>
 <script>
-  $('.table_btn').click(function() {
+$('.table_btn').click(function() {
     var row = $(this).closest('tr');
-    var skin = row.find('th:eq(0)').text();
-    $('#update_skin #up_ten_skin').val(tai_khoan);
-    var trang_thai_text = row.find('th:eq(2)').text();
-    var trang_thai = trang_thai_text === "Kích hoạt" ? "1" : "0";
+    var ma_trang_phuc = row.find('th:eq(0)').text();
+    var ten_trang_phuc = row.find('th:eq(1)').text();
+    var trang_thai_text = row.find('th:eq(5)').text();
+    var trang_thai = trang_thai_text === "Đang bán" ? "1" : "0";
+
+    $('#update_skin #ma_skin').val(ma_trang_phuc);
+    $('#update_skin #up_ten_skin').val(ten_trang_phuc);
     $('#update_skin #up_state').val(trang_thai);
+
     if (trang_thai === "1") {
-      $('#update_skin #update_state option[value="1"]').prop('selected', true);
+      $('#update_skin #up_state option[value="1"]').prop('selected', true);
     } else if (trang_thai === "0") {
-      $('#update_skin #update_state option[value="0"]').prop('selected', true);
+      $('#update_skin #up_state option[value="0"]').prop('selected', true);
     }
-  });
+});
 </script>
 </body>
 </html>
