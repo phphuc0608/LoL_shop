@@ -54,19 +54,19 @@
                 </tr>
             </thead>
             <tbody>
-              @foreach ($skins as $skin)
+              @foreach ($tim_kiems as $tim_kiem)
                 <tr>
-                    <th class="text-center">{{$skin->ma_trang_phuc}}</th>
-                    <th class="text-center">{{$skin->ten_trang_phuc}}</th>
-                    <th class="text-center">{{$skin->do_hiem->ten_do_hiem}}</th>
-                    <th class="text-center">{{$skin->dong_skin->ten_dong_skin}}</th>
-                    <th class="text-center">{{$skin->do_hiem->gia}}</th>
-                    <th class="text-center"><?php echo $skin->trang_thai == 1?'Đang bán':'Ngừng bán' ?></th>
-                    <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('skin/'.$skin->hinh_anh)}}" alt=""></th>
+                    <th class="text-center">{{$tim_kiem->ma_trang_phuc}}</th>
+                    <th class="text-center">{{$tim_kiem->ten_trang_phuc}}</th>
+                    <th class="text-center">{{$tim_kiem->do_hiem->ten_do_hiem}}</th>
+                    <th class="text-center">{{$tim_kiem->dong_skin->ten_dong_skin}}</th>
+                    <th class="text-center">{{$tim_kiem->do_hiem->gia}}</th>
+                    <th class="text-center"><?php echo $tim_kiem->trang_thai == 1?'Đang bán':'Ngừng bán' ?></th>
+                    <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('skin/'.$tim_kiem->hinh_anh)}}" alt=""></th>
                     <th class="text-center">
                         <button class="table_btn" data-toggle="modal" data-target="#update_skin"><i class="bi bi-pencil update_icon"></i></button>
                         |
-                        <button class="table_btn"><a href="{{route('xoa_skin',['ma_trang_phuc'=>$skin->ma_trang_phuc])}}"><i class="bi bi-trash3 remove_icon"></i></a></button>
+                        <button class="table_btn"><a href="{{route('xoa_skin',['ma_trang_phuc'=>$tim_kiem->ma_trang_phuc])}}"><i class="bi bi-trash3 remove_icon"></i></a></button>
                     </th>
                 </tr>
               @endforeach
@@ -178,11 +178,11 @@
           @csrf
           <div class="form-group">
             <label for="ma_skin">Mã trang phục</label>
-            <input name="ma_skin" type="text" class="form-control" id="ma_skin" readonly value="{{$skin->ma_trang_phuc}}">
+            <input name="ma_skin" type="text" class="form-control" id="ma_skin" readonly {{$empty!=1?"value=$tim_kiem->ma_trang_phuc":""}}>
           </div>
           <div class="form-group">
             <label for="up_ten_skin">Tên trang phục</label>
-            <input name="up_ten_skin" type="text" class="form-control" id="up_ten_skin" value="{{$skin->ten_trang_phuc}}">
+            <input name="up_ten_skin" type="text" class="form-control" id="up_ten_skin" {{$empty!=1?"value=$tim_kiem->ten_trang_phuc":""}}>
           </div>
           <div class="form-group">
             <label for="up_hinh_anh">Hình ảnh</label><br>
@@ -196,7 +196,7 @@
             <label for="up_tuong">Tướng</label>
             <select class="form-control" id="up_tuong" name="up_tuong">
               @foreach($tuongs as $tuong)
-                <option value="{{$tuong->ma_tuong}}" {{$skin->ma_tuong==$tuong->ma_tuong?" selected":""}}>{{$tuong->ten_tuong}}</option>
+                <option value="{{$tuong->ma_tuong}}" @if($empty!=1){$tim_kiem->ma_tuong==$tuong->ma_tuong?" selected":""}@endif>{{$tuong->ten_tuong}}</option>
               @endforeach
             </select>
           </div>
@@ -204,7 +204,7 @@
             <label for="up_do_hiem">Độ hiếm</label>
             <select class="form-control" id="up_do_hiem" name="up_do_hiem">
               @foreach($do_hiems as $do_hiem)
-                <option value="{{$do_hiem->ma_do_hiem}}" {{$skin->ma_do_hiem==$do_hiem->ma_do_hiem?" selected":""}}>{{$do_hiem->ten_do_hiem}}</option>
+                <option value="{{$do_hiem->ma_do_hiem}}" @if($empty!=1){$tim_kiem->ma_do_hiem==$do_hiem->ma_do_hiem?" selected":""}@endif>{{$do_hiem->ten_do_hiem}}</option>
               @endforeach
             </select>
           </div>
@@ -212,20 +212,20 @@
             <label for="up_dong_skin">Dòng skin</label>
             <select class="form-control" id="up_dong_skin" name="up_dong_skin">
               @foreach($dong_skins as $dong_skin)
-                <option value="{{$dong_skin->ma_dong_skin}}" {{$skin->ma_dong_skin==$dong_skin->ma_dong_skin?" selected":""}}>{{$dong_skin->ten_dong_skin}}</option>
+                <option value="{{$dong_skin->ma_dong_skin}}" @if($empty!=1){$tim_kiem->ma_dong_skin==$dong_skin->ma_dong_skin?" selected":""}@endif>{{$dong_skin->ten_dong_skin}}</option>
               @endforeach
             </select>
           </div>
           <div class="form-group">
             <label for="up_state">Trạng thái</label>
             <select class="form-control" id="up_state" name="up_state">
-              <option value="1" {{$skin->trang_thai=="1"?" selected":""}}>Đang bán</option>
-              <option value="0" {{$skin->trang_thai=="0"?" selected":""}}>Ngừng bán</option>
+              <option value="1" @if($empty!=1){$tim_kiem->trang_thai=="1"?" selected":""}@endif>Đang bán</option>
+              <option value="0" @if($empty!=1){$tim_kiem->trang_thai=="0"?" selected":""}@endif>Ngừng bán</option>
             </select>
           </div>
           <div class="form-group">
             <label for="up_mo_ta">Mô tả</label>
-            <textarea name="up_mo_ta" class="form-control" id="up_mo_ta" value="{{$skin->mo_ta}}" rows="4" cols="30"></textarea>
+            <textarea name="up_mo_ta" class="form-control" id="up_mo_ta" {{$empty!=1?"value=$tim_kiem->mo_ta":""}} rows="4" cols="30"></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
