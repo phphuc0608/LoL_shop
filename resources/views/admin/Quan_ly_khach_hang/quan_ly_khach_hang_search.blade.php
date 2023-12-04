@@ -99,17 +99,17 @@
           @csrf
           <div class="form-group">
             <label for="update_ma">Mã khách hàng</label>
-            <input name="update_ma" type="text" class="form-control" readonly id="update_ma" value="{{$tim_kiem->ma_khach_hang}}">
+            <input name="update_ma" type="text" class="form-control" readonly id="update_ma" {{$empty!=1?"value=$tim_kiem->ma_khach_hang":""}}>
           </div>
           <div class="form-group">
             <label for="update_tk">Tài khoản</label>
-            <input name="update_tk" type="text" class="form-control" readonly id="update_tk" value="{{$tim_kiem->tai_khoan}}">
+            <input name="update_tk" type="text" class="form-control" readonly id="update_tk" {{$empty!=1?"value=$tim_kiem->tai_khoan":""}}>
           </div>
           <div class="form-group">
             <label for="update_state">Trạng thái</label>
             <select class="form-control" id="update_state" name="update_state">
-              <option value="1" {{$tim_kiem->nguoi_dung->trang_thai=="1"?" selected":""}}>Kích hoạt</option>
-              <option value="0" {{$tim_kiem->nguoi_dung->trang_thai=="0"?" selected":""}}>Khóa</option>
+              <option value="1" @if($empty!=1){$tim_kiem->trang_thai=="1"?" selected":""}@endif>Kích hoạt</option>
+              <option value="0" @if($empty!=1){$tim_kiem->trang_thai=="0"?" selected":""}@endif>Khóa</option>
             </select>
           </div>
           <div class="modal-footer">

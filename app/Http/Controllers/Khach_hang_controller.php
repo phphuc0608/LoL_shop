@@ -143,6 +143,9 @@ class Khach_hang_controller extends Controller
 			if ($tim_kiems->count() % $page_length > 0) {
 				$page_number++;
 			}
+            if ($tim_kiems->count()==0) {
+				$data['empty'] = 1;
+			}
 			$data['page_number'] = $page_number;
 			$data['page'] = $page;
             $data['tk'] = $ten_tai_khoan;

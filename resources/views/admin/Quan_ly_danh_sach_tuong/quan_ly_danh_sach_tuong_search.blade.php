@@ -114,11 +114,11 @@
           @csrf
           <div class="form-group">
             <label for="ma_tuong">Mã tướng</label>
-            <input name="ma_tuong" type="text" class="form-control" id="ma_tuong" value="{{$tim_kiem->ma_tuong}}">
+            <input name="ma_tuong" type="text" class="form-control" id="ma_tuong" {{$empty!=1?"value=$tim_kiem->ma_tuong":""}}>
           </div>
           <div class="form-group">
             <label for="ten_tuong">Tên tướng</label>
-            <input name="ten_tuong" type="text" class="form-control" id="ten_tuong" value="{{$tim_kiem->ten_tuong}}">
+            <input name="ten_tuong" type="text" class="form-control" id="ten_tuong" {{$empty!=1?"value=$tim_kiem->ten_tuong":""}}">
           </div>
           <div class="form-group">
             <label for="hinh_anh">Hình ảnh</label><br>
