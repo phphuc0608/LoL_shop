@@ -51,6 +51,13 @@ Route::post('them_khach_hang',[\App\Http\Controllers\Khach_hang_controller::clas
 Route::post('sua_khach_hang', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_sua']);
 Route::get('xoa_khach_hang_process/{ma_khach_hang}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_xoa'])->name('xoa_khach_hang');
 
+//San pham
+//skin
+//giao dien
+Route::get('quan_ly_sp_skin/{page}',[\App\Http\Controllers\San_pham_controller::class, 'view_quan_ly_sp_skin'])->name('quan_ly_skin');
+
+
+
 /*_____________________________________________________HOME_______________________________________________________________________*/
 //danh sach tuong
 Route::get('home_ds_tuong', [App\Http\Controllers\Danh_sach_tuong_controller::class, 'view_home_ds_tuong'])->name('home_ds_tuong');
