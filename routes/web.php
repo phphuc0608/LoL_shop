@@ -55,7 +55,10 @@ Route::get('xoa_khach_hang_process/{ma_khach_hang}', [\App\Http\Controllers\Khac
 //skin
 //giao dien
 Route::get('quan_ly_sp_skin/{page}',[\App\Http\Controllers\San_pham_controller::class, 'view_quan_ly_sp_skin'])->name('quan_ly_skin');
-
+//them sua xoa
+Route::post('them_skin',[\App\Http\Controllers\San_pham_controller::class, 'xu_ly_them_skin']);
+Route::post('sua_skin', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_sua_skin']);
+Route::get('xoa_skin_process/{ma_trang_phuc}', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_xoa_skin'])->name('xoa_skin');
 
 
 /*_____________________________________________________HOME_______________________________________________________________________*/
