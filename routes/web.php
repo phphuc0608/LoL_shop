@@ -66,4 +66,5 @@ Route::get('xoa_skin_process/{ma_trang_phuc}', [\App\Http\Controllers\San_pham_c
 /*_____________________________________________________HOME_______________________________________________________________________*/
 //danh sach tuong
 Route::get('home_ds_tuong', [App\Http\Controllers\Danh_sach_tuong_controller::class, 'view_home_ds_tuong'])->name('home_ds_tuong');
+Route::get('home_mua_trang_phuc',[App\Http\Controllers\San_pham_controller::class, 'view_home_mua_trang_phuc'])->name('home_mua_trang_phuc');
 

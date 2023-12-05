@@ -149,11 +149,6 @@
               <option value="1">Đang bán</option>
               <option value="0">Ngừng bán</option>
             </select>
-          </div>
-          <div class="form-group">
-            <label for="mo_ta">Mô tả</label>
-            <textarea name="mo_ta" class="form-control" id="mo_ta" placeholder="Nhập mô tả" rows="4" cols="30"></textarea>
-          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
             <button type="submit" class="btn btn-primary">Thêm</button>
@@ -222,10 +217,6 @@
               <option value="1" @if($empty!=1){$tim_kiem->trang_thai=="1"?" selected":""}@endif>Đang bán</option>
               <option value="0" @if($empty!=1){$tim_kiem->trang_thai=="0"?" selected":""}@endif>Ngừng bán</option>
             </select>
-          </div>
-          <div class="form-group">
-            <label for="up_mo_ta">Mô tả</label>
-            <textarea name="up_mo_ta" class="form-control" id="up_mo_ta" {{$empty!=1?"value=$tim_kiem->mo_ta":""}} rows="4" cols="30"></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
