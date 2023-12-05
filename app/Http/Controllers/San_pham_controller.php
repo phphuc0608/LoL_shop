@@ -108,7 +108,6 @@ class San_pham_controller extends Controller
         $skin->ma_do_hiem = $request->do_hiem;
         $skin->ma_tuong = $request->add_tuong;
         $skin->ma_dong_skin = $request->dong_skin;
-        $skin->mo_ta = $request->mo_ta;
         $skin->trang_thai = $request->state;
         if ($request->hasFile('hinh_anh')) {
             $img = $request->hinh_anh;
@@ -139,7 +138,6 @@ class San_pham_controller extends Controller
         $skin->ma_do_hiem = $request->up_do_hiem;
         $skin->ma_tuong = $request->up_tuong;
         $skin->ma_dong_skin = $request->up_dong_skin;
-        $skin->mo_ta = $request->up_mo_ta;
         $skin->trang_thai = $request->up_state;
         if ($request->hasFile('up_hinh_anh')) {
             $img = $request->up_hinh_anh;
@@ -180,5 +178,11 @@ class San_pham_controller extends Controller
             File::delete('skin/' . $skin->model);
         }
         return redirect()->route('quan_ly_skin', 1);
+    }
+
+    public function view_home_mua_trang_phuc()
+    {
+        // $tuongs = Danh_sach_tuong::all();
+        return view('home.Mua_trang_phuc.mua_trang_phuc');
     }
 }
