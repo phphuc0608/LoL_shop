@@ -9,7 +9,7 @@
       <div class="dropdown-menu" id="sub_menu">
         <a class="dropdown-item sub_item" href="{{route('quan_ly_skin',1)}}">TRANG PHỤC</a>
         <a class="dropdown-item sub_item" href="{{route('quan_ly_chest',1)}}">BÁU VẬT</a>
-        <a class="dropdown-item sub_item" href="#">VẬT PHẨM</a>
+        <a class="dropdown-item sub_item" href="{{route('quan_ly_item',1)}}">VẬT PHẨM</a>
       </div>
     </div>
     <a href="{{route('quan_ly_khach_hang',1)}}" class="mx-3 item_nav">Khách hàng</a>
