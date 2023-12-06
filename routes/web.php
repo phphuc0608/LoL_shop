@@ -46,7 +46,7 @@ Route::get('dang_ky',[App\Http\Controllers\Khach_hang_controller::class, 'view_d
 Route::get('quan_ly_khach_hang/{page}',[\App\Http\Controllers\Khach_hang_controller::class, 'view_quan_ly_khach_hang'])->name('quan_ly_khach_hang');
 Route::get('quan_ly_khach_hang_search/{tk}/{email}/{state}/{page}', [\App\Http\Controllers\Khach_hang_controller::class, 'view_tim_kiem'])->name('quan_ly_khach_hang_search');
 Route::post('tim_kiem_khach_hang_process', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_tim_kiem'])->name('tim_kiem_khach_hang');
-// //them sua xoa
+//them sua xoa
 Route::post('them_khach_hang',[\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_dang_ky']);
 Route::post('sua_khach_hang', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_sua']);
 Route::get('xoa_khach_hang_process/{ma_khach_hang}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_xoa'])->name('xoa_khach_hang');
@@ -61,6 +61,15 @@ Route::post('tim_kiem_skin_process', [\App\Http\Controllers\San_pham_controller:
 Route::post('them_skin',[\App\Http\Controllers\San_pham_controller::class, 'xu_ly_them_skin']);
 Route::post('sua_skin', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_sua_skin']);
 Route::get('xoa_skin_process/{ma_trang_phuc}', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_xoa_skin'])->name('xoa_skin');
+//bau vat
+//giao dien
+Route::get('quan_ly_sp_chest/{page}',[\App\Http\Controllers\San_pham_controller::class, 'view_quan_ly_sp_chest'])->name('quan_ly_chest');
+Route::get('quan_ly_sp_chest_search/{keyword}/{type}/{state}/{page}', [\App\Http\Controllers\San_pham_controller::class, 'view_tim_kiem_sp_chest'])->name('quan_ly_chest_search');
+Route::post('tim_kiem_chest_process', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_tim_kiem_chest'])->name('tim_kiem_chest');
+// //them sua xoa
+Route::post('them_chest',[\App\Http\Controllers\San_pham_controller::class, 'xu_ly_them_chest']);
+Route::post('sua_chest', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_sua_chest']);
+Route::get('xoa_chest_process/{ma_bau_vat}', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_xoa_chest'])->name('xoa_chest');
 
 
 /*_____________________________________________________HOME_______________________________________________________________________*/
