@@ -124,10 +124,14 @@
   background-color: #0D1720;
   padding: 10px 0;
   color: #7A5715;
+  display: none;
 }
 #sub_menu .sub_item{
     color: #7A5715;
     font-weight: bold;
+}
+.dropdown:hover #sub_menu {
+  display: block;
 }
 .sort_cotainer {
   background-color: #0D1720;
