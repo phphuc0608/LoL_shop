@@ -25,7 +25,7 @@
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
             <div class="row col-md-12">
                 <a href="#" class="col-md-2 p-0 my-1 mx-3 content_container">
-                    <img src="" alt="" class="img_item text-center">
+                    <img src="{{asset('img/test.webp')}}" alt="" class="img_item text-center">
                     <div class="item_name d-flex align-items-center">
                         <h2>AATROX</h2>
                     </div>

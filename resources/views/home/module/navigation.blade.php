@@ -8,8 +8,25 @@
         <a class="nav_item px-3 py-2" href="#">MUA BÁU VẬT</a>
         <a class="nav_item px-3 py-2" href="#">MUA VẬT PHẨM</a>
     </div>
-    <div id="header_right">
-        <i class="bi bi-cart4 icon_navigation mr-5"></i>
+    <div id="header_right" class="d-flex align-items-center justify-content-center">
+        <div class="icon_navigation" id="person-icon">
+            <i class="bi bi-person-circle"></i>
+            <div id="sub-menu">
+                <a class="p-0 m-0" href="#"><i class="bi bi-person"></i> Thông tin tài khoản</a><br>
+                <a class="p-0 m-0" href="#"><i class="bi bi-bag-check pr-2"></i>Lịch sử mua hàng</a>
+            </div>
+        </div>
+        <i class="bi bi-cart4 icon_navigation mx-5"></i>
         <i class="bi bi-box-arrow-right icon_navigation icon_navigation"></i>
     </div>
 </div>
+{{-- <script>
+    document.getElementById('person-icon').addEventListener('click', function() {
+        var subMenu = document.getElementById('sub-menu');
+        if (subMenu.style.display === 'none') {
+            subMenu.style.display = 'block';
+        } else {
+            subMenu.style.display = 'none';
+        }
+    });
+</script> --}}
