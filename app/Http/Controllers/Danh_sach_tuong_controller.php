@@ -90,6 +90,9 @@ class Danh_sach_tuong_controller extends Controller
             if ($tim_kiems->count()==0) {
 				$data['empty'] = 1;
 			}
+            else{
+                $data['empty'] = 0;
+            }
             $data['page_number'] = $page_number;
             $data['page'] = $page;
             $data['keyword'] = $keyword;

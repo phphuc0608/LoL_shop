@@ -8,7 +8,7 @@
       <a href="#" class="mx-3 item_nav dropdown-toggle" data-toggle="dropdown">Sản phẩm</a>
       <div class="dropdown-menu" id="sub_menu">
         <a class="dropdown-item sub_item" href="{{route('quan_ly_skin',1)}}">TRANG PHỤC</a>
-        <a class="dropdown-item sub_item" href="#">BÁU VẬT</a>
+        <a class="dropdown-item sub_item" href="{{route('quan_ly_chest',1)}}">BÁU VẬT</a>
         <a class="dropdown-item sub_item" href="#">VẬT PHẨM</a>
       </div>
     </div>

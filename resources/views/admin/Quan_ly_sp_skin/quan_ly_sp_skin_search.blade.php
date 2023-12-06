@@ -11,7 +11,7 @@
         @csrf
         <div class="form-group" style="margin-bottom: 90px!important">
             <label for="ten_trang_phuc">Tên trang phục</label>
-            <input class="form-control mb-2" type="search" name="ten_trang_phuc" id="ten_trang_phuc">
+            <input class="form-control mb-2" type="search" name="ten_trang_phuc" id="ten_trang_phuc" {{$keyword != '\0'?"value=$keyword":""}}>
             <button class="btn" type="submit" style="background-color: #B2893F">Tìm kiếm</button>
         </div>
         <div class="form-group">
@@ -78,17 +78,17 @@
         <ul class="pagination">
           <li class="page-item">
             @if($page > 1)
-                <a class="previous page-link" href="{{route('quan_ly_skin',['page'=>($page-1)])}}">&lt;</a>
+                <a class="previous page-link" href="{{route('quan_ly_skin_search',['page'=>($page-1), 'keyword'=>$keyword, 'state'=>$state, 'champ'=>$champ])}}">&lt;</a>
             @endif
           </li>
             @for($i = 1; $i <= $page_number; ++$i)
               <li class="page-item">
-                <a class="page-link" href="{{route('quan_ly_skin',['page'=>$i])}}">{{$i}}</a>  
+                <a class="page-link" href="{{route('quan_ly_skin_search',['page'=>$i, 'keyword'=>$keyword, 'state'=>$state, 'champ'=>$champ])}}">{{$i}}</a>  
               </li>
             @endfor
           <li class="page-item">
             @if($page < $page_number)
-              <a class="next page-link" href="{{route('quan_ly_skin',['page'=>($page+1)])}}">&gt;</a>
+              <a class="next page-link" href="{{route('quan_ly_skin_search',['page'=>($page+1), 'keyword'=>$keyword, 'state'=>$state, 'champ'=>$champ])}}">&gt;</a>
             @endif
           </li>
         </ul>
