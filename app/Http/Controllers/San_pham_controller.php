@@ -7,7 +7,9 @@ use App\Models\Danh_sach_tuong;
 use App\Models\Do_hiem;
 use App\Models\Dong_skin;
 use App\Models\Loai_bau_vat;
+use App\Models\Loai_vat_pham;
 use App\Models\Trang_phuc;
+use App\Models\Vat_pham;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -323,6 +325,147 @@ class San_pham_controller extends Controller
         }
         return redirect()->route('quan_ly_chest', 1);
     }
+/*----------------------------------------------------------------*/
+
+public function view_quan_ly_sp_item($page)
+{
+    if (session('nguoi_dung') != null) {
+        $loai_vat_phams = Loai_vat_pham::all();
+        $data = [];
+        $page_length = 6;
+        $all_items = Vat_pham::all();
+        $data['items'] =  $all_items->skip(($page - 1) * $page_length)->take($page_length);
+        $page_number = (int)($all_items->count() / $page_length);
+        if ($all_items->count() % $page_length > 0) {
+            $page_number++;
+        }
+        $data['page_number'] = $page_number;
+        $data['page'] = $page;
+        return view('admin.Quan_ly_sp_item.quan_ly_sp_item', $data)->with('loai_vat_phams', $loai_vat_phams);
+    } else {
+        return redirect()->route('dang_nhap');
+    }
+}
+public function xu_ly_tim_kiem_item(Request $request)
+{
+    $ten_vat_pham = $request->ten_vat_pham;
+    $ma_loai_vat_pham = $request->loai_vat_pham;
+    $trang_thai = $request->trang_thai;
+    if($ten_vat_pham==null){
+        $ten_vat_pham = '\0';
+    }
+    return redirect()->route('quan_ly_item_search',['page' => 1, 'keyword' => $ten_vat_pham, 'state' => $trang_thai, 'type' => $ma_loai_vat_pham]);
+}
+
+public function view_tim_kiem_sp_item($keyword,$type,$state,$page)
+{
+    if (session('nguoi_dung') != null) {
+        if($keyword != '\0') {
+            if($type==0&&$state==-1){
+                $tim_kiems = Vat_pham::where('ten_vat_pham','like','%'.$keyword. '%')->get();
+            }
+            elseif($type!=0&&$state==-1){
+                $tim_kiems = Vat_pham::where('ten_vat_pham','like','%'.$keyword. '%',)
+                ->where('ma_loai_vat_pham','=',$type)->get();
+            }
+            elseif($type==0&&$state!=-1){
+                $tim_kiems = Vat_pham::where('ten_vat_pham','like','%'.$keyword. '%',)
+                ->where('trang_thai','=',$state)->get();
+            }
+            else{
+                $tim_kiems = Vat_pham::where('ten_vat_pham','like','%'.$keyword. '%',)
+                ->where('trang_thai','=',$state)
+                ->where('ma_loai_vat_pham','=',$type)->get();
+            }
+        }
+        else{
+            if($type==0&&$state==-1){
+                $tim_kiems = Vat_pham::all();
+            }
+            elseif($type!=0&&$state==-1){
+                $tim_kiems = Vat_pham::where('ma_loai_vat_pham','=',$type)->get();
+            }
+            elseif($type==0&&$state!=-1){
+                $tim_kiems = Vat_pham::where('trang_thai','=',$state)->get();
+            }
+            else{
+                $tim_kiems = Vat_pham::where('trang_thai','=',$state)
+                ->where('ma_loai_vat_pham','=',$type)->get();
+            }
+        }
+        $loai_vat_phams = Loai_vat_pham::all();
+        $data = [];
+        $page_length = 6;
+        // $all_tim_kiems = $tim_kiems->with(['tuong'])->get();
+        $data['tim_kiems'] =  $tim_kiems->skip(($page - 1) * $page_length)->take($page_length);
+        $page_number = (int)($tim_kiems->count() / $page_length);
+        if ($tim_kiems->count() % $page_length > 0) {
+            $page_number++;
+        }
+        if ($tim_kiems->count()==0) {
+            $data['empty'] = 1;
+        }
+        else{
+            $data['empty'] = 0;
+        }
+        $data['page_number'] = $page_number;
+        $data['page'] = $page;
+        $data['state'] = $state;
+        $data['type'] = $type;
+        $data['keyword'] = $keyword;
+        return view('admin.Quan_ly_sp_chest.quan_ly_sp_item_search', $data)->with('loai_vat_phams', $loai_vat_phams);
+    } else {
+        return redirect()->route('dang_nhap');
+    }
+}
+public function xu_ly_them_item(Request $request){
+    $item = new Vat_pham();
+    $item->ten_vat_pham = $request->ten_item;
+    $item->ma_loai_vat_pham = $request->add_loai_vat_pham;
+    $item->trang_thai = $request->state;
+    if ($request->hasFile('hinh_anh')) {
+        $img = $request->hinh_anh;
+        //Lấy thời gian upload nối với tên file xong mã hóa md5 rồi nối đuôi file
+        $imgname = md5(time() . $img->getClientOriginalName()) . '.' . $img->getClientOriginalExtension();
+        //.move() mặc định ở public
+        $img->move('item', $imgname);
+        $item->hinh_anh = $imgname;
+    } else {
+        $item->hinh_anh = "";
+    }
+    $item->save();
+    return redirect()->route('quan_ly_item', 1);
+}
+public function xu_ly_sua_item(Request $request){
+    $item = Vat_pham::find($request->ma_item);
+    $item->ten_vat_pham = $request->up_ten_item;
+    $item->ma_loai_vat_pham = $request->up_loai_vat_pham;
+    $item->trang_thai = $request->up_state;
+    if ($request->hasFile('up_hinh_anh')) {
+        $img = $request->up_hinh_anh;
+        //Lấy thời gian upload nối với tên file xong mã hóa md5 rồi nối đuôi file
+        $imgname = md5(time() . $img->getClientOriginalName()) . '.' . $img->getClientOriginalExtension();
+        //.move() mặc định ở public
+        $img->move('chest', $imgname);
+        if(File::exists('item/' . $item->hinh_anh)){
+            File::delete('item/' . $item->hinh_anh);
+        }
+        $item->hinh_anh = $imgname;
+    } else {
+        $item->hinh_anh = "";
+    }
+    $item->save();
+    return redirect()->route('quan_ly_item', 1);
+}
+public function xu_ly_xoa_item(Request $request){
+    $item = Bau_vat::find($request->ma_vat_pham);
+    $item->delete();
+    if(File::exists('item/' . $item->hinh_anh)){
+        File::delete('item/' . $item->hinh_anh);
+    }
+    return redirect()->route('quan_ly_item', 1);
+}
+/*----------------------------------------------------------------*/
     public function view_home_mua_trang_phuc()
     {
         // $tuongs = Danh_sach_tuong::all();

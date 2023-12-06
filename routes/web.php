@@ -70,6 +70,15 @@ Route::post('tim_kiem_chest_process', [\App\Http\Controllers\San_pham_controller
 Route::post('them_chest',[\App\Http\Controllers\San_pham_controller::class, 'xu_ly_them_chest']);
 Route::post('sua_chest', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_sua_chest']);
 Route::get('xoa_chest_process/{ma_bau_vat}', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_xoa_chest'])->name('xoa_chest');
+//vat pham
+//giao dien
+Route::get('quan_ly_sp_item/{page}',[\App\Http\Controllers\San_pham_controller::class, 'view_quan_ly_sp_item'])->name('quan_ly_item');
+Route::get('quan_ly_sp_item_search/{keyword}/{type}/{state}/{page}', [\App\Http\Controllers\San_pham_controller::class, 'view_tim_kiem_sp_item'])->name('quan_ly_item_search');
+Route::post('tim_kiem_item_process', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_tim_kiem_item'])->name('tim_kiem_item');
+// //them sua xoa
+Route::post('them_item',[\App\Http\Controllers\San_pham_controller::class, 'xu_ly_them_item']);
+Route::post('sua_item', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_sua_item']);
+Route::get('xoa_item_process/{ma_vat_pham}', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_xoa_item'])->name('xoa_item');
 
 
 /*_____________________________________________________HOME_______________________________________________________________________*/
