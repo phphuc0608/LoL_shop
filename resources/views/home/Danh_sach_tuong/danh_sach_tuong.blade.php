@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('home/module/head')
+    <link rel="stylesheet" href={{asset('css/home/ds_tuong.css')}}>
     <title>Danh sách tướng</title>
 </head>
 <body>
@@ -34,6 +35,9 @@
                 @endforeach
             </div>
         </div>
+    </div>
+    <div id="gif_container" class="container-fluid p-0 d-flex justify-content-center align-items-center">
+        <img src="{{asset("/img/footer_gif.gif")}}" alt="">
     </div>
     @include('home/module/footer')
 </body>
