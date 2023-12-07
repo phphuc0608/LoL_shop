@@ -33,7 +33,7 @@ class Nguoi_dung_controller extends Controller
             } else {
                 session()->put('bao_loi', '');
                 session()->put('nguoi_dung', $tai_khoan);
-                if($nguoi_dung->ma_chuc_nang != 3) {
+                if($nguoi_dung->ma_chuc_nang == 3) {
 					session()->put('chuc_nang', 'customer');
 				}
 				else {
@@ -42,7 +42,13 @@ class Nguoi_dung_controller extends Controller
             }
         }
         if (session('bao_loi') == '') {
-            return redirect()->route('quan_ly_nguoi_dung',1);
+			if(session('chuc_nang') == 'customer') {
+				return redirect()->route('home_ds_tuong');
+			}
+			else{
+				return redirect()->route('quan_ly_nguoi_dung',1);
+			}
+            
         } else {
             return redirect()->route('dang_nhap');
         }
