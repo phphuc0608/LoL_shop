@@ -5,7 +5,7 @@
   <div id="header_right" class="row">
     <a href="{{route('quan_ly_danh_sach_tuong',1)}}" class="mx-3 item_nav">Danh sách tướng</a>
     <div class="dropdown">
-      <a href="#" class="mx-3 item_nav dropdown-toggle" data-toggle="dropdown">Sản phẩm</a>
+      <a href="#" class="mx-3 item_nav">Sản phẩm</a>
       <div class="dropdown-menu" id="sub_menu">
         <a class="dropdown-item sub_item" href="{{route('quan_ly_skin',1)}}">TRANG PHỤC</a>
         <a class="dropdown-item sub_item" href="{{route('quan_ly_chest',1)}}">BÁU VẬT</a>
