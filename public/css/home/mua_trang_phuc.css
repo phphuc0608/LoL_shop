@@ -9,6 +9,10 @@
   position: relative;
   overflow: hidden;
 }
+.skin_container:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
 .skin_container:hover .skin_img {
   transform: scale(1.1);
 }
@@ -30,7 +34,6 @@
 }
 .skin_name,
 .skin_price {
-  text-decoration: none;
   font-weight: 500;
 }
 .skin_name{
@@ -39,25 +42,25 @@
 .skin_price {
   color: #c4b998 !important;
 }
-.button_container {
-  display: none;
-  border-top: 1px solid #937341;
-  color: #937341;
-  transition: display 0.5s ease-in-out;
-}
 .buy_button{
   color: #937341;
   display: inline; 
   font-size: 20px ;
-  font-weight: 700 ;
+  font-weight: 500 ;
   grid-area: auto; 
   letter-spacing: 3.3px; 
-  line-height: 54px; 
-  text-align: center; 
+  line-height: 49px; 
   text-transform: uppercase;
   border: none;
   background-color: transparent;
+  position: absolute;
+  bottom: -50px;
+  transition: bottom 0.5s ease-in-out;
+  background-color: rgb(37, 36, 36);
+  width: 100%;
+  border-top: 1px solid #937341;
 }
-.skin_container:hover .button_container {
-  display: block;
+.skin_container:hover .buy_button {
+  bottom: 10px;
 }
+

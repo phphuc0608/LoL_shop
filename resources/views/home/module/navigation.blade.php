@@ -20,13 +20,3 @@
         <i class="bi bi-box-arrow-right icon_navigation icon_navigation"></i>
     </div>
 </div>
-{{-- <script>
-    document.getElementById('person-icon').addEventListener('click', function() {
-        var subMenu = document.getElementById('sub-menu');
-        if (subMenu.style.display === 'none') {
-            subMenu.style.display = 'block';
-        } else {
-            subMenu.style.display = 'none';
-        }
-    });
-</script> --}}
