@@ -184,11 +184,11 @@
           </div>
           <div class="form-group">
             <label for="up_hinh_anh">Hình ảnh</label><br>
-            <input name="up_hinh_anh" type="file" id="up_hinh_anh">
+            <input name="up_hinh_anh" type="file" id="up_hinh_anh" value="{{$skin->hinh_anh}}">
           </div>
           <div class="form-group">
             <label for="up_model">Model 3D</label><br>
-            <input name="up_model" type="file" id="up_model">
+            <input name="up_model" type="file" id="up_model" value="{{$skin->model}}">
           </div>
           <div class="form-group">
             <label for="up_tuong">Tướng</label>

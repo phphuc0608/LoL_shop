@@ -20,6 +20,8 @@ Route::get('/', function () {
 //dang nhap dang ky dang xuat
 Route::get('dang_nhap',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_dang_nhap'])->name('dang_nhap');
 Route::post('dang_nhap_process',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_nhap']);
+Route::get('quen_mk',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_quen_mk'])->name('quen_mk');
+Route::post('quen_mk_process',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_quen_mk']);
 Route::get('dang_xuat',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_xuat'])->name('dang_xuat');
 //giao dien
 Route::get('quan_ly_nguoi_dung/{page}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_quan_ly_nguoi_dung'])->name('quan_ly_nguoi_dung');

@@ -19,6 +19,51 @@ class Nguoi_dung_controller extends Controller
         $data['bao_loi'] = session('bao_loi');
         return view('admin.Dang_nhap.dang_nhap',$data);
     }
+
+	public function view_quen_mk()
+    {
+        $data=[];
+        $data['bao_loi'] = session('bao_loi');
+        return view('admin.Dang_nhap.quen_mk',$data);
+    }
+	public function xu_ly_quen_mk(Request $request){
+        $tai_khoan = $request->tai_khoan;
+        $mat_khau = md5($request->mat_khau);
+		$re_mat_khau = md5($request->xac_nhan_mat_khau);
+		
+        $nguoi_dungs = Nguoi_dung::where('tai_khoan', '=', $tai_khoan);
+		// $up_nguoi_dung = Nguoi_dung::find('tai_khoan');
+        session()->put('bao_loi', '');
+        if ($nguoi_dungs->count() == 0) {
+            session()->put('bao_loi', 'Tài khoản không tồn tại');
+			// return redirect()->route('quen_mk');
+        } 
+		else {
+            $nguoi_dung = $nguoi_dungs->first();
+			if($mat_khau!=$re_mat_khau){
+				session()->put('bao_loi', 'Mật khẩu không khớp');
+				// return redirect()->route('quen_mk');
+			}
+			else{
+				if ($nguoi_dung->mat_khau == $mat_khau) {
+                	session()->put('bao_loi', 'Mật khẩu mới trùng với mật khẩu cũ');
+				// return redirect()->route('quen_mk');
+				} 
+				else {
+					session()->put('bao_loi', '');
+				}
+			}
+        }
+        if (session('bao_loi') == '') {
+			$nguoi_dung = $nguoi_dungs->first();
+			$nguoi_dung->mat_khau = $mat_khau;
+			$nguoi_dung->save();
+			return redirect()->route('dang_nhap');
+            
+        } else {
+            return redirect()->route('quen_mk');
+        }
+    }
     public function xu_ly_dang_nhap(Request $request){
         $tai_khoan = $request->tai_khoan;
         $mat_khau = md5($request->mat_khau);
