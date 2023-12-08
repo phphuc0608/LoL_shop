@@ -182,11 +182,11 @@
           </div>
           <div class="form-group">
             <label for="up_hinh_anh">Hình ảnh</label><br>
-            <input name="up_hinh_anh" type="file" id="up_hinh_anh">
+            <input name="up_hinh_anh" type="file" id="up_hinh_anh" value="{{$skin->hinh_anh}}">
           </div>
           <div class="form-group">
             <label for="up_model">Model 3D</label><br>
-            <input name="up_model" type="file" id="up_model">
+            <input name="up_model" type="file" id="up_model" value="{{$skin->model}}">
           </div>
           <div class="form-group">
             <label for="up_tuong">Tướng</label>
@@ -234,11 +234,17 @@ $('.table_btn').click(function() {
     var ma_trang_phuc = row.find('th:eq(0)').text();
     var ten_trang_phuc = row.find('th:eq(1)').text();
     var trang_thai_text = row.find('th:eq(5)').text();
+    var do_hiem_text = row.find('th:eq(2)').text();
+    var dong_skin_text = row.find('th:eq(3)').text();
+    var hinh_anh_text = row.find('th:eq(6)').text();
     var trang_thai = trang_thai_text === "Đang bán" ? "1" : "0";
 
     $('#update_skin #ma_skin').val(ma_trang_phuc);
     $('#update_skin #up_ten_skin').val(ten_trang_phuc);
     $('#update_skin #up_state').val(trang_thai);
+    $('#update_skin #up_do_hiem').val(do_hiem);
+    $('#update_skin #up_hinh_anh').val(hinh_anh);
+    $('#update_skin #up_dong_skin').val(dong_skin);
 
     if (trang_thai === "1") {
       $('#update_skin #up_state option[value="1"]').prop('selected', true);
