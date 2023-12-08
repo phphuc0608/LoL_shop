@@ -45,6 +45,7 @@
                 <tr>
                     <th class="text-center" style="width: 80px">Mã</th>
                     <th class="text-center">Tên trang phục</th>
+                    <th class="text-center">Tên tướng</th>
                     <th class="text-center" style="width: 150px">Độ hiếm</th>
                     <th class="text-center" style="width: 200px">Dòng skin</th>
                     <th class="text-center" style="width: 150px">Giá</th>
@@ -58,6 +59,7 @@
                 <tr>
                     <th class="text-center">{{$skin->ma_trang_phuc}}</th>
                     <th class="text-center">{{$skin->ten_trang_phuc}}</th>
+                    <th class="text-center">{{$skin->ds_tuong->ten_tuong}}</th>
                     <th class="text-center">{{$skin->do_hiem->ten_do_hiem}}</th>
                     <th class="text-center">{{$skin->dong_skin->ten_dong_skin}}</th>
                     <th class="text-center">{{$skin->do_hiem->gia}}</th>
@@ -233,18 +235,22 @@ $('.table_btn').click(function() {
     var row = $(this).closest('tr');
     var ma_trang_phuc = row.find('th:eq(0)').text();
     var ten_trang_phuc = row.find('th:eq(1)').text();
-    var trang_thai_text = row.find('th:eq(5)').text();
-    var do_hiem_text = row.find('th:eq(2)').text();
-    var dong_skin_text = row.find('th:eq(3)').text();
-    var hinh_anh_text = row.find('th:eq(6)').text();
+    var ten_tuong = row.find('th:eq(2)').text();
+    console.log(ten_tuong);
+    // var do_hiem = row.find('th:eq(3)').text();
+    // var dong_skin = row.find('th:eq(4)').text();
+    // var gia = row.find('th:eq(5)').text();
+    var trang_thai_text = row.find('th:eq(6)').text();
     var trang_thai = trang_thai_text === "Đang bán" ? "1" : "0";
 
     $('#update_skin #ma_skin').val(ma_trang_phuc);
     $('#update_skin #up_ten_skin').val(ten_trang_phuc);
     $('#update_skin #up_state').val(trang_thai);
-    $('#update_skin #up_do_hiem').val(do_hiem);
-    $('#update_skin #up_hinh_anh').val(hinh_anh);
-    $('#update_skin #up_dong_skin').val(dong_skin);
+    // $('#update_skin #up_dong_skin').val(dong_skin);
+    // $('#update_skin #up_gia').val(gia);
+    $('#update_skin #up_tuong').val(ten_tuong);
+    
+    // $('#update_skin #up_do_hiem').val(do_hiem);
 
     if (trang_thai === "1") {
       $('#update_skin #up_state option[value="1"]').prop('selected', true);

@@ -463,4 +463,9 @@ public function xu_ly_xoa_item(Request $request){
         $skins = Trang_phuc::all();
         return view('home.Mua_trang_phuc.mua_trang_phuc', ['skins' => $skins]);
     }
+    public function view_home_mua_bau_vat()
+    {
+        $chests = Bau_vat::all();
+        return view('home.Mua_bau_vat.mua_bau_vat', ['chests' => $chests]);
+    }
 }

@@ -60,7 +60,7 @@
                     <th class="text-center">{{$chest->loai_bau_vat->ten_loai_bau_vat}}</th>
                     <th class="text-center">{{$chest->loai_bau_vat->gia}}</th>
                     <th class="text-center"><?php echo $chest->trang_thai == 1?'Đang bán':'Ngừng bán' ?></th>
-                    <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('chest/'.$chest->hinh_anh)}}" alt=""></th>
+                    <th class="text-center"><img style="width: 100px; height: 100px;" src="{{asset('chest/'.$chest->hinh_anh)}}" alt=""></th>
                     <th class="text-center">
                         <button class="table_btn" data-toggle="modal" data-target="#update_chest"><i class="bi bi-pencil update_icon"></i></button>
                         |
