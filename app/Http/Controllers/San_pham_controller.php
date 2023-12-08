@@ -156,8 +156,6 @@ class San_pham_controller extends Controller
                 File::delete('skin/' . $skin->hinh_anh);
             }
             $skin->hinh_anh = $imgname;
-        } else {
-            $skin->hinh_anh = "";
         }
         if ($request->hasFile('up_model')) {
             $model = $request->up_model;
@@ -169,8 +167,6 @@ class San_pham_controller extends Controller
                 File::delete('skin/' . $skin->model);
             }
             $skin->model = $modelname;
-        } else {
-            $skin->model = "";
         }
         $skin->save();
         return redirect()->route('quan_ly_skin', 1);
@@ -311,8 +307,6 @@ class San_pham_controller extends Controller
                 File::delete('chest/' . $chest->hinh_anh);
             }
             $chest->hinh_anh = $imgname;
-        } else {
-            $chest->hinh_anh = "";
         }
         $chest->save();
         return redirect()->route('quan_ly_chest', 1);
@@ -451,8 +445,6 @@ public function xu_ly_sua_item(Request $request){
             File::delete('item/' . $item->hinh_anh);
         }
         $item->hinh_anh = $imgname;
-    } else {
-        $item->hinh_anh = "";
     }
     $item->save();
     return redirect()->route('quan_ly_item', 1);
