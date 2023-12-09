@@ -236,28 +236,27 @@ $('.table_btn').click(function() {
     var ma_trang_phuc = row.find('th:eq(0)').text();
     var ten_trang_phuc = row.find('th:eq(1)').text();
     var ten_tuong = row.find('th:eq(2)').text();
-    console.log(ten_tuong);
-    // var do_hiem = row.find('th:eq(3)').text();
-    // var dong_skin = row.find('th:eq(4)').text();
-    // var gia = row.find('th:eq(5)').text();
+    var do_hiem = row.find('th:eq(3)').text();
+    var dong_skin = row.find('th:eq(4)').text();
+    var gia = row.find('th:eq(5)').text();
     var trang_thai_text = row.find('th:eq(6)').text();
     var trang_thai = trang_thai_text === "Đang bán" ? "1" : "0";
 
     $('#update_skin #ma_skin').val(ma_trang_phuc);
     $('#update_skin #up_ten_skin').val(ten_trang_phuc);
     $('#update_skin #up_state').val(trang_thai);
-    // $('#update_skin #up_dong_skin').val(dong_skin);
-    // $('#update_skin #up_gia').val(gia);
-    $('#update_skin #up_tuong').val(ten_tuong);
-    
-    // $('#update_skin #up_do_hiem').val(do_hiem);
+    $('#update_skin #up_tuong option:contains("' + ten_tuong + '")').prop('selected', true);
+    $('#update_skin #up_do_hiem option:contains("' + do_hiem + '")').prop('selected', true);
+    $('#update_skin #up_dong_skin option:contains("' + dong_skin + '")').prop('selected', true);
+    $('#update_skin #up_gia').val(gia);
 
     if (trang_thai === "1") {
-      $('#update_skin #up_state option[value="1"]').prop('selected', true);
+        $('#update_skin #up_state option[value="1"]').prop('selected', true);
     } else if (trang_thai === "0") {
-      $('#update_skin #up_state option[value="0"]').prop('selected', true);
+        $('#update_skin #up_state option[value="0"]').prop('selected', true);
     }
 });
+
 </script>
 </body>
 </html>
