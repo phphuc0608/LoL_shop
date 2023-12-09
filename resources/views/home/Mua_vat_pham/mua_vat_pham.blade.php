@@ -3,7 +3,7 @@
 <head>
     @include('home/module/head')
     <link rel="stylesheet" href={{asset('css/home/mua_trang_phuc.css')}}>
-    <title>Mua báu vật</title>
+    <title>Mua vật phẩm</title>
 </head>
 <body>
     @include('home/module/navigation')
@@ -20,21 +20,21 @@
             </div>
         </div>
         <form action="" method="" id="content_center" class="container d-flex justify-content-center align-items-center mt-3">
-            <input class="p-2" type="text" placeholder="Tìm vị tướng bạn muốn">
+            <input class="p-2" type="text" placeholder="Tìm kiếm">
             <button type="submit">Search</button>
         </form>
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
           <div class="row col-md-12">
-            @foreach($chests as $chest)
-             <a href="#" class="col-md-3 p-0 my-1 mx-3 skin_container">
-                <img src="{{asset('chest/'.$chest->hinh_anh)}}" alt="" class="skin_img text-center" style="background-color: #0D1720; width: 100%;height: auto;">
+            @foreach($items as $item)
+              <a href="#" class="col-md-3 p-0 my-1 mx-3 skin_container">
+                <img src="{{asset('item/'.$item->hinh_anh)}}" alt="" class="skin_img text-center" style="width: 100%; height: 83%; background-color: #0D1720;">
                 <div class="item_name d-flex align-items-center">
                     <div class="skin_info ">
                         <div class="skin_name text-center pt-3">
-                            <h5>{{$chest->ten_bau_vat}}</h5>
+                            <h5>{{$item->ten_vat_pham}}</h5>
                         </div>
                         <div class="skin_price text-center pb-3 pr-3">
-                            <h5>{{$chest->loai_bau_vat->gia}}</h5>
+                            <h5>{{$item->loai_vat_pham->gia}}</h5>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                   <button class="buy_button">Mua <i class="bi bi-bag"></i> </button>
                 </div>
               </a>
-              @endforeach
+            @endforeach
             </div>
         </div>
     </div>

@@ -468,4 +468,9 @@ public function xu_ly_xoa_item(Request $request){
         $chests = Bau_vat::all();
         return view('home.Mua_bau_vat.mua_bau_vat', ['chests' => $chests]);
     }
+    public function view_home_mua_vat_pham()
+    {
+        $items = Vat_pham::all();
+        return view('home.Mua_vat_pham.mua_vat_pham', ['items' => $items]);
+    }
 }

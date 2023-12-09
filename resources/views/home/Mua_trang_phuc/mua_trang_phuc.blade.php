@@ -27,7 +27,7 @@
           <div class="row col-md-12">
             @foreach($skins as $skin)
               <a href="#" class="col-md-3 p-0 my-1 mx-3 skin_container">
-                <img src="{{asset('skin/'.$skin->hinh_anh)}}" alt="" class="skin_img text-center">
+                <img src="{{asset('skin/'.$skin->hinh_anh)}}" alt="" class="skin_img text-center" style=" width: 100%; height: auto;">
                 <div class="item_name d-flex align-items-center">
                     <div class="skin_info ">
                         <div class="skin_name text-center pt-3">

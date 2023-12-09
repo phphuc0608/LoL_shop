@@ -6,7 +6,7 @@
         <a class="nav_item px-3 py-2" href="{{route('home_ds_tuong')}}">DANH SÁCH TƯỚNG</a>
         <a class="nav_item px-3 py-2" href="{{route('home_mua_trang_phuc')}}">MUA TRANG PHỤC</a>
         <a class="nav_item px-3 py-2" href="{{route('home_mua_bau_vat')}}">MUA BÁU VẬT</a>
-        <a class="nav_item px-3 py-2" href="#">MUA VẬT PHẨM</a>
+        <a class="nav_item px-3 py-2" href="{{route('home_mua_vat_pham')}}">MUA VẬT PHẨM</a>
     </div>
     <div id="header_right" class="d-flex align-items-center justify-content-center">
         <div class="icon_navigation" id="person-icon">
