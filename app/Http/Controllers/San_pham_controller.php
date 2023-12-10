@@ -461,16 +461,19 @@ public function xu_ly_xoa_item(Request $request){
     public function view_home_mua_trang_phuc()
     {
         $skins = Trang_phuc::all();
-        return view('home.Mua_trang_phuc.mua_trang_phuc', ['skins' => $skins]);
+        $nguoi_dung = session('nguoi_dung');
+        return view('home.Mua_trang_phuc.mua_trang_phuc', ['skins' => $skins, 'nguoi_dung' => $nguoi_dung]);
     }
     public function view_home_mua_bau_vat()
     {
         $chests = Bau_vat::all();
-        return view('home.Mua_bau_vat.mua_bau_vat', ['chests' => $chests]);
+        $nguoi_dung = session('nguoi_dung');
+        return view('home.Mua_bau_vat.mua_bau_vat', ['chests' => $chests, 'nguoi_dung' => $nguoi_dung]);
     }
     public function view_home_mua_vat_pham()
     {
         $items = Vat_pham::all();
-        return view('home.Mua_vat_pham.mua_vat_pham', ['items' => $items]);
+        $nguoi_dung = session('nguoi_dung');
+        return view('home.Mua_vat_pham.mua_vat_pham', ['items' => $items, 'nguoi_dung' => $nguoi_dung]);
     }
 }
