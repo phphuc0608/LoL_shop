@@ -105,6 +105,7 @@ class Danh_sach_tuong_controller extends Controller
     public function view_home_ds_tuong()
     {
         $tuongs = Danh_sach_tuong::all();
-        return view('home.Danh_sach_tuong.danh_sach_tuong', ['tuongs' => $tuongs]);
+        $nguoi_dung = session('nguoi_dung');
+        return view('home.Danh_sach_tuong.danh_sach_tuong', ['tuongs' => $tuongs, 'nguoi_dung' => $nguoi_dung]);
     }
 }
