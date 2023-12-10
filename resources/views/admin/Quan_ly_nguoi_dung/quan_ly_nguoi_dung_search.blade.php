@@ -105,11 +105,11 @@
           @csrf
           <div class="form-group">
             <label for="username">Tên tài khoản</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên tài khoản">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên tài khoản" required>
           </div>
           <div class="form-group">
             <label for="password">Mật khẩu</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
           </div>
           <div class="form-group">
             <label for="state">Trạng thái</label>
@@ -144,10 +144,6 @@
           <div class="form-group">
             <label for="update_tk">Tài khoản</label>
             <input name="update_tk" type="text" class="form-control" readonly id="update_tk" {{$empty!=1?"value=$tim_kiem->tai_khoan":""}}>
-          </div>
-          <div class="form-group">
-            <label for="update_tt">Trạng thái</label>
-            <input name="update_tt" type="" class="form-control" id="update_tt" {{$empty!=1?"value=$tim_kiem->trang_thai":""}}>
           </div>
           <div class="form-group">
             <label for="update_state">Trạng thái</label>

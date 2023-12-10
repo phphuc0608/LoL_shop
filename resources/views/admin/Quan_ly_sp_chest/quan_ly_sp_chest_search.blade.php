@@ -107,7 +107,7 @@
           @csrf
           <div class="form-group">
             <label for="ten_chest">Tên báu vật</label>
-            <input name="ten_chest" type="text" class="form-control" id="ten_chest" placeholder="Nhập tên báu vật">
+            <input name="ten_chest" type="text" class="form-control" id="ten_chest" placeholder="Nhập tên báu vật" required>
           </div>
           <div class="form-group">
             <label for="hinh_anh">Hình ảnh</label><br>
@@ -156,7 +156,7 @@
           </div>
           <div class="form-group">
             <label for="up_ten_chest">Tên báu vật</label>
-            <input name="up_ten_chest" type="text" class="form-control" id="up_ten_chest" {{$empty!=1?"value=$tim_kiem->ten_bau_vat":""}}>
+            <input name="up_ten_chest" type="text" class="form-control" id="up_ten_chest" {{$empty!=1?"value=$tim_kiem->ten_bau_vat":""}} required>
           </div>
           <div class="form-group">
             <label for="up_hinh_anh">Hình ảnh</label><br>
