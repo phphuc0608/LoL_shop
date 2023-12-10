@@ -17,6 +17,6 @@
             </div>
         </div>
         <i class="bi bi-cart4 icon_navigation mx-5"></i>
-        <i class="bi bi-box-arrow-right icon_navigation icon_navigation"></i>
+        <a href="{{route('dang_xuat')}}"><i class="bi bi-box-arrow-right icon_navigation icon_navigation"></i></a>
     </div>
 </div>

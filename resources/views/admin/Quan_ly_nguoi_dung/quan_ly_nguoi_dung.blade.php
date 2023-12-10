@@ -101,11 +101,11 @@
           @csrf
           <div class="form-group">
             <label for="username">Tên tài khoản</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên tài khoản">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên tài khoản" required>
           </div>
           <div class="form-group">
             <label for="password">Mật khẩu</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
           </div>
           <div class="form-group">
             <label for="state">Trạng thái</label>

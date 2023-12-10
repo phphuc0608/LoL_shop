@@ -109,7 +109,7 @@
           @csrf
           <div class="form-group">
             <label for="ten_skin">Tên trang phục</label>
-            <input name="ten_skin" type="text" class="form-control" id="ten_skin" placeholder="Nhập tên trang phục">
+            <input name="ten_skin" type="text" required class="form-control" id="ten_skin" placeholder="Nhập tên trang phục">
           </div>
           <div class="form-group">
             <label for="hinh_anh">Hình ảnh</label><br>
@@ -177,7 +177,7 @@
           </div>
           <div class="form-group">
             <label for="up_ten_skin">Tên trang phục</label>
-            <input name="up_ten_skin" type="text" class="form-control" id="up_ten_skin" {{$empty!=1?"value=$tim_kiem->ten_trang_phuc":""}}>
+            <input name="up_ten_skin" type="text" class="form-control" id="up_ten_skin" {{$empty!=1?"value=$tim_kiem->ten_trang_phuc":""}} required>
           </div>
           <div class="form-group">
             <label for="up_hinh_anh">Hình ảnh</label><br>
