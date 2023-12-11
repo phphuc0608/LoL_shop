@@ -7,8 +7,8 @@
 </head>
 <body>
     @include('home/module/navigation')
-    <div id="content" class="container-fluid">
-        <div id="content_top" class="container-fluid row row-cols-1 pb-4">
+    <div id="content">
+        <div id="content_top" class="container-fluid row row-cols-1 pb-4 px-0 m-0">
             <div id="content_top_up" class="col text-center">
                 CHOOSE YOUR
             </div>

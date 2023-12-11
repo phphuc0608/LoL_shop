@@ -68,6 +68,8 @@
 #content_top{
   background-color: #F8F8F8;
   padding-top: 150px;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 #content_top_up{
   font-weight: 600;
@@ -129,7 +131,7 @@
 #footer_bottom{
   background-color: #000000;
   transition: 0.25s;
-}
+} 
 #social_container .social_item{
   background-color: #292929;
   font-size: 16px;
