@@ -469,7 +469,7 @@ public function xu_ly_xoa_item(Request $request){
     }
     public function view_home_mua_bau_vat()
     {
-        $chests = Bau_vat::where('trang_thai','=',1);
+        $chests = Bau_vat::where('trang_thai','=',1)->get();
         $nguoi_dung = session('nguoi_dung');
         $search = 0;
         return view('home.Mua_bau_vat.mua_bau_vat', ['chests' => $chests, 'nguoi_dung' => $nguoi_dung, 'search' => $search]);
@@ -565,8 +565,64 @@ public function xu_ly_xoa_item(Request $request){
 	}
     public function view_home_mua_vat_pham()
     {
-        $items = Vat_pham::all();
+        $items = Vat_pham::where('trang_thai','=',1)->get();
         $nguoi_dung = session('nguoi_dung');
-        return view('home.Mua_vat_pham.mua_vat_pham', ['items' => $items, 'nguoi_dung' => $nguoi_dung]);
+        $search = 0;
+        return view('home.Mua_vat_pham.mua_vat_pham', ['items' => $items, 'nguoi_dung' => $nguoi_dung, 'search' => $search]);
     }
+    public function xu_ly_tim_kiem_item_home(Request $request)
+	{
+        $data = [];
+		$data['keyword'] = $request->keyword;
+        $data['mau_mat'] = $request->mau_mat;
+        $data['emote'] = $request->emote;
+        $items='';
+        $inline = false;
+        $data['search'] = 1;
+        if($data['keyword'] != null){
+            $items = Vat_pham::where('trang_thai','=',1)->where('ten_vat_pham','like','%'.$data['keyword']. '%');
+            $items = $items->where(function($query) use ($data, $inline){
+               if($data['mau_mat']!=null){
+                    if($inline==false){
+                        $query->where('ma_loai_vat_pham','=',$data['mau_mat']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_vat_pham','=',$data['mau_mat']);
+                    }
+                }
+                if($data['emote']!=null){
+                    if($inline==false){
+                        $query->where('ma_loai_vat_pham','=',$data['emote']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_vat_pham','=',$data['emote']);
+                    }
+                }
+            });
+        }
+        else{
+            $items = Vat_pham::where('trang_thai','=',1);
+            $items = $items->where(function($query) use ($data, $inline){
+                if($data['mau_mat']!=null){
+                     if($inline==false){
+                         $query->where('ma_loai_vat_pham','=',$data['mau_mat']);
+                         $inline = true;
+                     }else{
+                         $query->orwhere('ma_loai_vat_pham','=',$data['mau_mat']);
+                     }
+                 }
+                 if($data['emote']!=null){
+                     if($inline==false){
+                         $query->where('ma_loai_vat_pham','=',$data['emote']);
+                         $inline = true;
+                     }else{
+                         $query->orwhere('ma_loai_vat_pham','=',$data['emote']);
+                     }
+                 }
+             });
+        }
+        $data['items'] = $items->get();
+        // echo $items->toSql();
+		return view('home.Mua_vat_pham.mua_vat_pham', $data);
+	}
 }

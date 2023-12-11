@@ -19,13 +19,12 @@
                Với hơn 140 tướng, bạn sẽ tìm thấy vị tướng phù hợp với lối chơi của bạn. Thành thạo một hoặc tất cả các tướng.
             </div>
         </div>
-        <form action="" method="" id="content_center" class="container d-flex justify-content-center align-items-center mt-3">
-            <input class="p-2" type="text" placeholder="Tìm kiếm">
+        <form action="{{url('tim_kiem_vat_pham')}}" method="post" id="content_center" class="container d-flex justify-content-center align-items-center mt-3">
+            @csrf
+            <input class="p-2" type="text" placeholder="Tìm kiếm" name="keyword" id="keyword" {{$search != '0'?" value=$keyword":""}}>
+            <input type="checkbox" class="mx-2" name="mau_mat" id="mau_mat" value="1" @if($search==1&&isset($mau_mat)) checked @endif> Mẫu mắt
+            <input type="checkbox" class="mx-2" name="emote" id="emote" value="2" @if($search==1&&isset($emote)) checked @endif> Emote
             <button type="submit">Search</button>
-        </form>
-        <form action="" method="" class="container text-right mt-4">
-            <input type="checkbox" class="mx-2" name="mau_mat" id="ruong"> Mẫu mắt
-            <input type="checkbox" class="mx-2" name="emote" id="vien"> Emote
         </form>
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
           <div class="row col-md-12">
