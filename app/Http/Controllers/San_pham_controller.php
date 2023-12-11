@@ -460,9 +460,42 @@ public function xu_ly_xoa_item(Request $request){
 /*----------------------------------------------------------------*/
     public function view_home_mua_trang_phuc()
     {
-        $skins = Trang_phuc::all();
+        $skins = Trang_phuc::where('trang_thai','=',1)->get();
         $nguoi_dung = session('nguoi_dung');
-        return view('home.Mua_trang_phuc.mua_trang_phuc', ['skins' => $skins, 'nguoi_dung' => $nguoi_dung]);
+        $search = 0;
+        return view('home.Mua_trang_phuc.mua_trang_phuc', ['skins' => $skins, 'nguoi_dung' => $nguoi_dung, 'search' => $search]);
+    }
+    public function xu_ly_tim_kiem_skin_home(Request $request)
+	{
+        $data = [];
+        $data['nguoi_dung'] = session('nguoi_dung');
+		$data['keyword'] = $request->keyword;
+        $skins='';
+        $data['search'] = 1;
+        if($data['keyword'] != null){
+            $skins = Trang_phuc::where('trang_thai','=',1)->where('ten_trang_phuc','like','%'.$data['keyword']. '%');
+        }
+        else{
+            $skins = Trang_phuc::where('trang_thai','=',1);
+        }
+        $data['skins'] = $skins->get();
+        // echo $tuongs->toSql();
+		return view('home.Mua_trang_phuc.mua_trang_phuc', $data);
+	}
+    public function xu_ly_tim_kiem_skin_home_keyword(Request $request)
+    {
+        $data = [];
+        $data['nguoi_dung'] = session('nguoi_dung');
+		$data['keyword'] = $request->keyword;
+        $tuong = Danh_sach_tuong::where('ten_tuong','like','%'.$data['keyword']. '%')->first();
+        $data['ma_tuong'] = $tuong->ma_tuong;
+        $skins='';
+        $data['search'] = 1;
+        $skins = Trang_phuc::where('trang_thai','=',1)->where('ma_tuong','=',$data['ma_tuong']);
+        $data['skins'] = $skins->get();
+        // echo $tuongs->toSql();
+		return view('home.Mua_trang_phuc.mua_trang_phuc', $data);
+
     }
     public function view_home_chi_tiet_trang_phuc(){
         return view('home.Mua_trang_phuc.chi_tiet_trang_phuc');
@@ -477,6 +510,7 @@ public function xu_ly_xoa_item(Request $request){
     public function xu_ly_tim_kiem_chest_home(Request $request)
 	{
         $data = [];
+        $data['nguoi_dung'] = session('nguoi_dung');
 		$data['keyword'] = $request->keyword;
         $data['ruong'] = $request->ruong;
         $data['chia_khoa'] = $request->chia_khoa;
@@ -573,6 +607,7 @@ public function xu_ly_xoa_item(Request $request){
     public function xu_ly_tim_kiem_item_home(Request $request)
 	{
         $data = [];
+        $data['nguoi_dung'] = session('nguoi_dung');
 		$data['keyword'] = $request->keyword;
         $data['mau_mat'] = $request->mau_mat;
         $data['emote'] = $request->emote;

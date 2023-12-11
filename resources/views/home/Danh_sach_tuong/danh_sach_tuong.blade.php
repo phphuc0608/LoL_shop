@@ -27,7 +27,7 @@
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
             <div class="row col-md-12">
                 @foreach($tuongs as $tuong)
-                <a href="#" class="col-md-2 p-0 my-1 mx-3 content_container">
+                <a href="{{route('tim_kiem_skin_home_keyword',['keyword'=>$tuong->ten_tuong])}}" class="col-md-2 p-0 my-1 mx-3 content_container">
                     <img src="{{asset('danh_sach_tuong/'.$tuong->hinh_anh)}}" alt="" class="img_item text-center">
                     <div class="item_name d-flex align-items-center">
                         <h3>{{$tuong->ten_tuong}}</h3>

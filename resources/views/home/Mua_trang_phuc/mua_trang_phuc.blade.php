@@ -19,8 +19,9 @@
                Với hơn 140 tướng, bạn sẽ tìm thấy vị tướng phù hợp với lối chơi của bạn. Thành thạo một hoặc tất cả các tướng.
             </div>
         </div>
-        <form action="" method="" id="content_center" class="container d-flex justify-content-center align-items-center mt-3">
-            <input class="p-2" type="text" placeholder="Tìm kiếm">
+        <form action="{{url('tim_kiem_trang_phuc')}}" method="post" id="content_center" class="container d-flex justify-content-center align-items-center mt-3">
+            @csrf
+            <input class="p-2" type="text" placeholder="Tìm kiếm"  id="keyword" name="keyword" {{$search != '0'?" value=$keyword":""}}>
             <button type="submit">Search</button>
         </form>
             <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">

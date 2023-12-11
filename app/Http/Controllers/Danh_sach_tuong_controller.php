@@ -112,6 +112,7 @@ class Danh_sach_tuong_controller extends Controller
     public function xu_ly_tim_kiem_champ_home(Request $request)
 	{
         $data = [];
+        $data['nguoi_dung'] = session('nguoi_dung');
 		$data['keyword'] = $request->keyword;
         $tuongs='';
         $data['search'] = 1;
