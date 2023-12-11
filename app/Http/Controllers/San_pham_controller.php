@@ -469,10 +469,100 @@ public function xu_ly_xoa_item(Request $request){
     }
     public function view_home_mua_bau_vat()
     {
-        $chests = Bau_vat::all();
+        $chests = Bau_vat::where('trang_thai','=',1);
         $nguoi_dung = session('nguoi_dung');
-        return view('home.Mua_bau_vat.mua_bau_vat', ['chests' => $chests, 'nguoi_dung' => $nguoi_dung]);
+        $search = 0;
+        return view('home.Mua_bau_vat.mua_bau_vat', ['chests' => $chests, 'nguoi_dung' => $nguoi_dung, 'search' => $search]);
     }
+    public function xu_ly_tim_kiem_chest_home(Request $request)
+	{
+        $data = [];
+		$data['keyword'] = $request->keyword;
+        $data['ruong'] = $request->ruong;
+        $data['chia_khoa'] = $request->chia_khoa;
+        $data['token'] = $request->token;
+        $data['vien'] = $request->vien;
+        $chests='';
+        $inline = false;
+        $data['search'] = 1;
+        if($data['keyword'] != null){
+            $chests = Bau_vat::where('trang_thai','=',1)->where('ten_bau_vat','like','%'.$data['keyword']. '%');
+            $chests = $chests->where(function($query) use ($data, $inline){
+               if($data['ruong']!=null){
+                    if($inline==false){
+                        $query->where('ma_loai_bau_vat','=',$data['ruong']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_bau_vat','=',$data['ruong']);
+                    }
+                }
+                if($data['chia_khoa']!=null){
+                    if($inline==false){
+                        $query->where('ma_loai_bau_vat','=',$data['chia_khoa']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_bau_vat','=',$data['chia_khoa']);
+                    }
+                }
+                if($data['vien']!=null){
+                    if($inline==false){
+                        $query->where('ma_loai_bau_vat','=',$data['vien']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_bau_vat','=',$data['vien']);
+                    }
+                }
+                if($data['token']!=null){
+                    if($inline==false){
+                        $query->where('ma_loai_bau_vat','=',$data['token']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_bau_vat','=',$data['token']);
+                    }
+                } 
+            });
+        }
+        else{
+            $chests = Bau_vat::where('trang_thai','=',1);
+            $chests = $chests->where(function($query) use ($data, $inline){
+                if($data['ruong']!=null){
+                     if($inline==false){
+                         $query->where('ma_loai_bau_vat','=',$data['ruong']);
+                         $inline = true;
+                     }else{
+                         $query->orwhere('ma_loai_bau_vat','=',$data['ruong']);
+                     }
+                 }
+                 if($data['chia_khoa']!=null){
+                     if($inline==false){
+                         $query->where('ma_loai_bau_vat','=',$data['chia_khoa']);
+                         $inline = true;
+                     }else{
+                         $query->orwhere('ma_loai_bau_vat','=',$data['chia_khoa']);
+                     }
+                 }
+                 if($data['vien']!=null){
+                     if($inline==false){
+                         $query->where('ma_loai_bau_vat','=',$data['vien']);
+                         $inline = true;
+                     }else{
+                         $query->orwhere('ma_loai_bau_vat','=',$data['vien']);
+                     }
+                 }
+                 if($data['token']!=null){
+                     if($inline==false){
+                         $query->where('ma_loai_bau_vat','=',$data['token']);
+                         $inline = true;
+                     }else{
+                         $query->orwhere('ma_loai_bau_vat','=',$data['token']);
+                     }
+                 } 
+             });
+        }
+        $data['chests'] = $chests->get();
+        // echo $chests->toSql();
+		return view('home.Mua_bau_vat.mua_bau_vat', $data);
+	}
     public function view_home_mua_vat_pham()
     {
         $items = Vat_pham::all();

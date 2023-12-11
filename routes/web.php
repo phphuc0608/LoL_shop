@@ -91,5 +91,6 @@ Route::get('home_mua_trang_phuc',[App\Http\Controllers\San_pham_controller::clas
 Route::get('home_chi_tiet_trang_phuc',[App\Http\Controllers\San_pham_controller::class, 'view_home_chi_tiet_trang_phuc'])->name('home_chi_tiet_trang_phuc');
 //bau_vat
 Route::get('home_mua_bau_vat',[App\Http\Controllers\San_pham_controller::class, 'view_home_mua_bau_vat'])->name('home_mua_bau_vat');
+Route::post('tim_kiem_bau_vat', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_tim_kiem_chest_home'])->name('tim_kiem_chest_home');
 //vat_pham
 Route::get('home_mua_vat_pham',[App\Http\Controllers\San_pham_controller::class, 'view_home_mua_vat_pham'])->name('home_mua_vat_pham');
