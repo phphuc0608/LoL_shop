@@ -1,0 +1,51 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+#splash_art{
+  width: 100%;
+  position: relative;
+}
+.champ_img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover; /* đảm bảo rằng ảnh sẽ được cắt để phù hợp với kích thước đã chỉ định,trong khi vẫn giữ nguyên tỷ lệ khung hình. */
+  object-position: 5px 10% ;
+}
+#skin_info{
+  position: absolute;
+  top: 0!important;
+  left: 0!important;
+  background-color: #040404;
+  height: 100%;
+}
+.skin_name{
+  color: white;
+  font-weight: bold;
+}
+.model_img{
+  width: 200px;
+  height: auto;
+}
+.sub_info_container{
+  color: white;
+}
+.buy_button{
+  background: transparent;
+  color: #927345;
+  border: 1px solid #927345;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+.buy_button:hover{
+  background-color: #927345;
+  color: white;
+}
