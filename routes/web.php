@@ -89,6 +89,8 @@ Route::get('home_ds_tuong', [App\Http\Controllers\Danh_sach_tuong_controller::cl
 Route::post('tim_kiem_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_tim_kiem_champ_home'])->name('tim_kiem_champ_home');
 //trang_phuc
 Route::get('home_mua_trang_phuc',[App\Http\Controllers\San_pham_controller::class, 'view_home_mua_trang_phuc'])->name('home_mua_trang_phuc');
+Route::post('tim_kiem_trang_phuc', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_tim_kiem_skin_home'])->name('tim_kiem_skin_home');
+Route::get('tim_kiem_trang_phuc/{keyword}', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_tim_kiem_skin_home_keyword'])->name('tim_kiem_skin_home_keyword');
 Route::get('home_chi_tiet_trang_phuc',[App\Http\Controllers\San_pham_controller::class, 'view_home_chi_tiet_trang_phuc'])->name('home_chi_tiet_trang_phuc');
 //bau_vat
 Route::get('home_mua_bau_vat',[App\Http\Controllers\San_pham_controller::class, 'view_home_mua_bau_vat'])->name('home_mua_bau_vat');
