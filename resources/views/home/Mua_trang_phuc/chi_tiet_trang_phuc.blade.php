@@ -8,7 +8,8 @@
 <body>
   <img src="{{asset('img/template.webp')}}" id="splash_art">
   <div class="col-md-5 p-0 m-0" id="skin_info">
-    <div class="d-flex justify-content-center align-items-center my-5">
+    <a href="#" id="back_btn" class="ml-4"><i class="bi bi-arrow-left-circle"></i></a>
+    <div class="d-flex justify-content-center align-items-center mb-5">
       <img src="{{asset('img/test.jpg')}}" class="champ_img">
     </div>
     <div class="skin_name text-center">
