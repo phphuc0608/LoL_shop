@@ -464,6 +464,9 @@ public function xu_ly_xoa_item(Request $request){
         $nguoi_dung = session('nguoi_dung');
         return view('home.Mua_trang_phuc.mua_trang_phuc', ['skins' => $skins, 'nguoi_dung' => $nguoi_dung]);
     }
+    public function view_home_chi_tiet_trang_phuc(){
+        return view('home.Mua_trang_phuc.chi_tiet_trang_phuc');
+    }
     public function view_home_mua_bau_vat()
     {
         $chests = Bau_vat::all();
