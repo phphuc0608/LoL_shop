@@ -106,6 +106,23 @@ class Danh_sach_tuong_controller extends Controller
     {
         $tuongs = Danh_sach_tuong::all();
         $nguoi_dung = session('nguoi_dung');
-        return view('home.Danh_sach_tuong.danh_sach_tuong', ['tuongs' => $tuongs, 'nguoi_dung' => $nguoi_dung]);
+        $search=0;
+        return view('home.Danh_sach_tuong.danh_sach_tuong', ['tuongs' => $tuongs, 'nguoi_dung' => $nguoi_dung, 'search' => $search]);
     }
+    public function xu_ly_tim_kiem_champ_home(Request $request)
+	{
+        $data = [];
+		$data['keyword'] = $request->keyword;
+        $tuongs='';
+        $data['search'] = 1;
+        if($data['keyword'] != null){
+            $tuongs = Danh_sach_tuong::where('ten_tuong','like','%'.$data['keyword']. '%')->get();
+        }
+        else{
+            $tuongs = Danh_sach_tuong::all();
+        }
+        $data['tuongs'] = $tuongs;
+        // echo $tuongs->toSql();
+		return view('home.Danh_sach_tuong.danh_sach_tuong', $data);
+	}
 }

@@ -86,6 +86,7 @@ Route::get('xoa_item_process/{ma_vat_pham}', [\App\Http\Controllers\San_pham_con
 /*_____________________________________________________HOME_______________________________________________________________________*/
 //danh sach tuong
 Route::get('home_ds_tuong', [App\Http\Controllers\Danh_sach_tuong_controller::class, 'view_home_ds_tuong'])->name('home_ds_tuong');
+Route::post('tim_kiem_tuong', [\App\Http\Controllers\Danh_sach_tuong_controller::class, 'xu_ly_tim_kiem_champ_home'])->name('tim_kiem_champ_home');
 //trang_phuc
 Route::get('home_mua_trang_phuc',[App\Http\Controllers\San_pham_controller::class, 'view_home_mua_trang_phuc'])->name('home_mua_trang_phuc');
 Route::get('home_chi_tiet_trang_phuc',[App\Http\Controllers\San_pham_controller::class, 'view_home_chi_tiet_trang_phuc'])->name('home_chi_tiet_trang_phuc');
@@ -94,3 +95,4 @@ Route::get('home_mua_bau_vat',[App\Http\Controllers\San_pham_controller::class, 
 Route::post('tim_kiem_bau_vat', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_tim_kiem_chest_home'])->name('tim_kiem_chest_home');
 //vat_pham
 Route::get('home_mua_vat_pham',[App\Http\Controllers\San_pham_controller::class, 'view_home_mua_vat_pham'])->name('home_mua_vat_pham');
+Route::post('tim_kiem_vat_pham', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_tim_kiem_item_home'])->name('tim_kiem_item_home');
