@@ -23,6 +23,10 @@
             <input class="p-2" type="text" placeholder="Tìm kiếm">
             <button type="submit">Search</button>
         </form>
+        <form action="" method="" class="container text-right mt-4">
+            <input type="checkbox" class="mx-2" name="mau_mat" id="ruong"> Mẫu mắt
+            <input type="checkbox" class="mx-2" name="emote" id="vien"> Emote
+        </form>
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
           <div class="row col-md-12">
             @foreach($items as $item)

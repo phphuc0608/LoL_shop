@@ -20,8 +20,14 @@
             </div>
         </div>
         <form action="" method="" id="content_center" class="container d-flex justify-content-center align-items-center mt-3">
-            <input class="p-2" type="text" placeholder="Tìm vị tướng bạn muốn">
-            <button type="submit">Search</button>
+            <input class="p-2" type="text" placeholder="Tìm kiếm">
+            <button type="submit">Search</button><br>
+        </form>
+        <form action="" method="" class="container text-right mt-4">
+            <input type="checkbox" class="mx-2" name="ruong" id="ruong"> Rương
+            <input type="checkbox" class="mx-2" name="vien" id="vien"> Viên
+            <input type="checkbox" class="mx-2" name="chia_khoa" id="chia_khoa"> Chìa khóa
+            <input type="checkbox" class="mx-2" name="token" id="token"> Token
         </form>
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
           <div class="row col-md-12">

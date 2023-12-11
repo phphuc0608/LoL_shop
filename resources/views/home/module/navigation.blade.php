@@ -20,7 +20,7 @@
             <i class="bi bi-cart4 icon_navigation mx-5"></i>
             <a href="{{route('dang_xuat')}}"><i class="bi bi-box-arrow-right icon_navigation icon_navigation"></i></a>
         @else
-            <a href="{{route('dang_nhap')}}"><i class="bi bi-box-arrow-in-left icon_navigation icon_navigation"> Đăng nhập</i></a>
+            <a href="{{route('dang_nhap')}}" style="text-decoration: none"><i class="bi bi-box-arrow-in-left icon_navigation icon_navigation"> Đăng nhập</i></a>
         @endif
         
     </div>
