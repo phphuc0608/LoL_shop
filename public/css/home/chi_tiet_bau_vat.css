@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+#background{
+  width: 100%;
+  position: relative;
+}
+#content{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  color: white;
+}
+#bau_vat_info{
+  background-color: rgba(13, 23, 32, 0.7);
+  height: 100%;
+}
+.ten_bau_vat {
+  font-weight: bold;
+}
+.buy_button {
+  background: transparent;
+  color: #927345;
+  border: 1px solid #927345;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.buy_button:hover {
+  background-color: #927345;
+  color: white;
+}

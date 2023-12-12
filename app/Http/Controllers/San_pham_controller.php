@@ -528,7 +528,7 @@ public function xu_ly_xoa_item(Request $request){
         if($data['keyword'] != null){
             $chests = Bau_vat::where('trang_thai','=',1)->where('ten_bau_vat','like','%'.$data['keyword']. '%');
             $chests = $chests->where(function($query) use ($data, $inline){
-               if($data['ruong']!=null){
+            if($data['ruong']!=null){
                     if($inline==false){
                         $query->where('ma_loai_bau_vat','=',$data['ruong']);
                         $inline = true;
@@ -566,38 +566,38 @@ public function xu_ly_xoa_item(Request $request){
             $chests = Bau_vat::where('trang_thai','=',1);
             $chests = $chests->where(function($query) use ($data, $inline){
                 if($data['ruong']!=null){
-                     if($inline==false){
-                         $query->where('ma_loai_bau_vat','=',$data['ruong']);
-                         $inline = true;
-                     }else{
-                         $query->orwhere('ma_loai_bau_vat','=',$data['ruong']);
-                     }
-                 }
-                 if($data['chia_khoa']!=null){
-                     if($inline==false){
-                         $query->where('ma_loai_bau_vat','=',$data['chia_khoa']);
-                         $inline = true;
-                     }else{
-                         $query->orwhere('ma_loai_bau_vat','=',$data['chia_khoa']);
-                     }
-                 }
-                 if($data['vien']!=null){
-                     if($inline==false){
-                         $query->where('ma_loai_bau_vat','=',$data['vien']);
-                         $inline = true;
-                     }else{
-                         $query->orwhere('ma_loai_bau_vat','=',$data['vien']);
-                     }
-                 }
-                 if($data['token']!=null){
-                     if($inline==false){
-                         $query->where('ma_loai_bau_vat','=',$data['token']);
-                         $inline = true;
-                     }else{
-                         $query->orwhere('ma_loai_bau_vat','=',$data['token']);
-                     }
-                 } 
-             });
+                    if($inline==false){
+                        $query->where('ma_loai_bau_vat','=',$data['ruong']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_bau_vat','=',$data['ruong']);
+                    }
+                }
+                if($data['chia_khoa']!=null){
+                    if($inline==false){
+                        $query->where('ma_loai_bau_vat','=',$data['chia_khoa']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_bau_vat','=',$data['chia_khoa']);
+                    }
+                }
+                if($data['vien']!=null){
+                    if($inline==false){
+                        $query->where('ma_loai_bau_vat','=',$data['vien']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_bau_vat','=',$data['vien']);
+                    }
+                }
+                if($data['token']!=null){
+                    if($inline==false){
+                        $query->where('ma_loai_bau_vat','=',$data['token']);
+                        $inline = true;
+                    }else{
+                        $query->orwhere('ma_loai_bau_vat','=',$data['token']);
+                    }
+                } 
+            });
         }
         $data['chests'] = $chests->get();
         // echo $chests->toSql();
@@ -623,7 +623,28 @@ public function xu_ly_xoa_item(Request $request){
         if($data['keyword'] != null){
             $items = Vat_pham::where('trang_thai','=',1)->where('ten_vat_pham','like','%'.$data['keyword']. '%');
             $items = $items->where(function($query) use ($data, $inline){
-               if($data['mau_mat']!=null){
+            if($data['mau_mat']!=null){
+                if($inline==false){
+                    $query->where('ma_loai_vat_pham','=',$data['mau_mat']);
+                    $inline = true;
+                }else{
+                    $query->orwhere('ma_loai_vat_pham','=',$data['mau_mat']);
+                }
+            }
+            if($data['emote']!=null){
+                if($inline==false){
+                    $query->where('ma_loai_vat_pham','=',$data['emote']);
+                    $inline = true;
+                }else{
+                    $query->orwhere('ma_loai_vat_pham','=',$data['emote']);
+                }
+            }
+            });
+        }
+        else{
+            $items = Vat_pham::where('trang_thai','=',1);
+            $items = $items->where(function($query) use ($data, $inline){
+                if($data['mau_mat']!=null){
                     if($inline==false){
                         $query->where('ma_loai_vat_pham','=',$data['mau_mat']);
                         $inline = true;
@@ -641,29 +662,12 @@ public function xu_ly_xoa_item(Request $request){
                 }
             });
         }
-        else{
-            $items = Vat_pham::where('trang_thai','=',1);
-            $items = $items->where(function($query) use ($data, $inline){
-                if($data['mau_mat']!=null){
-                     if($inline==false){
-                         $query->where('ma_loai_vat_pham','=',$data['mau_mat']);
-                         $inline = true;
-                     }else{
-                         $query->orwhere('ma_loai_vat_pham','=',$data['mau_mat']);
-                     }
-                 }
-                 if($data['emote']!=null){
-                     if($inline==false){
-                         $query->where('ma_loai_vat_pham','=',$data['emote']);
-                         $inline = true;
-                     }else{
-                         $query->orwhere('ma_loai_vat_pham','=',$data['emote']);
-                     }
-                 }
-             });
-        }
         $data['items'] = $items->get();
         // echo $items->toSql();
 		return view('home.Mua_vat_pham.mua_vat_pham', $data);
 	}
+
+    public function view_home_chi_tiet_bau_vat(){
+        return view('home.Mua_bau_vat.chi_tiet_bau_vat');
+    }
 }
