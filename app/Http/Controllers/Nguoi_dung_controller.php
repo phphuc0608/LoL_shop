@@ -31,7 +31,7 @@ class Nguoi_dung_controller extends Controller
         $mat_khau = md5($request->mat_khau);
 		$re_mat_khau = md5($request->xac_nhan_mat_khau);
 		
-        $nguoi_dungs = Nguoi_dung::where('tai_khoan', '=', $tai_khoan);
+        $nguoi_dungs = Nguoi_dung::where('tai_khoan', '=', $tai_khoan)->where('trang_thai','=', 1);
 		// $up_nguoi_dung = Nguoi_dung::find('tai_khoan');
         session()->put('bao_loi', '');
         if ($nguoi_dungs->count() == 0) {
@@ -99,8 +99,7 @@ class Nguoi_dung_controller extends Controller
         }
     }
 		public function xu_ly_dang_xuat(){
-			session()->put('nguoi_dung', null);
-			session()->put('chuc_nang', null);
+			session()->flush();
 			return redirect()->route('dang_nhap');
 		}
   public function view_quan_ly_nguoi_dung($page)
@@ -228,7 +227,50 @@ class Nguoi_dung_controller extends Controller
     }
 	/*---------------------- */
 	public function view_thong_tin_tai_khoan(){
-		return view('home.Tai_khoan.thong_tin_tai_khoan');
+		if (session('nguoi_dung') != null) {
+			$data = [];
+			$data['bao_loi'] = session('bao_loi');
+			$data['nguoi_dung'] = session('nguoi_dung');
+			$data['khach_hang'] = Khach_hang::
+				// joinRelationship('nguoi_dung')
+				join('nguoi_dung','nguoi_dung.tai_khoan','=','khach_hang.tai_khoan')
+				->where('trang_thai','=',1)
+				->where('khach_hang.tai_khoan','like','%'.$data['nguoi_dung']. '%')
+				// where('tai_khoan','like','%'.$data['nguoi_dung']. '%')
+				// ->toSql();
+				->first();
+		}
+		else{
+            return redirect()->route('home_ds_tuong');
+        }
+		// echo $data['khach_hang'];
+		// echo $data['nguoi_dung'];
+		return view('home.Tai_khoan.thong_tin_tai_khoan', $data);
 	}
+	public function xu_ly_cap_nhat_khach_hang(Request $request){
+        $nguoi_dung = Nguoi_dung::find($request->tai_khoan);
+		$khach_hang = Khach_hang::where('tai_khoan','=',$request->tai_khoan)->first();
+		session()->put('bao_loi', '');
+		if(isset($request->email)){
+			$khach_hang->email = $request->email;
+			$khach_hang->save();
+			session()->put('bao_loi', '');
+		}
+		else{
+			session()->put('bao_loi', 'Bạn chưa nhập email');
+		}
+		if(isset($request->mat_khau)||isset($request->xac_nhan_mat_khau)){
+			if($request->xac_nhan_mat_khau==$request->mat_khau){
+				$nguoi_dung->mat_khau = md5($request->mat_khau);
+				$nguoi_dung->save();
+				session()->put('bao_loi', '');
+			}
+			else{
+				session()->put('bao_loi', 'Xác nhận mật khẩu không khớp.');
+			}
+		}
+		// echo $khach_hang;
+        return redirect()->route('thong_tin_tai_khoan');
+    }
 }
 

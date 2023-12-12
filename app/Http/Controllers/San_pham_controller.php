@@ -497,8 +497,14 @@ public function xu_ly_xoa_item(Request $request){
 		return view('home.Mua_trang_phuc.mua_trang_phuc', $data);
 
     }
-    public function view_home_chi_tiet_trang_phuc(){
-        return view('home.Mua_trang_phuc.chi_tiet_trang_phuc');
+    public function view_home_chi_tiet_trang_phuc(Request $request){
+        $data = [];
+        $data['nguoi_dung'] = session('nguoi_dung');
+        $data['keyword'] = $request->keyword;
+        $data['skin'] = Trang_phuc::where('trang_thai','=',1)->where('ten_trang_phuc','like','%'.$data['keyword']. '%')->first();
+
+
+        return view('home.Mua_trang_phuc.chi_tiet_trang_phuc', $data);
     }
     public function view_home_mua_bau_vat()
     {
