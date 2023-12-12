@@ -275,5 +275,8 @@ class Nguoi_dung_controller extends Controller
 		// echo $khach_hang;
         return redirect()->route('thong_tin_tai_khoan');
     }
+		public function view_lich_su_mua_hang(){
+			return view('home.Tai_khoan.lich_su_mua_hang');
+		}
 }
 

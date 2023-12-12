@@ -101,3 +101,4 @@ Route::post('tim_kiem_vat_pham', [\App\Http\Controllers\San_pham_controller::cla
 //nguoi_dung
 Route::get('thong_tin_tai_khoan',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_thong_tin_tai_khoan'])->name('thong_tin_tai_khoan');
 Route::post('cap_nhat_khach_hang', [\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_cap_nhat_khach_hang']);
+Route::get('lich_su_mua_hang', [App\Http\Controllers\Nguoi_dung_controller::class, 'view_lich_su_mua_hang'])->name('lich_su_mua_hang');
