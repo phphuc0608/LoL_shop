@@ -52,6 +52,7 @@
     @if(isset($bao_loi) && $bao_loi != '')
         alert('{{$bao_loi}}');
     @endif
+    // sesson()->put('bao_loi', '');
   </script>
 </body>
 </html>

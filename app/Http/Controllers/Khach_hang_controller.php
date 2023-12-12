@@ -12,29 +12,45 @@ class Khach_hang_controller extends Controller
 {
     public function view_dang_ky()
     {
-        return view('admin.Dang_ky.dang_ky');
+        $data=[];
+        $data['bao_loi'] = session('bao_loi');
+        session()->put('bao_loi', '');
+        return view('admin.Dang_ky.dang_ky',$data);
     }
     public function xu_ly_dang_ky(Request $request)
 	{
-		$gio_hang = new Gio_hang();
-		$lich_su_mua_hang = new Lich_su_mua_hang();
-		$gio_hang->ds_hang = '';
-		$lich_su_mua_hang->ds_ls_mua_hang = '';
-		$gio_hang->save();
-		$lich_su_mua_hang->save();
-		$nguoi_dung = new Nguoi_dung();
-        $khach_hang = new Khach_hang();
-        $khach_hang->email = $request->email;
-		$nguoi_dung->tai_khoan = $request->tai_khoan;
-        $khach_hang->tai_khoan = $request->tai_khoan;
-		$nguoi_dung->mat_khau = md5($request->mat_khau);
-		$nguoi_dung->ma_chuc_nang = 3;
-		$nguoi_dung->trang_thai = 1;
-		$khach_hang->ma_ls_mua_hang = $lich_su_mua_hang->ma_ls_mua_hang;
-		$khach_hang->ma_gio_hang = $gio_hang->ma_gio_hang;
-		$nguoi_dung->save();
-		$khach_hang->save();
-		
+		session()->put('bao_loi', '');
+        $dup = Nguoi_dung::find($request->tai_khoan);
+        if($dup==null){
+            if($request->mat_khau==$request->xac_nhan_mat_khau){
+                $gio_hang = new Gio_hang();
+                $lich_su_mua_hang = new Lich_su_mua_hang();
+                $gio_hang->ds_hang = '';
+                $lich_su_mua_hang->ds_ls_mua_hang = '';
+                $gio_hang->save();
+                $lich_su_mua_hang->save();
+                $nguoi_dung = new Nguoi_dung();
+                $khach_hang = new Khach_hang();
+                $khach_hang->email = $request->email;
+                $nguoi_dung->tai_khoan = $request->tai_khoan;
+                $khach_hang->tai_khoan = $request->tai_khoan;
+                $nguoi_dung->mat_khau = md5($request->mat_khau);
+                $nguoi_dung->ma_chuc_nang = 3;
+                $nguoi_dung->trang_thai = 1;
+                $khach_hang->ma_ls_mua_hang = $lich_su_mua_hang->ma_ls_mua_hang;
+                $khach_hang->ma_gio_hang = $gio_hang->ma_gio_hang;
+                $nguoi_dung->save();
+                $khach_hang->save();
+            }
+            else{
+                session()->put('bao_loi', 'Xác nhận mật khẩu không khớp.');
+                return redirect()->route('dang_ky');
+            }
+        }
+        else{
+            session()->put('bao_loi', 'Tài khoản đã tồn tại');
+            return redirect()->route('dang_ky');
+        }
 		return redirect()->route('dang_nhap');
 	}
     public function view_quan_ly_khach_hang($page)

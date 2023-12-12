@@ -47,5 +47,10 @@
         </div>
       </div>
   </div>
+  <script>
+    @if(isset($bao_loi) && $bao_loi != '')
+        alert('{{$bao_loi}}');
+    @endif
+  </script>
 </body>
 </html>
