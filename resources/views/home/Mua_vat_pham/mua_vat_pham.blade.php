@@ -19,12 +19,16 @@
                Với hơn 140 tướng, bạn sẽ tìm thấy vị tướng phù hợp với lối chơi của bạn. Thành thạo một hoặc tất cả các tướng.
             </div>
         </div>
-        <form action="{{url('tim_kiem_vat_pham')}}" method="post" id="content_center" class="container d-flex justify-content-center align-items-center mt-3">
+        <form action="{{url('tim_kiem_vat_pham')}}" method="post" id="content_center" class="container mt-3">
             @csrf
-            <input class="p-2" type="text" placeholder="Tìm kiếm" name="keyword" id="keyword" {{$search != '0'?" value=$keyword":""}}>
-            <input type="checkbox" class="mx-2" name="mau_mat" id="mau_mat" value="1" @if($search==1&&isset($mau_mat)) checked @endif> Mẫu mắt
-            <input type="checkbox" class="mx-2" name="emote" id="emote" value="2" @if($search==1&&isset($emote)) checked @endif> Emote
-            <button type="submit">Search</button>
+            <div class="col-md-12 d-flex justify-content-center align-items-center">
+                <input class="p-2" type="text" placeholder="Tìm kiếm" name="keyword" id="keyword" {{$search != '0'?" value=$keyword":""}}>
+                <button type="submit">Search</button>
+            </div>
+            <div class="col-md-12 text-right mt-3">
+                <input type="checkbox" class="mx-2" name="mau_mat" id="mau_mat" value="1" @if($search==1&&isset($mau_mat)) checked @endif> Mẫu mắt
+                <input type="checkbox" class="mx-2" name="emote" id="emote" value="2" @if($search==1&&isset($emote)) checked @endif> Emote
+            </div>
         </form>
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
           <div class="row col-md-12">

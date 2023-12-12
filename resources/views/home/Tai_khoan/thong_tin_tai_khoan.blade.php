@@ -7,8 +7,8 @@
 </head>
 <body>
   @include('home/module/navigation')
-  <div class="container-fluid" id="account_info"> 
-    <div id="content_top" class="container-fluid row row-cols-1 pb-4 px-0 m-0">
+  <div id="account_info"> 
+    <div id="content_top" class="row row-cols-1 pb-4 px-0 m-0">
       <div id="content_top_up" class="col text-center">
         ACCOUNT INFORMATION
       </div>
