@@ -6,26 +6,27 @@
   <title>Chi tiết trang phục</title>
 </head>
 <body>
-  <img src="{{asset('img/template.webp')}}" id="splash_art">
+  <img src="{{asset('skin/'.$skin->hinh_anh)}}" id="splash_art">
   <div class="col-md-5 p-0 m-0" id="skin_info">
-    <a href="#" id="back_btn" class="ml-4"><i class="bi bi-arrow-left-circle"></i></a>
+    <a href="{{url('home_mua_trang_phuc')}}" id="back_btn" class="ml-4"><i class="bi bi-arrow-left-circle"></i></a>
     <div class="d-flex justify-content-center align-items-center mb-5">
-      <img src="{{asset('img/test.jpg')}}" class="champ_img">
+      <img src="{{asset('danh_sach_tuong/'.$skin->ds_tuong->hinh_anh)}}" class="champ_img">
     </div>
     <div class="skin_name text-center">
-      <h3>AATROX VINH QUANG</h3>
+      <h3>{{$skin->ten_trang_phuc}}</h3>
     </div>
     <div class="info_container mt-4 d-flex justify-content-center align-items-center">
-      <img src="{{asset('img/model.webp')}}" class="model_img">
+      {{-- <img src="{{asset('img/model.webp')}}" class="model_img"> --}}
+      <img src="{{asset('skin/'.$skin->model)}}" class="model_img">
       <div class="sub_info_container ml-3">
         <div id="dong_skin">
-          <h5>Dòng skin: Vinh quang</h5>
+          <h5>Dòng skin: {{$skin->dong_skin->ten_dong_skin}}</h5>
         </div>
         <div id="do_hiem">
-          <h5>Độ hiếm: Sử thi</h5>
+          <h5>Độ hiếm: {{$skin->do_hiem->ten_do_hiem}}</h5>
         </div>
         <div id="gia">
-          <h5>Giá: 100000</h5>
+          <h5>Giá: {{$skin->do_hiem->gia}}</h5>
         </div>
       </div>
     </div>

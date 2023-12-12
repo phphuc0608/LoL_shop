@@ -13,7 +13,7 @@
             <div class="icon_navigation" id="person-icon">
                 <i class="bi bi-person-circle"> {{$nguoi_dung}}</i>
                 <div id="sub-menu">
-                    <a class="p-0 m-0" href="#"><i class="bi bi-person"></i> Thông tin tài khoản</a><br>
+                    <a class="p-0 m-0" href="{{url('thong_tin_tai_khoan')}}"><i class="bi bi-person"></i> Thông tin tài khoản</a><br>
                     <a class="p-0 m-0" href="#"><i class="bi bi-bag-check pr-2"></i>Lịch sử mua hàng</a>
                 </div>
             </div>
