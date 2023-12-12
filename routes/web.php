@@ -98,3 +98,5 @@ Route::post('tim_kiem_bau_vat', [\App\Http\Controllers\San_pham_controller::clas
 //vat_pham
 Route::get('home_mua_vat_pham',[App\Http\Controllers\San_pham_controller::class, 'view_home_mua_vat_pham'])->name('home_mua_vat_pham');
 Route::post('tim_kiem_vat_pham', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_tim_kiem_item_home'])->name('tim_kiem_item_home');
+//nguoi_dung
+Route::get('thong_tin_tai_khoan',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_thong_tin_tai_khoan'])->name('thong_tin_tai_khoan');

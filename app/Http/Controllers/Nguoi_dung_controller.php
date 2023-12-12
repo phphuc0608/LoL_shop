@@ -226,4 +226,9 @@ class Nguoi_dung_controller extends Controller
         $nguoi_dung->save();	
         return redirect()->route('quan_ly_nguoi_dung', 1);
     }
+	/*---------------------- */
+	public function view_thong_tin_tai_khoan(){
+		return view('home.Tai_khoan.thong_tin_tai_khoan');
+	}
 }
+

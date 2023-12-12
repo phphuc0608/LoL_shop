@@ -28,10 +28,10 @@
             </div>
           </form>
         </div>
-        <div id="quen_mk" class="mt-4">
-          <span>Quên mật khẩu?</span> <a href="{{route('quen_mk')}}">Đổi mật khẩu</a>
+        <div id="quen_mk" class="mt-1">
+          <a class="quen_mk_container" href="{{route('quen_mk')}}">Quên mật khẩu?</a>
         </div>
-        <div id="dang_ky" class="mt-2">
+        <div id="dang_ky" class="mt-3">
           <span>Bạn chưa có tài khoản?</span> <a href="{{route('dang_ky')}}">Đăng ký</a>
         </div>
         
