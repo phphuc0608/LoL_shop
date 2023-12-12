@@ -10,7 +10,7 @@
     <div id="account_info"> 
     <div id="content_top" class="row row-cols-1 pb-4 px-0 m-0">
       <div id="content_top_up" class="col text-center">
-        THE PURCHASE HISTORY
+        PURCHASE HISTORY
       </div>
       <div id="content_top_down" class="col text-center pb-3">
         Lịch sử mua hàng của bạn
@@ -28,20 +28,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        {{-- @foreach ($ds_ls as $item) --}}
+          @foreach ($san_phams as $san_pham)
+            {{$san_pham->ten_vat_pham}}
+            {{-- @if ($san_pham->ten_vat_pham == $item || $san_pham->ten_bau_vat == $item || $san_pham->ten_trang_phuc == $item)
+                {{$san_pham}}
+            @endif --}}
+          @endforeach
+        {{-- @endforeach --}}
+       
+        {{-- <tr>
           <th class="text-center">Aatrox vinh quang</th>
           <th class="text-center">100000</th>
           <th class="text-center">
             <img src="{{asset('img/template.webp')}}" width="200px" height="100px">
           </th>
-        </tr>
-        <tr>
-          <th class="text-center">Aatrox vinh quang</th>
-          <th class="text-center">100000</th>
-          <th class="text-center">
-            <img src="{{asset('img/template.webp')}}" width="200px" height="100px">
-          </th>
-        </tr>
+        </tr> --}}
       </tbody>
     </table>
 </body>

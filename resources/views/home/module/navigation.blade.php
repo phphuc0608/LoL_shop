@@ -14,7 +14,7 @@
                 <i class="bi bi-person-circle"> {{$nguoi_dung}}</i>
                 <div id="sub-menu">
                     <a class="p-0 m-0" href="{{url('thong_tin_tai_khoan')}}"><i class="bi bi-person"></i> Thông tin tài khoản</a><br>
-                    <a class="p-0 m-0" href="#"><i class="bi bi-bag-check pr-2"></i>Lịch sử mua hàng</a>
+                    <a class="p-0 m-0" href="{{url('lich_su_mua_hang')}}"><i class="bi bi-bag-check pr-2"></i>Lịch sử mua hàng</a>
                 </div>
             </div>
             <i class="bi bi-cart4 icon_navigation mx-5"></i>

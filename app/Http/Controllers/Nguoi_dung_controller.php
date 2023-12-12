@@ -9,6 +9,9 @@ use App\Models\Chuc_nang;
 use App\Models\Khach_hang;
 use App\Models\Gio_hang;
 use App\Models\Lich_su_mua_hang;
+use App\Models\Bau_vat;
+use App\Models\Vat_pham;
+use App\Models\Trang_phuc;
 use PhpParser\Node\Stmt\ElseIf_;
 
 class Nguoi_dung_controller extends Controller
@@ -276,7 +279,28 @@ class Nguoi_dung_controller extends Controller
         return redirect()->route('thong_tin_tai_khoan');
     }
 		public function view_lich_su_mua_hang(){
-			return view('home.Tai_khoan.lich_su_mua_hang');
+			if (session('nguoi_dung') != null) {
+				$data = [];
+				// $ds_ls = [];
+				$data['nguoi_dung'] = session('nguoi_dung');
+				$data['khach_hang'] = Khach_hang::
+					where('tai_khoan','like','%'.$data['nguoi_dung']. '%')
+				// 	// ->toSql();
+					->first();
+				$lich_su = Lich_su_mua_hang::where('ma_ls_mua_hang','=',$data['khach_hang']->ma_ls_mua_hang)->first();
+				$data['ds_ls'] = explode(",",$lich_su->ds_ls_mua_hang);
+				$bau_vat = Bau_vat::all();
+				$vat_pham = Vat_pham::all()->union($bau_vat);
+				$trang_phuc = Trang_phuc::all()->union($vat_pham);
+				$bau_vat = $bau_vat->union($trang_phuc);
+				// $data['san_phams'] = $bau_vat->union($trang_phuc)->union($vat_pham);
+				$data['san_phams'] = $bau_vat;
+			}
+			else{
+				return redirect()->route('home_ds_tuong');
+			}
+			// echo($data['san_phams']) ;
+			return view('home.Tai_khoan.lich_su_mua_hang', $data);
 		}
 }
 

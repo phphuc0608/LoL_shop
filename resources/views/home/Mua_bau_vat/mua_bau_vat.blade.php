@@ -35,7 +35,7 @@
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
           <div class="row col-md-12">
             @foreach($chests as $chest)
-             <a href="#" class="col-md-3 p-0 my-1 mx-3 skin_container">
+             <a href="{{route('chi_tiet_bau_vat',['keyword'=>$chest->ten_bau_vat])}}" class="col-md-3 p-0 my-1 mx-3 skin_container">
                 <img src="{{asset('chest/'.$chest->hinh_anh)}}" alt="" class="skin_img text-center" style="background-color: #0D1720; width: 100%;height: auto;">
                 <div class="item_name d-flex align-items-center">
                     <div class="skin_info ">
