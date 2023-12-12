@@ -17,6 +17,7 @@ class Nguoi_dung_controller extends Controller
     {
         $data=[];
         $data['bao_loi'] = session('bao_loi');
+		session()->put('bao_loi', '');
         return view('admin.Dang_nhap.dang_nhap',$data);
     }
 
@@ -24,6 +25,7 @@ class Nguoi_dung_controller extends Controller
     {
         $data=[];
         $data['bao_loi'] = session('bao_loi');
+		session()->put('bao_loi', '');
         return view('admin.Dang_nhap.quen_mk',$data);
     }
 	public function xu_ly_quen_mk(Request $request){
@@ -230,6 +232,7 @@ class Nguoi_dung_controller extends Controller
 		if (session('nguoi_dung') != null) {
 			$data = [];
 			$data['bao_loi'] = session('bao_loi');
+			session()->put('bao_loi', '');
 			$data['nguoi_dung'] = session('nguoi_dung');
 			$data['khach_hang'] = Khach_hang::
 				// joinRelationship('nguoi_dung')
