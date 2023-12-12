@@ -62,8 +62,8 @@
 }
 /*Content home*/
 #content{
- z-index: 0;
- margin-bottom: 100px;
+  z-index: 0;
+  margin-bottom: 100px;
 }
 #content_top{
   background-color: #F8F8F8;

@@ -60,13 +60,13 @@
 #dang_ky {
   font-size: 15px;
 }
-#dang_ky a, #dang_nhap a, #quen_mk a {
+#dang_ky a, #dang_nhap a {
   text-decoration: none;
   color: #FFFFFF;
   transition: all 250ms;
 }
 #dang_ky a:hover , #dang_nhap a:hover, #quen_mk a:hover {
-  color: #0A0A0A;
+  color: #686767;
 }
 #dang_ky_container, #dang_nhap_container {
   color: #FFFFFF;
@@ -87,7 +87,14 @@
 #tai_khoan::placeholder {
   color: #686767;
 }
-
+#quen_mk a{
+  text-decoration: none;
+  color: rgb(160, 159, 159);
+  transition: all 250ms;
+}
+.quen_mk_container{
+  font-size: 12px;
+}
 /*Header admin*/
 #header_container {
   background-color: #0D1720;
