@@ -17,8 +17,8 @@
                     <a class="p-0 m-0" href="{{url('lich_su_mua_hang')}}"><i class="bi bi-bag-check pr-2"></i>Lịch sử mua hàng</a>
                 </div>
             </div>
-            <i class="bi bi-cart4 icon_navigation mx-5"></i>
-            <a href="{{route('dang_xuat')}}"><i class="bi bi-box-arrow-right icon_navigation icon_navigation"></i></a>
+            <a title="Giỏ hàng" href=""><i class="bi bi-cart4 icon_navigation mx-5"></i></a>
+            <a title="Đăng xuất" href="{{route('dang_xuat')}}"><i class="bi bi-box-arrow-right icon_navigation icon_navigation"></i></a>
         @else
             <a href="{{route('dang_nhap')}}" style="text-decoration: none"><i class="bi bi-box-arrow-in-left icon_navigation icon_navigation"> Đăng nhập</i></a>
         @endif
