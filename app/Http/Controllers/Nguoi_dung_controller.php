@@ -72,7 +72,7 @@ class Nguoi_dung_controller extends Controller
     public function xu_ly_dang_nhap(Request $request){
         $tai_khoan = $request->tai_khoan;
         $mat_khau = md5($request->mat_khau);
-        $nguoi_dungs = Nguoi_dung::where('tai_khoan', '=', $tai_khoan);
+        $nguoi_dungs = Nguoi_dung::where('tai_khoan', '=', $tai_khoan)->where('trang_thai', '=',1);
         session()->put('bao_loi', '');
         if ($nguoi_dungs->count() == 0) {
             session()->put('bao_loi', 'Tài khoản không tồn tại');
@@ -292,9 +292,8 @@ class Nguoi_dung_controller extends Controller
 				$bau_vat = Bau_vat::all();
 				$vat_pham = Vat_pham::all()->union($bau_vat);
 				$trang_phuc = Trang_phuc::all()->union($vat_pham);
-				$bau_vat = $bau_vat->union($trang_phuc);
 				// $data['san_phams'] = $bau_vat->union($trang_phuc)->union($vat_pham);
-				$data['san_phams'] = $bau_vat;
+				$data['san_phams'] = $trang_phuc;
 			}
 			else{
 				return redirect()->route('home_ds_tuong');
