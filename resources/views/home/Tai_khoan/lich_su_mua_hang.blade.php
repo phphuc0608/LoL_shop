@@ -28,14 +28,14 @@
         </tr>
       </thead>
       <tbody>
-        {{-- @foreach ($ds_ls as $item) --}}
+        @foreach ($ds_ls as $item)
           @foreach ($san_phams as $san_pham)
-            {{$san_pham->ten_vat_pham}}
-            {{-- @if ($san_pham->ten_vat_pham == $item || $san_pham->ten_bau_vat == $item || $san_pham->ten_trang_phuc == $item)
+            {{-- {{$san_pham->ten_vat_pham}} --}}
+            @if ($san_pham->ten_vat_pham == $item || $san_pham->ten_bau_vat == $item || $san_pham->ten_trang_phuc == $item)
                 {{$san_pham}}
-            @endif --}}
+            @endif
           @endforeach
-        {{-- @endforeach --}}
+        @endforeach
        
         {{-- <tr>
           <th class="text-center">Aatrox vinh quang</th>
