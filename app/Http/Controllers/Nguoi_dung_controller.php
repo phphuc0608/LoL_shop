@@ -12,6 +12,7 @@ use App\Models\Lich_su_mua_hang;
 use App\Models\Bau_vat;
 use App\Models\Vat_pham;
 use App\Models\Trang_phuc;
+use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\ElseIf_;
 
 class Nguoi_dung_controller extends Controller
@@ -288,17 +289,55 @@ class Nguoi_dung_controller extends Controller
 				// 	// ->toSql();
 					->first();
 				$lich_su = Lich_su_mua_hang::where('ma_ls_mua_hang','=',$data['khach_hang']->ma_ls_mua_hang)->first();
-				$data['ds_ls'] = explode(",",$lich_su->ds_ls_mua_hang);
-				$bau_vat = Bau_vat::all();
-				$vat_pham = Vat_pham::all()->union($bau_vat);
-				$trang_phuc = Trang_phuc::all()->union($vat_pham);
-				// $data['san_phams'] = $bau_vat->union($trang_phuc)->union($vat_pham);
-				$data['san_phams'] = $trang_phuc;
+				$data['ds_ls'] = explode(", ",$lich_su->ds_ls_mua_hang);
+				$first = true;
+				foreach($data['ds_ls'] as $item) {
+					$bau_vat = Bau_vat::select('ten_bau_vat as ten_san_pham', 'bau_vat.ma_loai_bau_vat as ma_san_pham', 'hinh_anh', 'gia','loai_san_pham')
+						->join('loai_bau_vat','bau_vat.ma_loai_bau_vat','=','loai_bau_vat.ma_loai_bau_vat')
+						->where('ten_bau_vat','like','%'.$item. '%');
+					$vat_pham = Vat_pham::select('ten_vat_pham as ten_san_pham', 'vat_pham.ma_loai_vat_pham as ma_san_pham', 'hinh_anh', 'gia','loai_san_pham')
+						->join('loai_vat_pham','vat_pham.ma_loai_vat_pham','=','loai_vat_pham.ma_loai_vat_pham')
+						->where('ten_vat_pham','like','%'.$item. '%');
+					$trang_phuc = Trang_phuc::select('ten_trang_phuc as ten_san_pham', 'trang_phuc.ma_do_hiem as ma_san_pham', 'trang_phuc.hinh_anh', 'gia','loai_san_pham')
+						->join('do_hiem','trang_phuc.ma_do_hiem','=','do_hiem.ma_do_hiem')
+						->where('ten_trang_phuc','like','%'.$item. '%');
+					// $data['san_phams']=$trang_phuc;
+					if($bau_vat!=null){
+						if($first==true){
+							$data['san_phams']=$bau_vat;
+							$first=false;
+						}
+						else{
+							$data['san_phams']->union($bau_vat);
+						}
+                    }
+					if($vat_pham!=null){
+						if($first==true){
+							$data['san_phams']=$vat_pham;
+							$first=false;
+						}
+						else{
+							$data['san_phams']->union($vat_pham);
+						}
+                    }
+					if($trang_phuc!=null){
+						if($first==true){
+							$data['san_phams']=$trang_phuc;
+							$first=false;
+						}
+						else{
+							$data['san_phams']->union($trang_phuc);
+						}
+                    }
+				}
+
 			}
 			else{
 				return redirect()->route('home_ds_tuong');
 			}
-			// echo($data['san_phams']) ;
+			$data['san_phams']=$data['san_phams']->get();
+			// print_r($data['san_phams']); 
+			// echo($trang_phuc);
 			return view('home.Tai_khoan.lich_su_mua_hang', $data);
 		}
 }
