@@ -12,6 +12,16 @@ body {
   width: 100%;
   position: relative;
 }
+#back_btn {
+  font-size: 40px;
+  text-decoration: none;
+  color: #927345 !important;
+  transition: 0.25s;
+}
+
+#back_btn:hover {
+  color: #c4b998 !important;
+}
 #content{
   position: absolute;
   top: 0;
