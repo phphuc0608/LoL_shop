@@ -175,4 +175,8 @@ class Khach_hang_controller extends Controller
 			return redirect()->route('dang_nhap');
 		}
     }
+
+    public function view_gio_hang(){
+        return view('home.Tai_khoan.gio_hang');
+    }
 }
