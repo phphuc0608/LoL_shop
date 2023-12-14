@@ -8,3 +8,12 @@
 thead tr th{
   font-size: 20px;
 }
+.btn_container{
+  border: none;
+  background-color: transparent;
+}
+.table_btn{
+  color: red !important;
+  font-size: 18px;
+  text-decoration: none;
+}

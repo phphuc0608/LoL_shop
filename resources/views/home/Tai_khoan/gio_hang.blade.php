@@ -25,6 +25,7 @@
           <th class="text-center">Tên sản phẩm</th>
           <th class="text-center">Giá</th>
           <th class="text-center">Hình ảnh</th>
+          <th class="text-center">Thao tác</th>
         </tr>
       </thead>
       <tbody>
@@ -35,6 +36,9 @@
           <th class="text-center">
             <img src="{{asset('img/template.webp')}}" width="200px" height="100px">
           </th>
+          <th class="text-center">
+            <button class="btn_container"><a href="#"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
+          </th>
         </tr>
         <tr>
           <th class="text-center"><input type="checkbox" name="" style="width:20px; height:20px;"></th>
@@ -42,6 +46,9 @@
           <th class="text-center price_skin">100000</th>
           <th class="text-center">
             <img src="{{asset('img/template.webp')}}" width="200px" height="100px">
+          </th>
+          <th class="text-center">
+            <button class="btn_container"><a href="#"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
           </th>
         </tr>
       </tbody>
