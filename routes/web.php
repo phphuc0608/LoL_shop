@@ -104,3 +104,4 @@ Route::get('thong_tin_tai_khoan',[App\Http\Controllers\Khach_hang_controller::cl
 Route::post('cap_nhat_khach_hang', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_cap_nhat_khach_hang']);
 Route::get('lich_su_mua_hang', [App\Http\Controllers\Khach_hang_controller::class, 'view_lich_su_mua_hang'])->name('lich_su_mua_hang');
 Route::get('gio_hang', [App\Http\Controllers\Khach_hang_controller::class, 'view_gio_hang'])->name('gio_hang');
+Route::get('them_gio_hang/{keyword}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_them_gio_hang'])->name('xu_ly_them_gio_hang');
