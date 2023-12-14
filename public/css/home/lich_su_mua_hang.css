@@ -13,7 +13,12 @@ thead tr th{
   background-color: transparent;
 }
 .table_btn{
-  color: red !important;
-  font-size: 18px;
+  font-size: 20px;
   text-decoration: none;
+}
+.remove_icon{
+  color: red !important;
+}
+.buy_icon{
+  color: green !important;
 }

@@ -18,10 +18,9 @@
        <i class="bi bi-cart4 pr-2"></i>
       </div>
     </div>
-    <table class="table table-striped table-dark mt-4">
+    <table class="table table-striped table-dark mt-2">
       <thead>
         <tr>
-          <th class="text-center">Check</th>
           <th class="text-center">Tên sản phẩm</th>
           <th class="text-center">Giá</th>
           <th class="text-center">Hình ảnh</th>
@@ -34,20 +33,20 @@
         @endphp
         @foreach ($san_phams as $san_pham)
         <tr>
-          <th class="text-center"><input type="checkbox" name="{{$san_pham->ten_san_pham.$count}}" value="{{$san_pham->ten_san_pham}}" style="width:20px; height:20px;"></th>
+          <th class="text-center"><input type="checkbox" name="" style="width:20px; height:20px;"></th>
           <th class="text-center">{{$san_pham->ten_san_pham}}</th>
           <th class="text-center price_skin">{{$san_pham->gia}}</th>
           <th class="text-center">
             @if ($san_pham->loai_san_pham == 'bau_vat')
-              <img src="{{asset('chest/'.$san_pham->hinh_anh)}}" width="200px" height="100px">
+              <img src="{{asset('chest/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
             @elseif($san_pham->loai_san_pham == 'vat_pham')
-              <img src="{{asset('item/'.$san_pham->hinh_anh)}}" width="200px" height="100px">
+              <img src="{{asset('item/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
             @else
               <img src="{{asset('skin/'.$san_pham->hinh_anh)}}" width="200px" height="100px">
             @endif
           </th>
           <th class="text-center">
-            <button class="btn_container"><a href="{{route('xoa_gio_hang',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
+            <button class="btn_container"><a href="#"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
           </th>
         </tr>
         @endforeach
@@ -57,17 +56,6 @@
       <h5>Tổng tiền: <span id="price_total"></span></h5>
       <button class="btn btn-warning text-right" type="submit">Thanh toán</button>
     </div>
+    @include('home/module/footer')
 </body>
-<script>
-$(document).ready(function(){
-  $('input[type="checkbox"]').change(function(){
-    var total = 0;
-    $('input[type="checkbox"]:checked').each(function(){
-      var price = $(this).closest('tr').find('.price_skin').text();
-      total += parseFloat(price);
-    });
-    $('#price_total').text(total);
-  });
-});
-</script>
 </html>

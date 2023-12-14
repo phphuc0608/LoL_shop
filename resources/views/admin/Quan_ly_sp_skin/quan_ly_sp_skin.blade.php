@@ -62,7 +62,7 @@
                     <th class="text-center">{{$skin->ds_tuong->ten_tuong}}</th>
                     <th class="text-center">{{$skin->do_hiem->ten_do_hiem}}</th>
                     <th class="text-center">{{$skin->dong_skin->ten_dong_skin}}</th>
-                    <th class="text-center">{{$skin->do_hiem->gia}}</th>
+                    <th class="text-center">{{$skin->do_hiem->gia}}<span style="font-size: 15px">₫</span></th>
                     <th class="text-center"><?php echo $skin->trang_thai == 1?'Đang bán':'Ngừng bán' ?></th>
                     <th class="text-center"><img style="width: 200px; height: 150px;" src="{{asset('skin/'.$skin->hinh_anh)}}" alt=""></th>
                     <th class="text-center">

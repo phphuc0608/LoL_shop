@@ -36,7 +36,7 @@
                                         <h5>{{$skin->ten_trang_phuc}}</h5>
                                     </div>
                                     <div class="skin_price text-center pb-3 pr-3">
-                                        <h5>{{$skin->do_hiem->gia}}</h5>
+                                        <h5>{{$skin->do_hiem->gia}}<span style="font-size: 25px">₫</span></h5>
                                     </div>
                                 </div>
                             </div>

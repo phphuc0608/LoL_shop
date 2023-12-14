@@ -60,7 +60,7 @@
                     <th class="text-center">{{$tim_kiem->ten_trang_phuc}}</th>
                     <th class="text-center">{{$tim_kiem->do_hiem->ten_do_hiem}}</th>
                     <th class="text-center">{{$tim_kiem->dong_skin->ten_dong_skin}}</th>
-                    <th class="text-center">{{$tim_kiem->do_hiem->gia}}</th>
+                    <th class="text-center">{{$tim_kiem->do_hiem->gia}}<span style="font-size: 15px">₫</span></th>
                     <th class="text-center"><?php echo $tim_kiem->trang_thai == 1?'Đang bán':'Ngừng bán' ?></th>
                     <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('skin/'.$tim_kiem->hinh_anh)}}" alt=""></th>
                     <th class="text-center">

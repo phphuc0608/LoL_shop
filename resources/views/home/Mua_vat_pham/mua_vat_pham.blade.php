@@ -33,7 +33,7 @@
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
           <div class="row col-md-12">
             @foreach($items as $item)
-              <a href="#" class="col-md-3 p-0 my-1 mx-3 skin_container">
+              <a href="#" class="col-md-3 p-0 my-1 mx-3 skin_container" style="text-decoration: none;">
                 <img src="{{asset('item/'.$item->hinh_anh)}}" alt="" class="skin_img text-center" style="width: 100%; height: 83%; background-color: #0D1720;">
                 <div class="item_name d-flex align-items-center">
                     <div class="skin_info ">
@@ -41,12 +41,14 @@
                             <h5>{{$item->ten_vat_pham}}</h5>
                         </div>
                         <div class="skin_price text-center pb-3 pr-3">
-                            <h5>{{$item->loai_vat_pham->gia}}</h5>
+                            <h5>{{$item->loai_vat_pham->gia}}<span style="font-size: 25px">₫</span></h5>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center m-0">
-                  <button class="buy_button">Mua <i class="bi bi-bag"></i> </button>
+                    <div class="buy_button" onclick="location.href='';">
+                        Mua <i class="bi bi-bag"></i> 
+                    </div>
                 </div>
               </a>
             @endforeach

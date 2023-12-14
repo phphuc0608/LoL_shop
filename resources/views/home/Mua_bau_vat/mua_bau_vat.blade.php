@@ -35,7 +35,7 @@
         <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
           <div class="row col-md-12">
             @foreach($chests as $chest)
-             <a href="{{route('chi_tiet_bau_vat',['keyword'=>$chest->ten_bau_vat])}}" class="col-md-3 p-0 my-1 mx-3 skin_container">
+             <a href="{{route('chi_tiet_bau_vat',['keyword'=>$chest->ten_bau_vat])}}" class="col-md-3 p-0 my-1 mx-3 skin_container" style="text-decoration: none;">
                 <img src="{{asset('chest/'.$chest->hinh_anh)}}" alt="" class="skin_img text-center" style="background-color: #0D1720; width: 100%;height: auto;">
                 <div class="item_name d-flex align-items-center">
                     <div class="skin_info ">
@@ -43,12 +43,14 @@
                             <h5>{{$chest->ten_bau_vat}}</h5>
                         </div>
                         <div class="skin_price text-center pb-3 pr-3">
-                            <h5>{{$chest->loai_bau_vat->gia}}</h5>
+                            <h5>{{$chest->loai_bau_vat->gia}}<span style="font-size: 25px">₫</span></h5>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center m-0">
-                  <button class="buy_button">Mua <i class="bi bi-bag"></i> </button>
+                    <div class="buy_button" onclick="location.href='';">
+                        Mua <i class="bi bi-bag"></i> 
+                    </div>
                 </div>
               </a>
               @endforeach
