@@ -47,7 +47,7 @@
               @endif
             </th>
             <th class="text-center">
-              <button class="btn_container"><a href="{{route('xoa_gio_hang',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-bag-heart buy_icon"></i></a></button> |
+              <button class="btn_container"><a href="{{route('thanh_toan_don',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-bag-heart buy_icon"></i></a></button> |
               <button class="btn_container"><a href="{{route('xoa_gio_hang',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
             </th>
           </tr>
