@@ -45,7 +45,6 @@
   display: inline; 
   font-size: 20px ;
   font-weight: 500 ;
-  grid-area: auto; 
   letter-spacing: 3.3px; 
   line-height: 49px; 
   text-transform: uppercase;
@@ -57,6 +56,7 @@
   background-color: rgb(37, 36, 36);
   width: 100%;
   border-top: 1px solid #937341;
+  text-align: center;
 }
 .skin_container:hover .buy_button {
   bottom: 10px;
