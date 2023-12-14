@@ -99,9 +99,8 @@ Route::get('chi_tiet_bau_vat/{keyword}', [App\Http\Controllers\San_pham_controll
 //vat_pham
 Route::get('home_mua_vat_pham',[App\Http\Controllers\San_pham_controller::class, 'view_home_mua_vat_pham'])->name('home_mua_vat_pham');
 Route::post('tim_kiem_vat_pham', [\App\Http\Controllers\San_pham_controller::class, 'xu_ly_tim_kiem_item_home'])->name('tim_kiem_item_home');
-//nguoi_dung
-Route::get('thong_tin_tai_khoan',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_thong_tin_tai_khoan'])->name('thong_tin_tai_khoan');
-Route::post('cap_nhat_khach_hang', [\App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_cap_nhat_khach_hang']);
-Route::get('lich_su_mua_hang', [App\Http\Controllers\Nguoi_dung_controller::class, 'view_lich_su_mua_hang'])->name('lich_su_mua_hang');
 //khach_hang
+Route::get('thong_tin_tai_khoan',[App\Http\Controllers\Khach_hang_controller::class, 'view_thong_tin_tai_khoan'])->name('thong_tin_tai_khoan');
+Route::post('cap_nhat_khach_hang', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_cap_nhat_khach_hang']);
+Route::get('lich_su_mua_hang', [App\Http\Controllers\Khach_hang_controller::class, 'view_lich_su_mua_hang'])->name('lich_su_mua_hang');
 Route::get('gio_hang', [App\Http\Controllers\Khach_hang_controller::class, 'view_gio_hang'])->name('gio_hang');
