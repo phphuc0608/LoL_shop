@@ -35,9 +35,9 @@
           <th class="text-center">{{$san_pham->gia}}</th>
           <th class="text-center">
             @if ($san_pham->loai_san_pham == 'bau_vat')
-              <img src="{{asset('chest/'.$san_pham->hinh_anh)}}" width="200px" height="100px">
+              <img src="{{asset('chest/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
             @elseif($san_pham->loai_san_pham == 'vat_pham')
-              <img src="{{asset('item/'.$san_pham->hinh_anh)}}" width="200px" height="100px">
+              <img src="{{asset('item/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
             @else
               <img src="{{asset('skin/'.$san_pham->hinh_anh)}}" width="200px" height="100px">
             @endif

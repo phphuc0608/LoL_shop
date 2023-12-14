@@ -27,24 +27,26 @@
             <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
             <div class="row col-md-12">
                 @foreach($skins as $skin)
-                <a href="{{route('chi_tiet_trang_phuc',['keyword'=>$skin->ten_trang_phuc])}}" class="col-md-3 p-0 my-1 mx-3 skin_container">
-                    <img src="{{asset('skin/'.$skin->hinh_anh)}}" alt="" class="skin_img text-center" style=" width: 100%; height: auto;">
-                    <div class="item_name d-flex align-items-center">
-                        <div class="skin_info ">
-                            <div class="skin_name text-center pt-3">
-                                <h5>{{$skin->ten_trang_phuc}}</h5>
+                    <div class="col-md-3 p-0 my-1 mx-3 skin_container">
+                        <a href="{{route('chi_tiet_trang_phuc',['keyword'=>$skin->ten_trang_phuc])}}">
+                            <img src="{{asset('skin/'.$skin->hinh_anh)}}" alt="" class="skin_img text-center" style=" width: 100%; height: auto;">
+                            <div class="item_name d-flex align-items-center">
+                                <div class="skin_info ">
+                                    <div class="skin_name text-center pt-3">
+                                        <h5>{{$skin->ten_trang_phuc}}</h5>
+                                    </div>
+                                    <div class="skin_price text-center pb-3 pr-3">
+                                        <h5>{{$skin->do_hiem->gia}}</h5>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="skin_price text-center pb-3 pr-3">
-                                <h5>{{$skin->do_hiem->gia}}</h5>
+                        </a>
+                        <div class="d-flex align-items-center justify-content-center m-0">
+                            <div class="buy_button" onclick="location.href='{{route('xu_ly_them_gio_hang',['keyword'=>$skin->ten_trang_phuc])}}';">
+                                Mua <i class="bi bi-bag"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-center m-0">
-                        <div class="buy_button" onclick="location.href='{{route('xu_ly_them_gio_hang',['keyword'=>$skin->ten_trang_phuc])}}';">
-                            Mua <i class="bi bi-bag"></i>
-                        </div>
-                    </div>
-                </a>
                 @endforeach
                 </div>
             </div>
