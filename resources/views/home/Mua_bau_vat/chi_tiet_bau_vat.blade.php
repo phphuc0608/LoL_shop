@@ -24,7 +24,7 @@
         <h5>Giá: {{$chest->loai_bau_vat->gia}}</h5>
       </div>
       <div class="d-flex justify-content-center align-items-center mt-5">
-        <button class="buy_button py-3"><h4 class="m-0">MUA</h4></button>
+        <div class="buy_button py-3 text-center" onclick="location.href='';"><h4 class="m-0">MUA</h4></div>
       </div>
     </div>
     <div class="col-md-7 text-center" id="img_container">

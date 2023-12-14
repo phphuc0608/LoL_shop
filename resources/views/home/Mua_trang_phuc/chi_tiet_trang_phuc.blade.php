@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center mt-5">
-      <button class="buy_button py-3"><h4 class="m-0">MUA</h4></button>
+      <div class="buy_button py-3 text-center" onclick="location.href='';"><h4 class="m-0">MUA</h4></div>
     </div>
   </div>
 </body>
