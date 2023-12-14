@@ -7,6 +7,11 @@ use App\Models\Nguoi_dung;
 use App\Models\Gio_hang;
 use App\Models\Lich_su_mua_hang;
 use Illuminate\Http\Request;
+use App\Models\Bau_vat;
+use App\Models\Vat_pham;
+use App\Models\Trang_phuc;
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\ElseIf_;
 
 class Khach_hang_controller extends Controller
 {
@@ -176,6 +181,114 @@ class Khach_hang_controller extends Controller
 		}
     }
 
+    public function view_thong_tin_tai_khoan(){
+		if (session('nguoi_dung') != null) {
+			$data = [];
+			$data['bao_loi'] = session('bao_loi');
+			session()->put('bao_loi', '');
+			$data['nguoi_dung'] = session('nguoi_dung');
+			$data['khach_hang'] = Khach_hang::
+				// joinRelationship('nguoi_dung')
+				join('nguoi_dung','nguoi_dung.tai_khoan','=','khach_hang.tai_khoan')
+				->where('trang_thai','=',1)
+				->where('khach_hang.tai_khoan','like','%'.$data['nguoi_dung']. '%')
+				// where('tai_khoan','like','%'.$data['nguoi_dung']. '%')
+				// ->toSql();
+				->first();
+		}
+		else{
+            return redirect()->route('home_ds_tuong');
+        }
+		// echo $data['khach_hang'];
+		// echo $data['nguoi_dung'];
+		return view('home.Tai_khoan.thong_tin_tai_khoan', $data);
+	}
+	public function xu_ly_cap_nhat_khach_hang(Request $request){
+        $nguoi_dung = Nguoi_dung::find($request->tai_khoan);
+		$khach_hang = Khach_hang::where('tai_khoan','=',$request->tai_khoan)->first();
+		session()->put('bao_loi', '');
+		if(isset($request->email)){
+			$khach_hang->email = $request->email;
+			$khach_hang->save();
+			session()->put('bao_loi', '');
+		}
+		else{
+			session()->put('bao_loi', 'Bạn chưa nhập email');
+		}
+		if(isset($request->mat_khau)||isset($request->xac_nhan_mat_khau)){
+			if($request->xac_nhan_mat_khau==$request->mat_khau){
+				$nguoi_dung->mat_khau = md5($request->mat_khau);
+				$nguoi_dung->save();
+				session()->put('bao_loi', '');
+			}
+			else{
+				session()->put('bao_loi', 'Xác nhận mật khẩu không khớp.');
+			}
+		}
+		// echo $khach_hang;
+        return redirect()->route('thong_tin_tai_khoan');
+    }
+    public function view_lich_su_mua_hang(){
+        if (session('nguoi_dung') != null) {
+            $data = [];
+            // $ds_ls = [];
+            $data['nguoi_dung'] = session('nguoi_dung');
+            $data['khach_hang'] = Khach_hang::
+                where('tai_khoan','like','%'.$data['nguoi_dung']. '%')
+            // 	// ->toSql();
+                ->first();
+            $lich_su = Lich_su_mua_hang::where('ma_ls_mua_hang','=',$data['khach_hang']->ma_ls_mua_hang)->first();
+            $data['ds_ls'] = explode(", ",$lich_su->ds_ls_mua_hang);
+            $first = true;
+            foreach($data['ds_ls'] as $item) {
+                $bau_vat = Bau_vat::select('ten_bau_vat as ten_san_pham', 'bau_vat.ma_loai_bau_vat as ma_san_pham', 'hinh_anh', 'gia','loai_san_pham')
+                    ->join('loai_bau_vat','bau_vat.ma_loai_bau_vat','=','loai_bau_vat.ma_loai_bau_vat')
+                    ->where('ten_bau_vat','like','%'.$item. '%');
+                $vat_pham = Vat_pham::select('ten_vat_pham as ten_san_pham', 'vat_pham.ma_loai_vat_pham as ma_san_pham', 'hinh_anh', 'gia','loai_san_pham')
+                    ->join('loai_vat_pham','vat_pham.ma_loai_vat_pham','=','loai_vat_pham.ma_loai_vat_pham')
+                    ->where('ten_vat_pham','like','%'.$item. '%');
+                $trang_phuc = Trang_phuc::select('ten_trang_phuc as ten_san_pham', 'trang_phuc.ma_do_hiem as ma_san_pham', 'trang_phuc.hinh_anh', 'gia','loai_san_pham')
+                    ->join('do_hiem','trang_phuc.ma_do_hiem','=','do_hiem.ma_do_hiem')
+                    ->where('ten_trang_phuc','like','%'.$item. '%');
+                // $data['san_phams']=$trang_phuc;
+                if($bau_vat!=null){
+                    if($first==true){
+                        $data['san_phams']=$bau_vat;
+                        $first=false;
+                    }
+                    else{
+                        $data['san_phams']->union($bau_vat);
+                    }
+                }
+                if($vat_pham!=null){
+                    if($first==true){
+                        $data['san_phams']=$vat_pham;
+                        $first=false;
+                    }
+                    else{
+                        $data['san_phams']->union($vat_pham);
+                    }
+                }
+                if($trang_phuc!=null){
+                    if($first==true){
+                        $data['san_phams']=$trang_phuc;
+                        $first=false;
+                    }
+                    else{
+                        $data['san_phams']->union($trang_phuc);
+                    }
+                }
+            }
+
+        }
+        else{
+            return redirect()->route('home_ds_tuong');
+        }
+        $data['san_phams']=$data['san_phams']->get();
+        // print_r($data['san_phams']); 
+        // echo($trang_phuc);
+        return view('home.Tai_khoan.lich_su_mua_hang', $data);
+    }
     public function view_gio_hang(){
         return view('home.Tai_khoan.gio_hang');
     }
