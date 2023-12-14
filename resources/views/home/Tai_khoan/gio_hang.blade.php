@@ -30,6 +30,7 @@
       <tbody>
         @php
             $count=1;
+            $sum=0;
         @endphp
         @foreach ($san_phams as $san_pham)
         <tr>
@@ -46,14 +47,17 @@
             @endif
           </th>
           <th class="text-center">
-            <button class="btn_container"><a href="#"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
+            <button class="btn_container"><a href="{{route('xoa_gio_hang',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
           </th>
         </tr>
+          @php
+            $sum+=$san_pham->gia;
+          @endphp
         @endforeach
       </tbody>
     </table>
     <div class="col-md-12 my-3 d-flex justify-content-between align-items-center">
-      <h5>Tổng tiền: <span id="price_total"></span></h5>
+      <h5>Tổng tiền: <span id="price_total">{{$sum}}</span></h5>
       <button class="btn btn-warning text-right" type="submit">Thanh toán</button>
     </div>
     @include('home/module/footer')
