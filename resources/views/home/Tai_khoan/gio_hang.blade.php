@@ -34,9 +34,8 @@
         @endphp
         @foreach ($san_phams as $san_pham)
         <tr>
-          <th class="text-center"><input type="checkbox" name="" style="width:20px; height:20px;"></th>
           <th class="text-center">{{$san_pham->ten_san_pham}}</th>
-          <th class="text-center price_skin">{{$san_pham->gia}}</th>
+          <th class="text-center price_skin">{{$san_pham->gia}}<span style="font-size: 18px">₫</span></th>
           <th class="text-center">
             @if ($san_pham->loai_san_pham == 'bau_vat')
               <img src="{{asset('chest/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
@@ -47,6 +46,7 @@
             @endif
           </th>
           <th class="text-center">
+            <button class="btn_container"><a href="{{route('xoa_gio_hang',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-bag-heart buy_icon"></i></a></button> |
             <button class="btn_container"><a href="{{route('xoa_gio_hang',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
           </th>
         </tr>
@@ -57,8 +57,8 @@
       </tbody>
     </table>
     <div class="col-md-12 my-3 d-flex justify-content-between align-items-center">
-      <h5>Tổng tiền: <span id="price_total">{{$sum}}</span></h5>
-      <button class="btn btn-warning text-right" type="submit">Thanh toán</button>
+      <h5>Tổng tiền: <span id="price_total">{{$sum}}<span style="font-size: 25px">₫</span></span></h5>
+      <div onclick="location.href='';" class="btn btn-warning text-right" type="submit">Thanh toán</div>
     </div>
     @include('home/module/footer')
 </body>

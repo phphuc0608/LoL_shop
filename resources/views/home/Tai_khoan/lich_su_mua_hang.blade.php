@@ -32,7 +32,7 @@
         @foreach ($san_phams as $san_pham)
         <tr>
           <th class="text-center">{{$san_pham->ten_san_pham}}</th>
-          <th class="text-center">{{$san_pham->gia}}</th>
+          <th class="text-center">{{$san_pham->gia}}<span style="font-size: 18px">₫</span></th>
           <th class="text-center">
             @if ($san_pham->loai_san_pham == 'bau_vat')
               <img src="{{asset('chest/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
