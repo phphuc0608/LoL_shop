@@ -29,21 +29,23 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($san_phams as $san_pham)
-        <tr>
-          <th class="text-center">{{$san_pham->ten_san_pham}}</th>
-          <th class="text-center">{{$san_pham->gia}}<span style="font-size: 18px">₫</span></th>
-          <th class="text-center">
-            @if ($san_pham->loai_san_pham == 'bau_vat')
-              <img src="{{asset('chest/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
-            @elseif($san_pham->loai_san_pham == 'vat_pham')
-              <img src="{{asset('item/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
-            @else
-              <img src="{{asset('skin/'.$san_pham->hinh_anh)}}" width="200px" height="100px">
-            @endif
-          </th>
-        </tr>
-        @endforeach
+        @if ($san_phams!=null)
+          @foreach ($san_phams as $san_pham)
+          <tr>
+            <th class="text-center">{{$san_pham->ten_san_pham}}</th>
+            <th class="text-center">{{$san_pham->gia}}<span style="font-size: 18px">₫</span></th>
+            <th class="text-center">
+              @if ($san_pham->loai_san_pham == 'bau_vat')
+                <img src="{{asset('chest/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
+              @elseif($san_pham->loai_san_pham == 'vat_pham')
+                <img src="{{asset('item/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
+              @else
+                <img src="{{asset('skin/'.$san_pham->hinh_anh)}}" width="200px" height="100px">
+              @endif
+            </th>
+          </tr>
+          @endforeach
+        @endif
       </tbody>
     </table>
     @include('home/module/footer')
