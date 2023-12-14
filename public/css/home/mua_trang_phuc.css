@@ -11,10 +11,12 @@
 }
 .skin_container:hover{
   cursor: pointer;
-  text-decoration: none;
 }
 .skin_container:hover .skin_img {
   transform: scale(1.1);
+}
+.skin_container a{
+  text-decoration: none;
 }
 .skin_container .skin_img {
   transition: transform 0.25s ease-in-out;
