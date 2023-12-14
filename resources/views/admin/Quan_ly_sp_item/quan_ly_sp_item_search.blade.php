@@ -58,7 +58,7 @@
                     <th class="text-center">{{$tim_kiem->ma_vat_pham}}</th>
                     <th class="text-center">{{$tim_kiem->ten_vat_pham}}</th>
                     <th class="text-center">{{$tim_kiem->loai_vat_pham->ten_loai_vat_pham}}</th>
-                    <th class="text-center">{{$tim_kiem->loai_vat_pham->gia}}</th>
+                    <th class="text-center">{{$tim_kiem->loai_vat_pham->gia}}<span style="font-size: 15px">₫</span></th>
                     <th class="text-center"><?php echo $tim_kiem->trang_thai == 1?'Đang bán':'Ngừng bán' ?></th>
                     <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('item/'.$tim_kiem->hinh_anh)}}" alt=""></th>
                     <th class="text-center">

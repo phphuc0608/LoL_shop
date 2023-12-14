@@ -19,7 +19,7 @@
         <i class="bi bi-bag-check pr-2"></i>
       </div>
     </div>
-    <table class="table table-striped table-dark mt-4">
+    <table class="table table-striped table-dark mt-4 mb-0">
       <thead>
         <tr>
           <th class="text-center">Tên sản phẩm</th>
@@ -41,19 +41,11 @@
             @else
               <img src="{{asset('skin/'.$san_pham->hinh_anh)}}" width="200px" height="100px">
             @endif
-            {{-- <img src="{{asset('img/template.webp')}}" width="200px" height="100px"> --}}
           </th>
         </tr>
         @endforeach
-       
-        {{-- <tr>
-          <th class="text-center">Aatrox vinh quang</th>
-          <th class="text-center">100000</th>
-          <th class="text-center">
-            <img src="{{asset('img/template.webp')}}" width="200px" height="100px">
-          </th>
-        </tr> --}}
       </tbody>
     </table>
+    @include('home/module/footer')
 </body>
 </html>
