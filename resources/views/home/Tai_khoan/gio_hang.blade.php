@@ -31,7 +31,7 @@
         <tr>
           <th class="text-center"><input type="checkbox" name="" style="width:20px; height:20px;"></th>
           <th class="text-center">Aatrox vinh quang</th>
-          <th class="text-center">100000</th>
+          <th class="text-center price_skin">100000</th>
           <th class="text-center">
             <img src="{{asset('img/template.webp')}}" width="200px" height="100px">
           </th>
@@ -39,7 +39,7 @@
         <tr>
           <th class="text-center"><input type="checkbox" name="" style="width:20px; height:20px;"></th>
           <th class="text-center">Aatrox vinh quang</th>
-          <th class="text-center">100000</th>
+          <th class="text-center price_skin">100000</th>
           <th class="text-center">
             <img src="{{asset('img/template.webp')}}" width="200px" height="100px">
           </th>
@@ -47,8 +47,20 @@
       </tbody>
     </table>
     <div class="col-md-12 my-3 d-flex justify-content-between align-items-center">
-      <h5 class="">Tổng tiền: 200000</h5>
+      <h5>Tổng tiền: <span id="price_total"></span></h5>
       <button class="btn btn-warning text-right" type="submit">Thanh toán</button>
     </div>
 </body>
+<script>
+$(document).ready(function(){
+  $('input[type="checkbox"]').change(function(){
+    var total = 0;
+    $('input[type="checkbox"]:checked').each(function(){
+      var price = $(this).closest('tr').find('.price_skin').text();
+      total += parseFloat(price);
+    });
+    $('#price_total').text(total);
+  });
+});
+</script>
 </html>
