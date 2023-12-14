@@ -368,7 +368,7 @@ class Khach_hang_controller extends Controller
     }
     public function xu_ly_xoa_gio_hang(Request $request){
         // $data = [];
-        $san_pham = Gio_hang::join('khach_hang','gio_hang.ma_gio_hang','=','khach_hang.ma_gio_hang')->where('ds_hang','like','%'.$request->keyword. '%')->where('tai_khoan','=',session('nguoi_dung'))->first();
+        $san_pham = Gio_hang::join('khach_hang','gio_hang.ma_gio_hang','=','khach_hang.ma_gio_hang')->where('tai_khoan','=',session('nguoi_dung'))->first();
         $ds_hang = explode(", ",$san_pham->ds_hang);
         foreach($ds_hang as $item) {
             if($item==$request->keyword) {
@@ -382,6 +382,42 @@ class Khach_hang_controller extends Controller
         $san_pham->save();
         // print_r($san_pham);
         // echo $ds_hang;
+        return redirect()->route('gio_hang');
+    }
+    public function xu_ly_thanh_toan_don(Request $request){
+
+        // $data = [];
+        // $san_pham = Gio_hang::join('khach_hang','gio_hang.ma_gio_hang','=','khach_hang.ma_gio_hang')->where('ds_hang','like','%'.$request->keyword. '%')->where('tai_khoan','=',session('nguoi_dung'))->first();
+        // $ds_hang = explode(", ",$san_pham->ds_hang);
+        // foreach($ds_hang as $item) {
+        //     if($item==$request->keyword) {
+        //         $key = array_search($request->keyword,$ds_hang);
+        //         unset($ds_hang[$key]);
+        //         break;
+        //     }
+        // }
+        // $ds_hang = implode(', ',$ds_hang);
+        // $san_pham->ds_hang = $ds_hang;
+        // $san_pham->save();
+        // print_r($san_pham);
+        // echo $ds_hang;
+        // return redirect()->route('gio_hang');
+    }
+    public function xu_ly_thanh_toan_toan_bo(){
+
+        // $data = [];
+        $gio_hang = Gio_hang::join('khach_hang','gio_hang.ma_gio_hang','=','khach_hang.ma_gio_hang')->where('tai_khoan','=',session('nguoi_dung'))->first();
+        $ls_mua = Lich_su_mua_hang::join('khach_hang','lich_su_mua_hang.ma_ls_mua_hang','=','khach_hang.ma_ls_mua_hang')->where('tai_khoan','=',session('nguoi_dung'))->first();
+        if($ls_mua->ds_ls_mua_hang!=NULL){
+            $ls_mua->ds_ls_mua_hang = $ls_mua->ds_ls_mua_hang.', '.$gio_hang->ds_hang;
+            $gio_hang->ds_hang = '';
+        }
+        else{
+            $ls_mua->ds_ls_mua_hang = $gio_hang->ds_hang;
+            $gio_hang->ds_hang = '';
+        }
+        $gio_hang->save();
+        $ls_mua->save();
         return redirect()->route('gio_hang');
     }
 }
