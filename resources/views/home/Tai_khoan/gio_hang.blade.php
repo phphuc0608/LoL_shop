@@ -29,9 +29,12 @@
         </tr>
       </thead>
       <tbody>
+        @php
+            $count=1;
+        @endphp
         @foreach ($san_phams as $san_pham)
         <tr>
-          <th class="text-center"><input type="checkbox" name="" style="width:20px; height:20px;"></th>
+          <th class="text-center"><input type="checkbox" name="{{$san_pham->ten_san_pham.$count}}" value="{{$san_pham->ten_san_pham}}" style="width:20px; height:20px;"></th>
           <th class="text-center">{{$san_pham->ten_san_pham}}</th>
           <th class="text-center price_skin">{{$san_pham->gia}}</th>
           <th class="text-center">
@@ -44,7 +47,7 @@
             @endif
           </th>
           <th class="text-center">
-            <button class="btn_container"><a href="#"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
+            <button class="btn_container"><a href="{{route('xoa_gio_hang',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
           </th>
         </tr>
         @endforeach

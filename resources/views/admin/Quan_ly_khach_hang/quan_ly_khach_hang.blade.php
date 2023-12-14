@@ -51,8 +51,8 @@
                     <th class="text-center">{{$khach_hang->tai_khoan}}</th>
                     <th class="text-center">{{$khach_hang->email}}</th>
                     <th class="text-center"><?php echo $khach_hang->nguoi_dung->trang_thai == 1?'Kích hoạt':'Khóa' ?></th>
-                    <th class="text-center">{{$khach_hang->gio_hang->ds_hang==''?'Trống':$khach_hang->gio_hang->ds_hang}}</th>
-                    <th class="text-center">{{$khach_hang->lich_su_mua_hang->ds_ls_mua_hang==''?'Trống':$khach_hang->lich_su_mua_hang->ds_ls_mua_hang}}</th>
+                    <th class="text-center" width = "200px">{{$khach_hang->gio_hang->ds_hang==''?'Trống':$khach_hang->gio_hang->ds_hang}}</th>
+                    <th class="text-center" width = "200px">{{$khach_hang->lich_su_mua_hang->ds_ls_mua_hang==''?'Trống':$khach_hang->lich_su_mua_hang->ds_ls_mua_hang}}</th>
                     <th class="text-center">
                         <button class="table_btn" data-toggle="modal" data-target="#update_customer"><i class="bi bi-pencil update_icon"></i></button>
                         |

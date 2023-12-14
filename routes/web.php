@@ -105,3 +105,4 @@ Route::post('cap_nhat_khach_hang', [\App\Http\Controllers\Khach_hang_controller:
 Route::get('lich_su_mua_hang', [App\Http\Controllers\Khach_hang_controller::class, 'view_lich_su_mua_hang'])->name('lich_su_mua_hang');
 Route::get('gio_hang', [App\Http\Controllers\Khach_hang_controller::class, 'view_gio_hang'])->name('gio_hang');
 Route::get('them_gio_hang/{keyword}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_them_gio_hang'])->name('xu_ly_them_gio_hang');
+Route::get('xoa_gio_hang_process/{keyword}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_xoa_gio_hang'])->name('xoa_gio_hang');

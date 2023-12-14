@@ -257,7 +257,7 @@ class Khach_hang_controller extends Controller
                         $first=false;
                     }
                     else{
-                        $data['san_phams']->union($bau_vat);
+                        $data['san_phams']->unionall($bau_vat);
                     }
                 }
                 if($vat_pham!=null){
@@ -266,7 +266,7 @@ class Khach_hang_controller extends Controller
                         $first=false;
                     }
                     else{
-                        $data['san_phams']->union($vat_pham);
+                        $data['san_phams']->unionall($vat_pham);
                     }
                 }
                 if($trang_phuc!=null){
@@ -275,7 +275,7 @@ class Khach_hang_controller extends Controller
                         $first=false;
                     }
                     else{
-                        $data['san_phams']->union($trang_phuc);
+                        $data['san_phams']->unionall($trang_phuc);
                     }
                 }
             }
@@ -334,7 +334,7 @@ class Khach_hang_controller extends Controller
                         $first=false;
                     }
                     else{
-                        $data['san_phams']->union($bau_vat);
+                        $data['san_phams']->unionall($bau_vat);
                     }
                 }
                 if($vat_pham!=null){
@@ -343,7 +343,7 @@ class Khach_hang_controller extends Controller
                         $first=false;
                     }
                     else{
-                        $data['san_phams']->union($vat_pham);
+                        $data['san_phams']->unionall($vat_pham);
                     }
                 }
                 if($trang_phuc!=null){
@@ -352,7 +352,7 @@ class Khach_hang_controller extends Controller
                         $first=false;
                     }
                     else{
-                        $data['san_phams']->union($trang_phuc);
+                        $data['san_phams']->unionall($trang_phuc);
                     }
                 }
             }
@@ -365,5 +365,23 @@ class Khach_hang_controller extends Controller
         // print_r($data['san_phams']); 
         // echo($trang_phuc);
         return view('home.Tai_khoan.gio_hang', $data);
+    }
+    public function xu_ly_xoa_gio_hang(Request $request){
+        // $data = [];
+        $san_pham = Gio_hang::join('khach_hang','gio_hang.ma_gio_hang','=','khach_hang.ma_gio_hang')->where('ds_hang','like','%'.$request->keyword. '%')->where('tai_khoan','=',session('nguoi_dung'))->first();
+        $ds_hang = explode(", ",$san_pham->ds_hang);
+        foreach($ds_hang as $item) {
+            if($item==$request->keyword) {
+                $key = array_search($request->keyword,$ds_hang);
+                unset($ds_hang[$key]);
+                break;
+            }
+        }
+        $ds_hang = implode(', ',$ds_hang);
+        $san_pham->ds_hang = $ds_hang;
+        $san_pham->save();
+        // print_r($san_pham);
+        // echo $ds_hang;
+        return redirect()->route('gio_hang');
     }
 }
