@@ -40,7 +40,11 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center m-0">
-                    <button class="buy_button"><a href="{{route('xu_ly_them_gio_hang',['keyword'=>$skin->ten_trang_phuc])}}">Mua <i class="bi bi-bag"></i> </a></button>
+
+                        <div class="buy_button" onclick="location.href='your_link_here';">
+                            Mua <i class="bi bi-bag"></i>
+                        </div>
+
                     </div>
                 </a>
                 @endforeach
