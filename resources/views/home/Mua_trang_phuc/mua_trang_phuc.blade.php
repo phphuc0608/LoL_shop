@@ -24,7 +24,7 @@
             <input class="p-2" type="text" placeholder="Tìm kiếm"  id="keyword" name="keyword" {{$search != '0'?" value=$keyword":""}}>
             <button type="submit">Search</button>
         </form>
-            <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
+        <div id="content_bottom" class="container-fluid d-flex align-items-center justify-content-center">
             <div class="row col-md-12">
                 @foreach($skins as $skin)
                     <div class="col-md-3 p-0 my-1 mx-3 skin_container">
