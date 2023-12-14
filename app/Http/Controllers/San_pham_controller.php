@@ -449,14 +449,14 @@ public function xu_ly_sua_item(Request $request){
     $item->save();
     return redirect()->route('quan_ly_item', 1);
 }
-public function xu_ly_xoa_item(Request $request){
-    $item = Bau_vat::find($request->ma_vat_pham);
-    $item->delete();
-    if(File::exists('item/' . $item->hinh_anh)){
-        File::delete('item/' . $item->hinh_anh);
+    public function xu_ly_xoa_item(Request $request){
+        $item = Bau_vat::find($request->ma_vat_pham);
+        $item->delete();
+        if(File::exists('item/' . $item->hinh_anh)){
+            File::delete('item/' . $item->hinh_anh);
+        }
+        return redirect()->route('quan_ly_item', 1);
     }
-    return redirect()->route('quan_ly_item', 1);
-}
 /*----------------------------------------------------------------*/
     public function view_home_mua_trang_phuc()
     {
