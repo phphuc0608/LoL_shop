@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center mt-5">
-      <div class="buy_button py-3 text-center" onclick="location.href='{{route('xu_ly_them_gio_hang',['keyword'=>$skin->ten_trang_phuc])}}';"><h4 class="m-0">MUA</h4></div>
+      <div class="buy_button py-3 text-center" onclick="location.href='{{route('xu_ly_them_gio_hang',['keyword'=>$skin->ten_trang_phuc, 'type'=>'trang_phuc'])}}';"><h4 class="m-0">MUA</h4></div>
     </div>
   </div>
 </body>

@@ -45,12 +45,13 @@
                             </div>
                         </div>
                     </div>
-                </a>
-                <div class="d-flex align-items-center justify-content-center m-0">
-                    <div class="buy_button" onclick="location.href='{{route('xu_ly_them_gio_hang',['keyword'=>$item->ten_vat_pham])}}';">
-                        Mua <i class="bi bi-bag"></i> 
+                
+                    <div class="d-flex align-items-center justify-content-center m-0">
+                        <div class="buy_button" onclick="location.href='{{route('xu_ly_them_gio_hang',['keyword'=>$item->ten_vat_pham, 'type'=>'vat_pham'])}}';">
+                            Mua <i class="bi bi-bag"></i> 
+                        </div>
                     </div>
-                </div>
+                </a>
                 @endforeach
                 </div>
             </div>
