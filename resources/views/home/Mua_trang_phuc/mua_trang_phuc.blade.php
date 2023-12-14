@@ -40,9 +40,11 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center m-0">
+
                         <div class="buy_button" onclick="location.href='your_link_here';">
                             Mua <i class="bi bi-bag"></i>
                         </div>
+
                     </div>
                 </a>
                 @endforeach

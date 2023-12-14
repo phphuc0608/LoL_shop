@@ -289,6 +289,22 @@ class Khach_hang_controller extends Controller
         // echo($trang_phuc);
         return view('home.Tai_khoan.lich_su_mua_hang', $data);
     }
+    public function xu_ly_them_gio_hang(Request $request)
+	{
+
+        $tai_khoan = session('nguoi_dung');
+        $khach_hang = Khach_hang::where('tai_khoan','like','%'.$tai_khoan. '%')->first();
+		$gio_hang = Gio_hang::where('ma_gio_hang','=',$khach_hang->ma_gio_hang)->first();
+        if($gio_hang->ds_hang!= null){
+            $gio_hang->ds_hang = $gio_hang->ds_hang.', '.$request->keyword;
+        }
+        else{
+            $gio_hang->ds_hang = $request->keyword;
+        }
+        $gio_hang->save();
+        // print_r ($gio_hang->ds_hang);
+		return redirect()->route('gio_hang');
+	}
     public function view_gio_hang(){
         return view('home.Tai_khoan.gio_hang');
     }
