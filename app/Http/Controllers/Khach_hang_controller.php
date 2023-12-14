@@ -306,6 +306,64 @@ class Khach_hang_controller extends Controller
 		return redirect()->route('gio_hang');
 	}
     public function view_gio_hang(){
-        return view('home.Tai_khoan.gio_hang');
+        if (session('nguoi_dung') != null) {
+            $data = [];
+            // $ds_ls = [];
+            $data['nguoi_dung'] = session('nguoi_dung');
+            $data['khach_hang'] = Khach_hang::
+                where('tai_khoan','like','%'.$data['nguoi_dung']. '%')
+            // 	// ->toSql();
+                ->first();
+            $gio_hang = Gio_hang::where('ma_gio_hang','=',$data['khach_hang']->ma_gio_hang)->first();
+            $data['ds_hang'] = explode(", ",$gio_hang->ds_hang);
+            $first = true;
+            foreach($data['ds_hang'] as $item) {
+                $bau_vat = Bau_vat::select('ten_bau_vat as ten_san_pham', 'bau_vat.ma_loai_bau_vat as ma_san_pham', 'hinh_anh', 'gia','loai_san_pham')
+                    ->join('loai_bau_vat','bau_vat.ma_loai_bau_vat','=','loai_bau_vat.ma_loai_bau_vat')
+                    ->where('ten_bau_vat','like','%'.$item. '%');
+                $vat_pham = Vat_pham::select('ten_vat_pham as ten_san_pham', 'vat_pham.ma_loai_vat_pham as ma_san_pham', 'hinh_anh', 'gia','loai_san_pham')
+                    ->join('loai_vat_pham','vat_pham.ma_loai_vat_pham','=','loai_vat_pham.ma_loai_vat_pham')
+                    ->where('ten_vat_pham','like','%'.$item. '%');
+                $trang_phuc = Trang_phuc::select('ten_trang_phuc as ten_san_pham', 'trang_phuc.ma_do_hiem as ma_san_pham', 'trang_phuc.hinh_anh', 'gia','loai_san_pham')
+                    ->join('do_hiem','trang_phuc.ma_do_hiem','=','do_hiem.ma_do_hiem')
+                    ->where('ten_trang_phuc','like','%'.$item. '%');
+                // $data['san_phams']=$trang_phuc;
+                if($bau_vat!=null){
+                    if($first==true){
+                        $data['san_phams']=$bau_vat;
+                        $first=false;
+                    }
+                    else{
+                        $data['san_phams']->union($bau_vat);
+                    }
+                }
+                if($vat_pham!=null){
+                    if($first==true){
+                        $data['san_phams']=$vat_pham;
+                        $first=false;
+                    }
+                    else{
+                        $data['san_phams']->union($vat_pham);
+                    }
+                }
+                if($trang_phuc!=null){
+                    if($first==true){
+                        $data['san_phams']=$trang_phuc;
+                        $first=false;
+                    }
+                    else{
+                        $data['san_phams']->union($trang_phuc);
+                    }
+                }
+            }
+
+        }
+        else{
+            return redirect()->route('home_ds_tuong');
+        }
+        $data['san_phams']=$data['san_phams']->get();
+        // print_r($data['san_phams']); 
+        // echo($trang_phuc);
+        return view('home.Tai_khoan.gio_hang', $data);
     }
 }
