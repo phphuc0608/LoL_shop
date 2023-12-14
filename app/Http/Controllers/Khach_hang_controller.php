@@ -301,11 +301,30 @@ class Khach_hang_controller extends Controller
         $tai_khoan = session('nguoi_dung');
         $khach_hang = Khach_hang::where('tai_khoan','like','%'.$tai_khoan. '%')->first();
 		$gio_hang = Gio_hang::where('ma_gio_hang','=',$khach_hang->ma_gio_hang)->first();
-        if($gio_hang->ds_hang!= null){
-            $gio_hang->ds_hang = $gio_hang->ds_hang.', '.$request->keyword;
+        if($request->type =='bau_vat'){
+            if($gio_hang->ds_hang!= null){
+                $gio_hang->ds_hang = $gio_hang->ds_hang.', '.$request->keyword;
+            }
+            else{
+                $gio_hang->ds_hang = $request->keyword;
+            }
         }
         else{
-            $gio_hang->ds_hang = $request->keyword;
+            $gio_hangs = explode(', ',$gio_hang->ds_hang);
+            $flag = 0;
+            foreach($gio_hangs as $item){
+                if($item == $request->keyword) {
+                    $flag = 1;
+                }
+            }
+            if($flag == 0){
+                if($gio_hang->ds_hang!= null){
+                    $gio_hang->ds_hang = $gio_hang->ds_hang.', '.$request->keyword;
+                }
+                else{
+                    $gio_hang->ds_hang = $request->keyword;
+                }
+            }
         }
         $gio_hang->save();
         // print_r ($gio_hang->ds_hang);

@@ -25,7 +25,6 @@
           <th class="text-center">Tên sản phẩm</th>
           <th class="text-center">Giá</th>
           <th class="text-center">Hình ảnh</th>
-          <th class="text-center">Ngày mua hàng</th>
         </tr>
       </thead>
       <tbody>

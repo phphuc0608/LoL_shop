@@ -50,7 +50,7 @@
                         </div>
                     </a>
                     <div class="d-flex align-items-center justify-content-center m-0">
-                        <div class="buy_button" onclick="location.href='{{route('xu_ly_them_gio_hang',['keyword'=>$chest->ten_bau_vat])}}';">
+                        <div class="buy_button" onclick="location.href='{{route('xu_ly_them_gio_hang',['keyword'=>$chest->ten_bau_vat, 'type'=>'bau_vat'])}}';">
                             Mua <i class="bi bi-bag"></i> 
                         </div>
                     </div>
