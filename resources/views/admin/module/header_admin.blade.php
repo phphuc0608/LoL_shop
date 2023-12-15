@@ -14,7 +14,7 @@
     </div>
     <a href="{{route('quan_ly_khach_hang',1)}}" class="mx-3 item_nav">Khách hàng</a>
     <a href="{{route('quan_ly_nguoi_dung',1)}}" class="mx-3 item_nav">Người dùng</a>
-    <a href="#" class="mx-3 item_nav">Thống kê</a>
+    <a href="{{route('thong_ke')}}" class="mx-3 item_nav">Thống kê</a>
   </div>
   <a href="{{route('dang_xuat')}}" class="btn btn-warning">Đăng xuất</a>
 </div>

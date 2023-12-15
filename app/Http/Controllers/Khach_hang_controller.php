@@ -506,7 +506,26 @@ class Khach_hang_controller extends Controller
 
         $gio_hang = Gio_hang::join('khach_hang','gio_hang.ma_gio_hang','=','khach_hang.ma_gio_hang')->where('tai_khoan','=',session('nguoi_dung'))->first();
         if($gio_hang->ds_hang !=''){
+            $hang_hoas = explode(", ",$gio_hang->ds_hang);
             $ls_mua = Lich_su_mua_hang::join('khach_hang','lich_su_mua_hang.ma_ls_mua_hang','=','khach_hang.ma_ls_mua_hang')->where('tai_khoan','=',session('nguoi_dung'))->first();
+            $thong_ke = Thong_ke::find(date('Y-m'));
+            if($thong_ke==null) {
+                $thang_moi = new Thong_ke();
+                $thang_moi->thang = date('Y-m');
+                $thang_moi->doanh_thu_trang_phuc = 0;
+                $thang_moi->doanh_thu_vat_pham = 0;
+                $thang_moi->doanh_thu_bau_vat = 0;
+                $thang_moi->trang_phuc_da_ban = 0;
+                $thang_moi->vat_pham_da_ban = 0;
+                $thang_moi->bau_vat_da_ban = 0;
+                $thang_moi->tong_da_ban = 0;
+                $thang_moi->tong_doanh_thu = 0;
+                $thang_moi->save();
+                $thong_ke=$thang_moi;
+            }
+            else{
+                $thong_ke->get();
+            }
             if($ls_mua->ds_ls_mua_hang!=NULL){
                 $ls_mua->ds_ls_mua_hang = $ls_mua->ds_ls_mua_hang.', '.$gio_hang->ds_hang;
                 $gio_hang->ds_hang = '';
@@ -515,9 +534,40 @@ class Khach_hang_controller extends Controller
                 $ls_mua->ds_ls_mua_hang = $gio_hang->ds_hang;
                 $gio_hang->ds_hang = '';
             }
+            foreach($hang_hoas as $hang_hoa){
+                $bau_vat = Bau_vat::join('loai_bau_vat','bau_vat.ma_loai_bau_vat','=','loai_bau_vat.ma_loai_bau_vat')
+                    ->where('ten_bau_vat','like','%'.$hang_hoa. '%')->first();
+                $vat_pham = Vat_pham::join('loai_vat_pham','vat_pham.ma_loai_vat_pham','=','loai_vat_pham.ma_loai_vat_pham')
+                    ->where('ten_vat_pham','like','%'.$hang_hoa. '%')->first();
+                $trang_phuc = Trang_phuc::join('do_hiem','trang_phuc.ma_do_hiem','=','do_hiem.ma_do_hiem')
+                    ->where('ten_trang_phuc','like','%'.$hang_hoa. '%')->first();
+                if($bau_vat!=null){
+                    // $bau_vat = $bau_vat->first();
+                    $thong_ke->doanh_thu_bau_vat += $bau_vat->gia;
+                    $thong_ke->bau_vat_da_ban += 1;
+                    $thong_ke->tong_da_ban += 1;
+                    $thong_ke->tong_doanh_thu += $bau_vat->gia;
+                }
+                if($vat_pham!=null){
+                    // $vat_pham = $vat_pham->first();
+                    $thong_ke->doanh_thu_vat_pham += $vat_pham->gia;
+                    $thong_ke->vat_pham_da_ban += 1;
+                    $thong_ke->tong_da_ban += 1;
+                    $thong_ke->tong_doanh_thu += $vat_pham->gia;
+                }
+                if($trang_phuc!=null){
+                    // $trang_phuc = $trang_phuc->first();
+                    $thong_ke->doanh_thu_trang_phuc += $trang_phuc->gia;
+                    $thong_ke->trang_phuc_da_ban += 1;
+                    $thong_ke->tong_da_ban += 1;
+                    $thong_ke->tong_doanh_thu += $trang_phuc->gia;
+                }
+            }
             $gio_hang->save();
             $ls_mua->save();
+            $thong_ke->save();
         }
         return redirect()->route('gio_hang');
+        // print_r ($thong_ke);
     }
 }

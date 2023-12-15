@@ -23,17 +23,20 @@
                 </tr>
             </thead>
             <tbody>
+              @foreach ($thong_kes as $thong_ke) 
                 <tr>
-                    <th class="text-center">1</th>
-                    <th class="text-center">40000000<span style="font-size: 15px">₫</span></th>
-                    <th class="text-center">30000000<span style="font-size: 15px">₫</span></th>
-                    <th class="text-center">30000000<span style="font-size: 15px">₫</span></th>
-                    <th class="text-center">10</th>
-                    <th class="text-center">20</th>
-                    <th class="text-center">20</th>
-                    <th class="text-center">50</th>
-                    <th class="text-center">10000000</th>
-                </tr>
+                  <th class="text-center">{{$thong_ke->thang}}</th>
+                  <th class="text-center">{{$thong_ke->doanh_thu_trang_phuc}}<span style="font-size: 15px">₫</span></th>
+                  <th class="text-center">{{$thong_ke->doanh_thu_vat_pham}}<span style="font-size: 15px">₫</span></th>
+                  <th class="text-center">{{$thong_ke->doanh_thu_bau_vat}}<span style="font-size: 15px">₫</span></th>
+                  <th class="text-center">{{$thong_ke->trang_phuc_da_ban}}</th>
+                  <th class="text-center">{{$thong_ke->vat_pham_da_ban}}</th>
+                  <th class="text-center">{{$thong_ke->bau_vat_da_ban}}</th>
+                  <th class="text-center">{{$thong_ke->tong_da_ban}}</th>
+                  <th class="text-center">{{$thong_ke->tong_doanh_thu}}</th>
+              </tr>
+              @endforeach
+                
             </tbody>
         </table>
     </div>
