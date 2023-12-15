@@ -106,5 +106,5 @@ Route::get('lich_su_mua_hang', [App\Http\Controllers\Khach_hang_controller::clas
 Route::get('gio_hang', [App\Http\Controllers\Khach_hang_controller::class, 'view_gio_hang'])->name('gio_hang');
 Route::get('them_gio_hang/{keyword}/{type}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_them_gio_hang'])->name('xu_ly_them_gio_hang');
 Route::get('xoa_gio_hang_process/{keyword}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_xoa_gio_hang'])->name('xoa_gio_hang');
-Route::get('thanh_toan_process/{keyword}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_thanh_toan_don'])->name('thanh_toan_don');
+Route::get('thanh_toan_process/{keyword}/{type}', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_thanh_toan_don'])->name('thanh_toan_don');
 Route::get('thanh_toan_toan_bo_process', [\App\Http\Controllers\Khach_hang_controller::class, 'xu_ly_thanh_toan_toan_bo'])->name('thanh_toan_toan_bo');

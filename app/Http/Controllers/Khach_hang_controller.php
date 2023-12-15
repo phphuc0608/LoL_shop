@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Bau_vat;
 use App\Models\Vat_pham;
 use App\Models\Trang_phuc;
+use App\Models\Thong_ke;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\ElseIf_;
 
@@ -420,13 +421,73 @@ class Khach_hang_controller extends Controller
         if($gio_hang->ds_hang !=''){
             $hang_hoas = explode(", ",$gio_hang->ds_hang);
             $ls_mua = Lich_su_mua_hang::join('khach_hang','lich_su_mua_hang.ma_ls_mua_hang','=','khach_hang.ma_ls_mua_hang')->where('tai_khoan','=',session('nguoi_dung'))->first();
+            $thong_ke = Thong_ke::find(date('Y-m'));
+            if($thong_ke==null) {
+                $thang_moi = new Thong_ke();
+                $thang_moi->thang = date('Y-m');
+                $thang_moi->doanh_thu_trang_phuc = 0;
+                $thang_moi->doanh_thu_vat_pham = 0;
+                $thang_moi->doanh_thu_bau_vat = 0;
+                $thang_moi->trang_phuc_da_ban = 0;
+                $thang_moi->vat_pham_da_ban = 0;
+                $thang_moi->bau_vat_da_ban = 0;
+                $thang_moi->tong_da_ban = 0;
+                $thang_moi->tong_doanh_thu = 0;
+                $thang_moi->save();
+                $thong_ke=$thang_moi;
+            }
+            else{
+                $thong_ke->get();
+            }
             foreach($hang_hoas as $hang_hoa){
                 if($hang_hoa==$request->keyword) {
                     if($ls_mua->ds_ls_mua_hang!=NULL){
                         $ls_mua->ds_ls_mua_hang = $ls_mua->ds_ls_mua_hang.', '.$hang_hoa;
+                        if($request->type == 'bau_vat'){
+                            $bau_vat = Bau_vat::join('loai_bau_vat','loai_bau_vat.ma_loai_bau_vat','bau_vat.ma_loai_bau_vat')->where('ten_bau_vat','like','%'.$hang_hoa. '%')->first();
+                            $thong_ke->doanh_thu_bau_vat += $bau_vat->gia;
+                            $thong_ke->bau_vat_da_ban += 1;
+                            $thong_ke->tong_da_ban += 1;
+                            $thong_ke->tong_doanh_thu += $bau_vat->gia;
+                        }
+                        elseif($request->type == 'trang_phuc'){
+                            $trang_phuc = Trang_phuc::join('do_hiem','do_hiem.ma_do_hiem','trang_phuc.ma_do_hiem')->where('ten_trang_phuc','like','%'.$hang_hoa. '%')->first();
+                            $thong_ke->doanh_thu_trang_phuc += $trang_phuc->gia;
+                            $thong_ke->trang_phuc_da_ban += 1;
+                            $thong_ke->tong_da_ban += 1;
+                            $thong_ke->tong_doanh_thu += $trang_phuc->gia;
+                        }
+                        else{
+                            $vat_pham = Vat_pham::join('loai_vat_pham','loai_vat_pham.ma_loai_vat_pham','vat_pham.ma_loai_vat_pham')->where('ten_vat_pham','like','%'.$hang_hoa. '%')->first();
+                            $thong_ke->doanh_thu_vat_pham += $vat_pham->gia;
+                            $thong_ke->vat_pham_da_ban += 1;
+                            $thong_ke->tong_da_ban += 1;
+                            $thong_ke->tong_doanh_thu += $vat_pham->gia;
+                        }
                     }
                     else{
                         $ls_mua->ds_ls_mua_hang = $gio_hang->ds_hang;
+                        if($request->type == 'bau_vat'){
+                            $bau_vat = Bau_vat::join('loai_bau_vat','loai_bau_vat.ma_loai_bau_vat','bau_vat.ma_loai_bau_vat')->where('ten_bau_vat','like','%'.$hang_hoa. '%')->first();
+                            $thong_ke->doanh_thu_bau_vat += $bau_vat->gia;
+                            $thong_ke->bau_vat_da_ban += 1;
+                            $thong_ke->tong_da_ban += 1;
+                            $thong_ke->tong_doanh_thu += $bau_vat->gia;
+                        }
+                        elseif($request->type == 'trang_phuc'){
+                            $trang_phuc = Trang_phuc::join('do_hiem','do_hiem.ma_do_hiem','trang_phuc.ma_do_hiem')->where('ten_trang_phuc','like','%'.$hang_hoa. '%')->first();
+                            $thong_ke->doanh_thu_trang_phuc += $trang_phuc->gia;
+                            $thong_ke->trang_phuc_da_ban += 1;
+                            $thong_ke->tong_da_ban += 1;
+                            $thong_ke->tong_doanh_thu += $trang_phuc->gia;
+                        }
+                        else{
+                            $vat_pham = Vat_pham::join('loai_vat_pham','loai_vat_pham.ma_loai_vat_pham','vat_pham.ma_loai_vat_pham')->where('ten_vat_pham','like','%'.$hang_hoa. '%')->first();
+                            $thong_ke->doanh_thu_vat_pham += $vat_pham->gia;
+                            $thong_ke->vat_pham_da_ban += 1;
+                            $thong_ke->tong_da_ban += 1;
+                            $thong_ke->tong_doanh_thu += $vat_pham->gia;
+                        }
                     }  
                     $key = array_search($request->keyword,$hang_hoas);
                     unset($hang_hoas[$key]);
@@ -436,7 +497,9 @@ class Khach_hang_controller extends Controller
             $gio_hang->ds_hang = implode(', ',$hang_hoas);
             $gio_hang->save();
             $ls_mua->save();
+            $thong_ke->save();
         }
+        // echo $thong_ke;
         return redirect()->route('gio_hang');
     }
     public function xu_ly_thanh_toan_toan_bo(){
