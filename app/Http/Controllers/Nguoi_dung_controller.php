@@ -9,6 +9,7 @@ use App\Models\Chuc_nang;
 use App\Models\Khach_hang;
 use App\Models\Gio_hang;
 use App\Models\Lich_su_mua_hang;
+use App\Models\Thong_ke;
 
 
 class Nguoi_dung_controller extends Controller
@@ -229,7 +230,10 @@ class Nguoi_dung_controller extends Controller
     }
 	/*---------------------- */
 	public function view_thong_ke(){
-		return view('admin.Thong_ke.thong_ke');
+		$data = [];
+		$data['thong_kes'] = Thong_ke::all();
+
+		return view('admin.Thong_ke.thong_ke', $data);
 	}
 }
 
