@@ -116,6 +116,7 @@ class San_pham_controller extends Controller
         $skin->ma_tuong = $request->add_tuong;
         $skin->ma_dong_skin = $request->dong_skin;
         $skin->trang_thai = $request->state;
+        $skin->loai_san_pham = 'trang_phuc';
         if ($request->hasFile('hinh_anh')) {
             $img = $request->hinh_anh;
             //Lấy thời gian upload nối với tên file xong mã hóa md5 rồi nối đuôi file
@@ -407,7 +408,7 @@ public function view_tim_kiem_sp_item($keyword,$type,$state,$page)
         $data['state'] = $state;
         $data['type'] = $type;
         $data['keyword'] = $keyword;
-        return view('admin.Quan_ly_sp_chest.quan_ly_sp_item_search', $data)->with('loai_vat_phams', $loai_vat_phams);
+        return view('admin.Quan_ly_sp_item.quan_ly_sp_item_search', $data)->with('loai_vat_phams', $loai_vat_phams);
     } else {
         return redirect()->route('dang_nhap');
     }
