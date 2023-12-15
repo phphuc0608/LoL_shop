@@ -23,6 +23,7 @@
         <tr>
           <th class="text-center">Tên sản phẩm</th>
           <th class="text-center">Giá</th>
+          <th class="text-center">Loại sản phẩm</th>
           <th class="text-center">Hình ảnh</th>
           <th class="text-center">Thao tác</th>
         </tr>
@@ -38,6 +39,15 @@
             <th class="text-center price_skin">{{$san_pham->gia}}<span style="font-size: 18px">₫</span></th>
             <th class="text-center">
               @if ($san_pham->loai_san_pham == 'bau_vat')
+                  {{'Báu vật'}}
+              @elseif($san_pham->loai_san_pham == 'vat_pham')
+                  {{'Vật phẩm'}}
+              @else
+                  {{'Trang phục'}}
+              @endif
+            </th>
+            <th class="text-center">
+              @if ($san_pham->loai_san_pham == 'bau_vat')
                 <img src="{{asset('chest/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
               @elseif($san_pham->loai_san_pham == 'vat_pham')
                 <img src="{{asset('item/'.$san_pham->hinh_anh)}}" width="100px" height="100px">
@@ -46,7 +56,7 @@
               @endif
             </th>
             <th class="text-center">
-              <button class="btn_container"><a href="{{route('thanh_toan_don',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-bag-heart buy_icon"></i></a></button> |
+              <button class="btn_container"><a href="{{route('thanh_toan_don',['keyword'=>$san_pham->ten_san_pham, 'type'=>$san_pham->loai_san_pham])}}"><i class="table_btn bi bi-bag-heart buy_icon"></i></a></button> |
               <button class="btn_container"><a href="{{route('xoa_gio_hang',['keyword'=>$san_pham->ten_san_pham])}}"><i class="table_btn bi bi-trash3 remove_icon"></i></a></button>
             </th>
           </tr>
