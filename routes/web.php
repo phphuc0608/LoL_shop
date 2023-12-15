@@ -23,6 +23,7 @@ Route::post('dang_nhap_process',[App\Http\Controllers\Nguoi_dung_controller::cla
 Route::get('quen_mk',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_quen_mk'])->name('quen_mk');
 Route::post('quen_mk_process',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_quen_mk']);
 Route::get('dang_xuat',[App\Http\Controllers\Nguoi_dung_controller::class, 'xu_ly_dang_xuat'])->name('dang_xuat');
+Route::get('thong_ke',[App\Http\Controllers\Nguoi_dung_controller::class, 'view_thong_ke'])->name('thong_ke');
 //giao dien
 Route::get('quan_ly_nguoi_dung/{page}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_quan_ly_nguoi_dung'])->name('quan_ly_nguoi_dung');
 Route::get('quan_ly_nguoi_dung_search/{keyword}/{state}/{pos}/{page}', [\App\Http\Controllers\Nguoi_dung_controller::class, 'view_tim_kiem'])->name('quan_ly_nguoi_dung_search');

@@ -228,6 +228,8 @@ class Nguoi_dung_controller extends Controller
         return redirect()->route('quan_ly_nguoi_dung', 1);
     }
 	/*---------------------- */
-	
+	public function view_thong_ke(){
+		return view('admin.Thong_ke.thong_ke');
+	}
 }
 
