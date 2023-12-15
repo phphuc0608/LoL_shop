@@ -30,7 +30,6 @@
       <tbody>
         @if ($san_phams!=null)
           @php
-            $count=1;
             $sum=0;
           @endphp
           @foreach ($san_phams as $san_pham)

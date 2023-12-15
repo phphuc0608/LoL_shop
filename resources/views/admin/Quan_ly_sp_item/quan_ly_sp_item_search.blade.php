@@ -60,7 +60,7 @@
                     <th class="text-center">{{$tim_kiem->loai_vat_pham->ten_loai_vat_pham}}</th>
                     <th class="text-center">{{$tim_kiem->loai_vat_pham->gia}}<span style="font-size: 15px">₫</span></th>
                     <th class="text-center"><?php echo $tim_kiem->trang_thai == 1?'Đang bán':'Ngừng bán' ?></th>
-                    <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('item/'.$tim_kiem->hinh_anh)}}" alt=""></th>
+                    <th class="text-center"><img style="width: 150px; height: 150px;" src="{{asset('item/'.$tim_kiem->hinh_anh)}}" alt=""></th>
                     <th class="text-center">
                         <button class="table_btn" data-toggle="modal" data-target="#update_item"><i class="bi bi-pencil update_icon"></i></button>
                         |

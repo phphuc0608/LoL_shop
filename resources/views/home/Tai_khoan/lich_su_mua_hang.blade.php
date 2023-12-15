@@ -28,6 +28,9 @@
         </tr>
       </thead>
       <tbody>
+        @php
+          $sum=0;
+        @endphp
         @if ($san_phams!=null)
           @foreach ($san_phams as $san_pham)
           <tr>
@@ -43,10 +46,16 @@
               @endif
             </th>
           </tr>
+          @php
+            $sum+=$san_pham->gia;
+          @endphp
           @endforeach
         @endif
       </tbody>
     </table>
+    <div class="col-md-12 my-3 d-flex justify-content-between align-items-center">
+      <h5>Tổng tiền đã thanh toán: <span id="price_total">{{$san_phams!=null?$sum:'0'}}<span style="font-size: 25px">₫</span></span></h5>
+    </div>
     @include('home/module/footer')
 </body>
 </html>

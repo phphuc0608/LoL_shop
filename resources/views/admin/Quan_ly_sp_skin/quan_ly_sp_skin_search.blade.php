@@ -62,7 +62,7 @@
                     <th class="text-center">{{$tim_kiem->dong_skin->ten_dong_skin}}</th>
                     <th class="text-center">{{$tim_kiem->do_hiem->gia}}<span style="font-size: 15px">₫</span></th>
                     <th class="text-center"><?php echo $tim_kiem->trang_thai == 1?'Đang bán':'Ngừng bán' ?></th>
-                    <th class="text-center"><img style="width: 80px; height: 150px;" src="{{asset('skin/'.$tim_kiem->hinh_anh)}}" alt=""></th>
+                    <th class="text-center"><img style="width: 200px; height: 150px;" src="{{asset('skin/'.$tim_kiem->hinh_anh)}}" alt=""></th>
                     <th class="text-center">
                         <button class="table_btn" data-toggle="modal" data-target="#update_skin"><i class="bi bi-pencil update_icon"></i></button>
                         |
