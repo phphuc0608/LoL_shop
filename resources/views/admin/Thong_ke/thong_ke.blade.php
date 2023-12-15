@@ -23,20 +23,21 @@
                 </tr>
             </thead>
             <tbody>
-              @foreach ($thong_kes as $thong_ke) 
-                <tr>
-                  <th class="text-center">{{$thong_ke->thang}}</th>
-                  <th class="text-center">{{$thong_ke->doanh_thu_trang_phuc}}<span style="font-size: 15px">₫</span></th>
-                  <th class="text-center">{{$thong_ke->doanh_thu_vat_pham}}<span style="font-size: 15px">₫</span></th>
-                  <th class="text-center">{{$thong_ke->doanh_thu_bau_vat}}<span style="font-size: 15px">₫</span></th>
-                  <th class="text-center">{{$thong_ke->trang_phuc_da_ban}}</th>
-                  <th class="text-center">{{$thong_ke->vat_pham_da_ban}}</th>
-                  <th class="text-center">{{$thong_ke->bau_vat_da_ban}}</th>
-                  <th class="text-center">{{$thong_ke->tong_da_ban}}</th>
-                  <th class="text-center">{{$thong_ke->tong_doanh_thu}}</th>
-              </tr>
-              @endforeach
-                
+              @if ($thong_kes != null)
+                @foreach ($thong_kes as $thong_ke) 
+                  <tr>
+                    <th class="text-center">{{$thong_ke->thang}}</th>
+                    <th class="text-center">{{$thong_ke->doanh_thu_trang_phuc}}<span style="font-size: 15px">₫</span></th>
+                    <th class="text-center">{{$thong_ke->doanh_thu_vat_pham}}<span style="font-size: 15px">₫</span></th>
+                    <th class="text-center">{{$thong_ke->doanh_thu_bau_vat}}<span style="font-size: 15px">₫</span></th>
+                    <th class="text-center">{{$thong_ke->trang_phuc_da_ban}}</th>
+                    <th class="text-center">{{$thong_ke->vat_pham_da_ban}}</th>
+                    <th class="text-center">{{$thong_ke->bau_vat_da_ban}}</th>
+                    <th class="text-center">{{$thong_ke->tong_da_ban}}</th>
+                    <th class="text-center">{{$thong_ke->tong_doanh_thu}}</th>
+                </tr>
+                @endforeach
+              @endif
             </tbody>
         </table>
     </div>
