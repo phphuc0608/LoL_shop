@@ -71,7 +71,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-6" style="margin-left: 510px">
       <div class="pagination d-flex justify-content-center">
         <ul class="pagination">
           <li class="page-item">
