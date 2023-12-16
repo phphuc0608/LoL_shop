@@ -61,7 +61,7 @@ class Khach_hang_controller extends Controller
 	}
     public function view_quan_ly_khach_hang($page)
 	{
-		if (session('nguoi_dung') != null) {
+		if (session('nguoi_dung') !=null && session('chuc_nang') == 'admin') {
             $all_khach_hangs = Khach_hang::all();
 			$data = [];
 			$page_length = 6;
@@ -74,6 +74,7 @@ class Khach_hang_controller extends Controller
 			$data['page'] = $page;
 			return view('admin.Quan_ly_khach_hang.quan_ly_khach_hang', $data);
 		} else {
+            session()->flush();
 			return redirect()->route('dang_nhap');
 		}
 	}
@@ -115,7 +116,7 @@ class Khach_hang_controller extends Controller
 	}
     public function view_tim_kiem($ten_tai_khoan, $email, $state, $page)
     {
-        if (session('nguoi_dung') != null) {
+        if (session('nguoi_dung') !=null && session('chuc_nang') == 'admin') {
             if($ten_tai_khoan!='\0'&&$email!='\0'){
                 if($state==-1){
                     $tim_kiems = Khach_hang::where('tai_khoan','like','%'.$ten_tai_khoan. '%')
@@ -178,12 +179,17 @@ class Khach_hang_controller extends Controller
             $data['state'] = $state;
 			return view('admin.Quan_ly_khach_hang.quan_ly_khach_hang_search', $data);
 		} else {
+            session()->flush();
 			return redirect()->route('dang_nhap');
 		}
     }
 
     public function view_thong_tin_tai_khoan(){
 		if (session('nguoi_dung') != null) {
+            if (session('chuc_nang') == 'admin') {
+                session()->flush();
+                return redirect()->route('dang_nhap');
+            }
 			$data = [];
 			$data['bao_loi'] = session('bao_loi');
 			session()->put('bao_loi', '');
@@ -231,6 +237,10 @@ class Khach_hang_controller extends Controller
     }
     public function view_lich_su_mua_hang(){
         if (session('nguoi_dung') != null) {
+            if (session('chuc_nang') == 'admin') {
+                session()->flush();
+                return redirect()->route('dang_nhap');
+            }
             $data = [];
             // $ds_ls = [];
             $data['nguoi_dung'] = session('nguoi_dung');
@@ -333,6 +343,10 @@ class Khach_hang_controller extends Controller
 	}
     public function view_gio_hang(){
         if (session('nguoi_dung') != null) {
+            if (session('chuc_nang') == 'admin') {
+                session()->flush();
+                return redirect()->route('dang_nhap');
+            }
             $data = [];
             // $ds_ls = [];
             $data['nguoi_dung'] = session('nguoi_dung');

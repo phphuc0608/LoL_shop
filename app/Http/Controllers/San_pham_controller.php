@@ -17,7 +17,7 @@ class San_pham_controller extends Controller
 {
     public function view_quan_ly_sp_skin($page)
 	{
-		if (session('nguoi_dung') != null) {
+		if (session('nguoi_dung') != null&& session('chuc_nang') == 'admin') {
 			$tuongs = Danh_sach_tuong::all();
             $do_hiems = Do_hiem::all();
             $dong_skins = Dong_skin::all();
@@ -33,6 +33,7 @@ class San_pham_controller extends Controller
 			$data['page'] = $page;
 			return view('admin.Quan_ly_sp_skin.quan_ly_sp_skin', $data)->with('tuongs', $tuongs)->with('do_hiems', $do_hiems)->with('dong_skins', $dong_skins);
 		} else {
+            session()->flush();
 			return redirect()->route('dang_nhap');
 		}
 	}
@@ -48,7 +49,7 @@ class San_pham_controller extends Controller
 	}
     public function view_tim_kiem_sp_skin($keyword,$champ,$state,$page)
 	{
-		if (session('nguoi_dung') != null) {
+		if (session('nguoi_dung') != null&& session('chuc_nang') == 'admin') {
 			if($keyword != '\0') {
 				if($champ==0&&$state==-1){
 					$tim_kiems = Trang_phuc::where('ten_trang_phuc','like','%'.$keyword. '%')->get();
@@ -106,6 +107,7 @@ class San_pham_controller extends Controller
 			$data['keyword'] = $keyword;
 			return view('admin.Quan_ly_sp_skin.quan_ly_sp_skin_search', $data)->with('tuongs', $tuongs)->with('do_hiems', $do_hiems)->with('dong_skins', $dong_skins);
 		} else {
+            session()->flush();
 			return redirect()->route('dang_nhap');
 		}
 	}
@@ -186,7 +188,7 @@ class San_pham_controller extends Controller
 /*----------------------------------------------------------------*/
     public function view_quan_ly_sp_chest($page)
 	{
-		if (session('nguoi_dung') != null) {
+		if (session('nguoi_dung') != null&& session('chuc_nang') == 'admin') {
 			$loai_bau_vats = Loai_bau_vat::all();
 			$data = [];
 			$page_length = 6;
@@ -200,6 +202,7 @@ class San_pham_controller extends Controller
 			$data['page'] = $page;
 			return view('admin.Quan_ly_sp_chest.quan_ly_sp_chest', $data)->with('loai_bau_vats', $loai_bau_vats);
 		} else {
+            session()->flush();
 			return redirect()->route('dang_nhap');
 		}
 	}
@@ -216,7 +219,7 @@ class San_pham_controller extends Controller
 
     public function view_tim_kiem_sp_chest($keyword,$type,$state,$page)
 	{
-		if (session('nguoi_dung') != null) {
+		if (session('nguoi_dung') != null&& session('chuc_nang') == 'admin') {
 			if($keyword != '\0') {
 				if($type==0&&$state==-1){
 					$tim_kiems = Bau_vat::where('ten_bau_vat','like','%'.$keyword. '%')->get();
@@ -272,6 +275,7 @@ class San_pham_controller extends Controller
 			$data['keyword'] = $keyword;
 			return view('admin.Quan_ly_sp_chest.quan_ly_sp_chest_search', $data)->with('loai_bau_vats', $loai_bau_vats);
 		} else {
+            session()->flush();
 			return redirect()->route('dang_nhap');
 		}
 	}
@@ -324,7 +328,7 @@ class San_pham_controller extends Controller
 
 public function view_quan_ly_sp_item($page)
 {
-    if (session('nguoi_dung') != null) {
+    if (session('nguoi_dung') !=null && session('chuc_nang') == 'admin') {
         $loai_vat_phams = Loai_vat_pham::all();
         $data = [];
         $page_length = 6;
@@ -338,6 +342,7 @@ public function view_quan_ly_sp_item($page)
         $data['page'] = $page;
         return view('admin.Quan_ly_sp_item.quan_ly_sp_item', $data)->with('loai_vat_phams', $loai_vat_phams);
     } else {
+        session()->flush();
         return redirect()->route('dang_nhap');
     }
 }
@@ -354,7 +359,7 @@ public function xu_ly_tim_kiem_item(Request $request)
 
 public function view_tim_kiem_sp_item($keyword,$type,$state,$page)
 {
-    if (session('nguoi_dung') != null) {
+    if (session('nguoi_dung') !=null && session('chuc_nang') == 'admin') {
         if($keyword != '\0') {
             if($type==0&&$state==-1){
                 $tim_kiems = Vat_pham::where('ten_vat_pham','like','%'.$keyword. '%')->get();
@@ -410,6 +415,7 @@ public function view_tim_kiem_sp_item($keyword,$type,$state,$page)
         $data['keyword'] = $keyword;
         return view('admin.Quan_ly_sp_item.quan_ly_sp_item_search', $data)->with('loai_vat_phams', $loai_vat_phams);
     } else {
+        session()->flush();
         return redirect()->route('dang_nhap');
     }
 }
@@ -499,6 +505,10 @@ public function xu_ly_sua_item(Request $request){
 
     }
     public function view_chi_tiet_trang_phuc(Request $request){
+        if (session('chuc_nang') == 'admin') {
+            session()->flush();
+            return redirect()->route('dang_nhap');
+        }
         $data = [];
         $data['nguoi_dung'] = session('nguoi_dung');
         $data['keyword'] = $request->keyword;
@@ -507,6 +517,10 @@ public function xu_ly_sua_item(Request $request){
     }
     public function view_home_mua_bau_vat()
     {
+        if (session('chuc_nang') == 'admin') {
+            session()->flush();
+            return redirect()->route('dang_nhap');
+        }
         $chests = Bau_vat::where('trang_thai','=',1)->get();
         $nguoi_dung = session('nguoi_dung');
         $search = 0;
@@ -604,6 +618,10 @@ public function xu_ly_sua_item(Request $request){
 	}
     public function view_home_mua_vat_pham()
     {
+        if (session('chuc_nang') == 'admin') {
+            session()->flush();
+            return redirect()->route('dang_nhap');
+        }
         $items = Vat_pham::where('trang_thai','=',1)->get();
         $nguoi_dung = session('nguoi_dung');
         $search = 0;
@@ -667,6 +685,10 @@ public function xu_ly_sua_item(Request $request){
 	}
 
     public function view_chi_tiet_bau_vat(Request $request){
+        if (session('chuc_nang') == 'admin') {
+            session()->flush();
+            return redirect()->route('dang_nhap');
+        }
         $data = [];
         $data['nguoi_dung'] = session('nguoi_dung');
         $data['keyword'] = $request->keyword;

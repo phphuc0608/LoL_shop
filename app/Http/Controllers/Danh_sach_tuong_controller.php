@@ -10,7 +10,7 @@ class Danh_sach_tuong_controller extends Controller
 {
     public function view_quan_ly_danh_sach_tuong($page)
     {
-        if (session('nguoi_dung') != null) {
+        if (session('nguoi_dung') !=null && session('chuc_nang') == 'admin') {
             $data = [];
             $page_length = 10;
             $tuongs = Danh_sach_tuong::all();
@@ -23,6 +23,7 @@ class Danh_sach_tuong_controller extends Controller
             $data['page'] = $page;
             return view('admin.Quan_ly_danh_sach_tuong.quan_ly_danh_sach_tuong', $data);
         } else {
+            session()->flush();
             return redirect()->route('dang_nhap');
         }
     }
@@ -78,7 +79,7 @@ class Danh_sach_tuong_controller extends Controller
         }
     }
     public function view_tim_kiem_keyword($keyword, $page){
-        if (session('nguoi_dung') != null) {
+        if (session('nguoi_dung') !=null && session('chuc_nang') == 'admin') {
             $tim_kiems = Danh_sach_tuong::where('ten_tuong', 'like', '%' . $keyword . '%')->get();
             $data = [];
             $page_length = 10;
@@ -98,12 +99,17 @@ class Danh_sach_tuong_controller extends Controller
             $data['keyword'] = $keyword;
             return view('admin.Quan_ly_danh_sach_tuong.quan_ly_danh_sach_tuong_search', $data);
         } else {
+            session()->flush();
             return redirect()->route('dang_nhap');
         }
     }
 
     public function view_home_ds_tuong()
     {
+        if (session('chuc_nang') == 'admin') {
+            session()->flush();
+            return redirect()->route('dang_nhap');
+        }
         $tuongs = Danh_sach_tuong::all();
         $nguoi_dung = session('nguoi_dung');
         $search=0;
@@ -111,6 +117,10 @@ class Danh_sach_tuong_controller extends Controller
     }
     public function xu_ly_tim_kiem_champ_home(Request $request)
 	{
+        if (session('chuc_nang') == 'admin') {
+            session()->flush();
+            return redirect()->route('dang_nhap');
+        }
         $data = [];
         $data['nguoi_dung'] = session('nguoi_dung');
 		$data['keyword'] = $request->keyword;

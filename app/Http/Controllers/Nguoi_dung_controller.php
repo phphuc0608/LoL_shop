@@ -107,7 +107,7 @@ class Nguoi_dung_controller extends Controller
 		}
   public function view_quan_ly_nguoi_dung($page)
 	{
-		if (session('nguoi_dung') != null) {
+		if (session('nguoi_dung') != null && session('chuc_nang') == 'admin') {
 			$chuc_nangs = Chuc_nang::all();
 			$data = [];
 			$page_length = 6;
@@ -121,6 +121,7 @@ class Nguoi_dung_controller extends Controller
 			$data['page'] = $page;
 			return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung', $data)->with('chuc_nangs', $chuc_nangs);
 		} else {
+			session()->flush();
 			return redirect()->route('dang_nhap');
 		}
 	}
@@ -147,7 +148,7 @@ class Nguoi_dung_controller extends Controller
 
 	public function view_tim_kiem($keyword,$state,$pos,$page)
 	{
-		if (session('nguoi_dung') != null) {
+		if (session('nguoi_dung') !=null && session('chuc_nang') == 'admin') {
 			if($keyword != '\0') {
 				if($pos==0&&$state==-1){
 					$tim_kiems = Nguoi_dung::where('tai_khoan','like','%'.$keyword. '%')->get();
@@ -206,6 +207,7 @@ class Nguoi_dung_controller extends Controller
 			$data['keyword'] = $keyword;
 			return view('admin.Quan_ly_nguoi_dung.quan_ly_nguoi_dung_search', $data)->with('chuc_nangs', $chuc_nangs);
 		} else {
+			session()->flush();
 			return redirect()->route('dang_nhap');
 		}
 	}
@@ -230,10 +232,16 @@ class Nguoi_dung_controller extends Controller
     }
 	/*---------------------- */
 	public function view_thong_ke(){
-		$data = [];
-		$data['thong_kes'] = Thong_ke::all();
+		if (session('nguoi_dung') != null && session('chuc_nang') == 'admin') {
+			$data = [];
+			$data['thong_kes'] = Thong_ke::all();
 
-		return view('admin.Thong_ke.thong_ke', $data);
+			return view('admin.Thong_ke.thong_ke', $data);
+		}
+		else{
+			session()->flush();
+			return redirect()->route('dang_nhap');
+		}
 	}
 }
 
